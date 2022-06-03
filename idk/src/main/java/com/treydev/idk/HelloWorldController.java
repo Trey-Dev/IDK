@@ -96,15 +96,9 @@ public class HelloWorldController {
     @PostMapping("EnterCombat")
     public String combat(@RequestParam("Option") String Option, Model model)
     {
-       //TODO replace stubbed code with actual implementation.
-        // ArrayList<String> combatOutput = new ArrayList<String>();
-        // //combatOutput.add("A wild something attacks.");
-        // combatOutput.add("You decide to "+ Option);
         CombatHandler.takeAction(Option);
        model.addAttribute("CombatOutput", CombatHandler.outputs);
        
-    //    ArrayList<String> FightOptions = new ArrayList<String>();
-    //    FightOptions.add("Just fricking punch him, I guess.");
        model.addAttribute("FightOptions", CombatHandler.CombatOptions);
 
        
