@@ -3,16 +3,26 @@ package com.treydev.idk;
 import java.util.ArrayList;
 
 public class CombatHandler {
-    public static ArrayList<String> outputs;
-    public static ArrayList<String> CombatOptions;
-    public static void initializeStubbed()
+    public ArrayList<String> outputs;
+    public ArrayList<String> CombatOptions;
+    public CombatHandler()
     {
-        outputs = new ArrayList<String>();
-        outputs.add("A wild something attacks");
-        CombatOptions = new ArrayList<String>();
-        CombatOptions.add("Just fricking punch it I guess");
+        this.outputs = new ArrayList<String>();
+        this.CombatOptions = new ArrayList<String>();
     }
-    public static void takeAction(String action)
+    public CombatHandler(ArrayList<String> outputs, ArrayList<String> CombatOptions)
+    {
+        this.CombatOptions = CombatOptions;
+        this.outputs = outputs;
+    }
+    public static CombatHandler initializeStubbed()
+    {
+        CombatHandler value = new CombatHandler();
+        value.outputs.add("A wild something attacks");
+        value.CombatOptions.add("Just fricking punch it I guess");
+        return value;
+    }
+    public void takeAction(String action)
     {
         //This will change the outputs and combatoptions fields.
         //TODO: This is STUBBED code, it will always just output the command given.
@@ -21,8 +31,10 @@ public class CombatHandler {
         //Should just say: you used the action just fricking punch it I guess.
         
         //TODO: in actual implementation, edits CombatOptions. It won't do that here.
-        
+
     }
+
+
     
 
 }

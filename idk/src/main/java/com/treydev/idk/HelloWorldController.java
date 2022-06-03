@@ -50,6 +50,8 @@ public class HelloWorldController {
         return "Game";
     }
 
+    public static CombatHandler sessionCombatHandler; //TODO: replace with SESSION VARIABLES!!!
+    
     @GetMapping("Inventory")
     public String menu(Model model)
     {
@@ -85,23 +87,21 @@ public class HelloWorldController {
     @GetMapping("EnterCombat")
     public String combat(Model model)
     {
+        if(sessionCombatHandler == null)
+            sessionCombatHandler = CombatHandler.initializeStubbed();
        //TODO replace stubbed code with actual implementation.
-        if(CombatHandler.CombatOptions == null)
-            CombatHandler.initializeStubbed();
-        
-        model.addAttribute("CombatOutput", CombatHandler.outputs);
-        model.addAttribute("FightOptions", CombatHandler.CombatOptions);
+       
+        model.addAttribute("CombatOutput", sessionCombatHandler.outputs);
+        model.addAttribute("FightOptions", sessionCombatHandler.CombatOptions);
         return "Combat";
     }
     @PostMapping("EnterCombat")
     public String combat(@RequestParam("Option") String Option, Model model)
     {
-        CombatHandler.takeAction(Option);
-       model.addAttribute("CombatOutput", CombatHandler.outputs);
-       
-       model.addAttribute("FightOptions", CombatHandler.CombatOptions);
+        sessionCombatHandler.takeAction(Option);
+       model.addAttribute("CombatOutput", sessionCombatHandler.outputs);
+       model.addAttribute("FightOptions", sessionCombatHandler.CombatOptions);
 
-       
         return "Combat";
     }
     
