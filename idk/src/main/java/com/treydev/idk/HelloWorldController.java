@@ -24,6 +24,7 @@ public class HelloWorldController {
     public String helloWorld(Model model)
     {
         return "MainPage";
+        //TODO: STORE PARAMETER Uname INTO SESSION VARIABLES
     }
 
     @PostMapping("game")
@@ -63,6 +64,7 @@ public class HelloWorldController {
        model.addAttribute("Table", Item.inventory);
         return "Inventory";
     }
+
     @PostMapping("Inventory")
     public String consume(@RequestParam("name") String name,Model model)
     {
@@ -79,4 +81,35 @@ public class HelloWorldController {
         model.addAttribute("Table", Item.inventory);
         return "Inventory";
     }
+
+    @GetMapping("EnterCombat")
+    public String combat(Model model)
+    {
+       //TODO replace stubbed code with actual implementation.
+        if(CombatHandler.CombatOptions == null)
+            CombatHandler.initializeStubbed();
+        
+        model.addAttribute("CombatOutput", CombatHandler.outputs);
+        model.addAttribute("FightOptions", CombatHandler.CombatOptions);
+        return "Combat";
+    }
+    @PostMapping("EnterCombat")
+    public String combat(@RequestParam("Option") String Option, Model model)
+    {
+       //TODO replace stubbed code with actual implementation.
+        // ArrayList<String> combatOutput = new ArrayList<String>();
+        // //combatOutput.add("A wild something attacks.");
+        // combatOutput.add("You decide to "+ Option);
+        CombatHandler.takeAction(Option);
+       model.addAttribute("CombatOutput", CombatHandler.outputs);
+       
+    //    ArrayList<String> FightOptions = new ArrayList<String>();
+    //    FightOptions.add("Just fricking punch him, I guess.");
+       model.addAttribute("FightOptions", CombatHandler.CombatOptions);
+
+       
+        return "Combat";
+    }
+    
+
 }
