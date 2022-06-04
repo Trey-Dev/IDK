@@ -27,8 +27,8 @@ public class Critter {
     {
         int random = (int)(Math.random() * critters.size());
         Critter critter = Critter.critters.get(random);
-        critter.baseAttack += (Math.random() - Math.random())*5;
-        critter.baseDefense += (Math.random() - Math.random())*5;
+        critter.baseAttack += (int)(Math.random() - Math.random())*5;
+        critter.baseDefense += (int)(Math.random() - Math.random())*5;
         return critter;
     }
 }
