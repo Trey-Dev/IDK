@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- This is a menu where the player can choose to look at,
+use, switch out, etc. a number of items carried in a list.
+    For example, this view will be used for items menus,
+so the player can just check what items they have
+It will also be used to check the user's "party", and 
+switch out teammates. 
+    It will have the elements in the list, and a list
+of data and actions about each element as hidden elements.
+If someone clicks on the element, clientside JS will hide and
+unhide the elements.
+-->
+
+<head>
+    <title> Menu viewing</title>
+</head>
+
+<body>
+    <h3 th:text="'Viewing ' + ${TableName} + ' Menu'">
+       
+    </h3>
+    <br/>
+    <br/>
+    <table>
+        <form action="Inventory" method="post">
+            <input id="name" name="name" type="hidden" value="" />
+            <tr th:each="b: ${Table}">
+                <td th:text="${b.name}"></td>
+                <td> || </td>
+                <td th:text="'you have ' + ${b.quantity}"> </td>
+                <td> || </td>
+                <td th:text="${b.description}"> </td>
+                <td> || </td>
+                <td> 
+                    <input type="submit" value="C O N S U M E" th:onclick="document.getElementById('name').value = [[${b.name}]];"/> 
+                </td>
+            </tr>
+        </form>
+    </table>
+    <br/>
+    <br/>
+    <p th:text="${output}">
+    </p>
+    <form action="EnterCombat" method="get">
+        <input type="submit" value="Return to game"/> <!-- TODO edit so it takes us back to wherever we were-->
+    </form>
+
+</body>
+
+</html>
