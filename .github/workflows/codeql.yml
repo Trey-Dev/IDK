@@ -21,7 +21,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'java', 'javascript' ]
+#         language: [ 'java', 'javascript' ]
+        language: [ 'java' ]
 
     steps:
     - name: Checkout repository
@@ -33,14 +34,8 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         
-    # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
-    # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
-
-    # - run: |
-    #   echo "Run, Build Application using script"
-    #   ./location_of_script_within_repo/buildscript.sh
+    - name: Perform Maven package
+      run: mvn package
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
