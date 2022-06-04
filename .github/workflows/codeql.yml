@@ -4,7 +4,6 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [ "main" ]
 #  schedule:
 #    - cron: '43 3 * * 0'
@@ -20,19 +19,22 @@ jobs:
 
     strategy:
       fail-fast: false
-      matrix:
-#         language: [ 'java', 'javascript' ]
-        language: [ 'java' ]
+#       matrix:
+# #         language: [ 'java', 'javascript' ]
+#         language: [ 'java' ]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-    # Initializes the CodeQL tools for scanning.
+    - uses: actions/setup-java@v3.3.0
+      with:
+        java-version: '17.0'
+        distribution: 'microsoft'
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:
-        languages: ${{ matrix.language }}
+        languages: 'java'
         
     - name: Perform Maven package
       working-directory: ./idk
