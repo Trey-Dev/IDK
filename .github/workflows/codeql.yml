@@ -35,6 +35,7 @@ jobs:
         languages: ${{ matrix.language }}
         
     - name: Perform Maven package
+      working-directory: ./idk
       run: mvn package
 
     - name: Perform CodeQL Analysis
