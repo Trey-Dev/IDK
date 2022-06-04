@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/SampleNavbar" id="huh">
+
+    </head>
+    <body>
+        <p th:each="b : ${CombatOutput}" th:text="${b}">
+        </p>
+        <br/>
+        <br/>
+        <table>
+            <tr th:each="b : ${FightOptions}">
+                <td >
+                    <form action="EnterCombat" method="post">
+                        <input th:name="Option" th:value="${b}" type="submit"/>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
