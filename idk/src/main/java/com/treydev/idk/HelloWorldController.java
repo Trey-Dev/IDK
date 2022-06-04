@@ -95,6 +95,7 @@ public class HelloWorldController {
         model.addAttribute("FightOptions", sessionCombatHandler.CombatOptions);
         return "Combat";
     }
+    
     @PostMapping("EnterCombat")
     public String combat(@RequestParam("Option") String Option, Model model)
     {
@@ -105,5 +106,4 @@ public class HelloWorldController {
         return "Combat";
     }
     
-
 }
