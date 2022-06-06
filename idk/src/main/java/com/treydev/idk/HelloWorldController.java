@@ -50,8 +50,10 @@ public class HelloWorldController {
         return "Game";
     }
 
+    //!!! These are the persistent memory items for temporary stubs
     public static CombatHandler sessionCombatHandler; //TODO: replace with SESSION VARIABLES!!!
-    
+    public static ArrayList<Critter> PlayerParty;
+
     @GetMapping("Inventory")
     public String menu(Model model)
     {
@@ -88,7 +90,11 @@ public class HelloWorldController {
     public String combat(Model model)
     {
         if(sessionCombatHandler == null)
-            sessionCombatHandler = CombatHandler.initializeStubbed();
+            {
+                sessionCombatHandler = CombatHandler.initializeStubbed();
+            }
+        if(PlayerParty == null)
+            PlayerParty = Critter.initializeStubbedParty();
        //TODO replace stubbed code with actual implementation.
        
         model.addAttribute("CombatOutput", sessionCombatHandler.outputs);

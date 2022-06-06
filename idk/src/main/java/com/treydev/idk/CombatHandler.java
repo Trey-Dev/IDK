@@ -5,26 +5,29 @@ import java.util.ArrayList;
 public class CombatHandler {
     public ArrayList<String> outputs;
     public ArrayList<String> CombatOptions;
-    public int enemyHealth; //TODO: Send this to its own class.
+    //public int enemyHealth; //TODO: Send this to its own class.
+    public Critter opponent;
 
     public CombatHandler()
     {
         this.outputs = new ArrayList<String>();
         this.CombatOptions = new ArrayList<String>();
+        this.opponent = new Critter("Wadget",1,1, null);
     }
 
-    public CombatHandler(ArrayList<String> outputs, ArrayList<String> CombatOptions)
+    public CombatHandler(ArrayList<String> outputs, ArrayList<String> CombatOptions, Critter opponent)
     {
         this.CombatOptions = CombatOptions;
         this.outputs = outputs;
+        this.opponent = opponent;
     }
 
     public static CombatHandler initializeStubbed()
     {
         CombatHandler value = new CombatHandler();
-        value.outputs.add("A wild something attacks");
+        value.outputs.add("A wild "+ value.opponent.name + " attacks");
         value.CombatOptions.add("Just fricking punch it I guess");
-        value.enemyHealth = 45;
+        //value.enemyHealth = 45;
         return value;
     }
 
@@ -37,7 +40,8 @@ public class CombatHandler {
         //Should just say: you used the action just fricking punch it I guess.
         
         //TODO: in actual implementation, checks CombatOptions. It won't do that here.
-        enemyHealth -= 15; //TODO: This is also stubbed code, replace with 
+        opponent.health -= 15; //TODO: This is also stubbed code, replace with actual execution of combatoptions.
+        outputs.add("The opponents health is now "+opponent.health);//TODO: also implement outputs of actions
     }
 
 }
