@@ -21,21 +21,21 @@ public class Critter {
     public static ArrayList<Critter> initializeStubbedParty()
     {
         ArrayList<Critter> value = new ArrayList<>();
-        value.add(new Critter("Widget", 10, 5, new Move[4]));
-        value.get(0).moveset[0] = new Move("just punch him I guess") {
+        value.add(new Critter("Widget", 10, 5, Move.implementStubbedMoveList()));
+        // value.get(0).moveset[0] = new Move("just punch him I guess") {
 
-            @Override
-            public void Execute(ArrayList<String> outputs, Critter target, Critter user) {
-                outputs.add("You used" + this.name);
-                target.health -= 15;
-            }
+        //     @Override
+        //     public void Execute(ArrayList<String> outputs, Critter target, Critter user) {
+        //         outputs.add("You used" + this.name);
+        //         target.health -= 15;
+        //     }
             
-        };
+        //};
         value.add(new Critter("Gadget", 5, 10, new Move[4]));
         value.get(1).moveset[0] = new Move("just punch him I guess") {
 
             @Override
-            public void Execute(ArrayList<String> outputs, Critter target) {
+            public void Execute(ArrayList<String> outputs, Critter target, Critter user) {
                 outputs.add("You used" + this.name);
                 target.health -= 15;
             }

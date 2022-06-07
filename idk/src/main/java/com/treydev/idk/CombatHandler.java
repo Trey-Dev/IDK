@@ -26,7 +26,8 @@ public class CombatHandler {
     {
         CombatHandler value = new CombatHandler();
         value.outputs.add("A wild "+ value.opponent.name + " attacks");
-        value.CombatOptions.add("Just fricking punch it I guess");
+        //value.CombatOptions.add("Just fricking punch it I guess");
+        value.updateCombatOptions();
         //value.enemyHealth = 45;
         return value;
     }
@@ -42,6 +43,19 @@ public class CombatHandler {
         //TODO: in actual implementation, checks CombatOptions. It won't do that here.
         opponent.health -= 15; //TODO: This is also stubbed code, replace with actual execution of combatoptions.
         outputs.add("The opponents health is now "+opponent.health);//TODO: also implement outputs of actions
+        updateCombatOptions();
+    }
+    private void updateCombatOptions()
+    {
+        CombatOptions.clear();
+        Move[] moves = HelloWorldController.PlayerParty.get(0).moveset;
+        for (Move option : moves)
+        {
+            //option = Move.implementStubbedMoveList()[0];
+             if(option == null)
+                 break;
+            CombatOptions.add(option.name);
+        }
     }
 
 }

@@ -89,12 +89,13 @@ public class HelloWorldController {
     @GetMapping("EnterCombat")
     public String combat(Model model)
     {
+        if(PlayerParty == null)
+            PlayerParty = Critter.initializeStubbedParty();
         if(sessionCombatHandler == null)
             {
                 sessionCombatHandler = CombatHandler.initializeStubbed();
             }
-        if(PlayerParty == null)
-            PlayerParty = Critter.initializeStubbedParty();
+        //sessionCombatHandler.updateCombatOptions();
        //TODO replace stubbed code with actual implementation.
        
         model.addAttribute("CombatOutput", sessionCombatHandler.outputs);
