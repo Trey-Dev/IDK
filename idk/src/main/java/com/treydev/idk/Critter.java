@@ -3,7 +3,7 @@ package com.treydev.idk;
 import java.util.ArrayList;
 
 public class Critter {
-    //private static ArrayList<Critter> critters = new ArrayList<Critter>();
+    
 
     public String name;
     public int baseAttack;
