@@ -9,7 +9,7 @@ public abstract class Move {
     //TODO: Implement "Damage" function
     public String name;
 
-    public abstract void Execute(ArrayList<String> outputs, Critter target);
+    public abstract void Execute(ArrayList<String> outputs, Critter target, Critter user);
     public Move(String name)
     {
         this.name = name;

@@ -16,13 +16,13 @@ public abstract class PhysicalAttack extends Move {
     }
 
     @Override
-    public void Execute(ArrayList<String> outputs, Critter target) {
+    public void Execute(ArrayList<String> outputs, Critter target, Critter user) {
         outputs.add("You used " + this.name);
         //TODO: THIS IS STUBBED CODE, replace later.
         if(checkHit())
         {
             target.health -= this.Power;
-            this.AddEffects(outputs,target);
+            this.AddEffects(outputs,target, user);
         }
     }
 
@@ -30,5 +30,5 @@ public abstract class PhysicalAttack extends Move {
     {
         return (Math.random() * 100 < Accuracy);
     }
-    protected abstract void AddEffects(ArrayList<String> outputs, Critter Target);
+    protected abstract void AddEffects(ArrayList<String> outputs, Critter Target, Critter user);
 }
