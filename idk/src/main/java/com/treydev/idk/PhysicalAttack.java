@@ -24,7 +24,10 @@ public abstract class PhysicalAttack extends Move {
             outputs.add("You hit!");
             target.health -= (this.Power + user.baseAttack); //TODO: replace base attack with actual attack!
             this.AddEffects(outputs,target, user);
+            outputs.add("Opponent's health: "+ target.health);
         }
+        else
+            outputs.add("You missed!");
     }
 
     private boolean checkHit()

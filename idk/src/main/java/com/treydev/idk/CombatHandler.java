@@ -38,11 +38,20 @@ public class CombatHandler {
         //TODO: This is STUBBED code, it will always just output the command given.
         outputs.clear();
         outputs.add("You used the action " + action);
-        //Should just say: you used the action just fricking punch it I guess.
-        
-        //TODO: in actual implementation, checks CombatOptions. It won't do that here.
-        opponent.health -= 15; //TODO: This is also stubbed code, replace with actual execution of combatoptions.
-        outputs.add("The opponents health is now "+opponent.health);//TODO: also implement outputs of actions
+        //Should just say: you used the action just fricking punch it I guess
+        Critter currentCritter = HelloWorldController.PlayerParty.get(0);
+
+
+        Move[] CurrentMoveset = currentCritter.moveset;
+        for (Move move : CurrentMoveset)
+        {
+            if(move.name.equals(action))
+            {
+                move.Execute(outputs, opponent, currentCritter);
+                break;
+            }
+        }
+
         updateCombatOptions();
     }
     private void updateCombatOptions()
