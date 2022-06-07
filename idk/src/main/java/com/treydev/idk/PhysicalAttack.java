@@ -21,7 +21,8 @@ public abstract class PhysicalAttack extends Move {
         //TODO: THIS IS STUBBED CODE, replace later.
         if(checkHit())
         {
-            target.health -= this.Power;
+            outputs.add("You hit!");
+            target.health -= (this.Power + user.baseAttack); //TODO: replace base attack with actual attack!
             this.AddEffects(outputs,target, user);
         }
     }
