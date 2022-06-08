@@ -10,7 +10,7 @@ public class Critter {
     public int health;
     public Move[] moveset;
 
-    public Critter(String name, int baseAttack, int Health, Move[] moveset)
+    public Critter(String name, Species species, int baseAttack, int Health, Move[] moveset)
     {
         this.baseAttack = baseAttack;
         this.health = Health;
@@ -21,7 +21,7 @@ public class Critter {
     public static ArrayList<Critter> initializeStubbedParty()
     {
         ArrayList<Critter> value = new ArrayList<>();
-        value.add(new Critter("Widget", 10, 5, Move.implementStubbedMoveList()));
+        value.add(new Critter("Widget", Species.stubWidget(), 10, 5, Move.implementStubbedMoveList()));
         // value.get(0).moveset[0] = new Move("just punch him I guess") {
 
         //     @Override
@@ -31,7 +31,7 @@ public class Critter {
         //     }
             
         //};
-        value.add(new Critter("Gadget", 5, 10, new Move[4]));
+        value.add(new Critter("Gadget", Species.stubGadget(), 5, 10, new Move[4]));
         value.get(1).moveset[0] = new Move("just punch him I guess") {
 
             @Override
