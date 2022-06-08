@@ -6,22 +6,26 @@ public class Critter {
     
 
     public String name;
-    public int baseAttack;
-    public int health;
+    // public int baseAttack;
+    // public int health;
     public Move[] moveset;
+    public int hitpoints;
+    public Species species; //TODO: make private, immutable
 
-    public Critter(String name, Species species, int baseAttack, int Health, Move[] moveset)
+    public Critter(String name, Species species,  Move[] moveset)
     {
-        this.baseAttack = baseAttack;
-        this.health = Health;
+        // this.baseAttack = baseAttack;
+        // this.health = Health;
         this.name = name;
         this.moveset = moveset;
+        this.species = species;
+        this.hitpoints = this.species.getBaseHitPoints();
     }
 
     public static ArrayList<Critter> initializeStubbedParty()
     {
         ArrayList<Critter> value = new ArrayList<>();
-        value.add(new Critter("Widget", Species.stubWidget(), 10, 5, Move.implementStubbedMoveList()));
+        value.add(new Critter("Widget", Species.stubWidget(), Move.implementStubbedMoveList()));
         // value.get(0).moveset[0] = new Move("just punch him I guess") {
 
         //     @Override
@@ -31,13 +35,13 @@ public class Critter {
         //     }
             
         //};
-        value.add(new Critter("Gadget", Species.stubGadget(), 5, 10, new Move[4]));
+        value.add(new Critter("Gadget", Species.stubGadget(), new Move[4]));
         value.get(1).moveset[0] = new Move("just punch him I guess") {
 
             @Override
             public void Execute(ArrayList<String> outputs, Critter target, Critter user) {
                 outputs.add("You used" + this.name);
-                target.health -= 15;
+                target.hitpoints -= 15;
             }
             
         };

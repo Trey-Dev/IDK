@@ -1,6 +1,6 @@
 package com.treydev.idk;
 import java.util.ArrayList;
-import jakarta.security.auth.message.MessagePolicy.Target;
+//import jakarta.security.auth.message.MessagePolicy.Target; //WHY THE HECK DID I FIND THIS HERE?
 
 public abstract class PhysicalAttack extends Move {
     /*
@@ -25,9 +25,9 @@ public abstract class PhysicalAttack extends Move {
         if(checkHit())
         {
             outputs.add("You hit!");
-            target.health -= (this.Power + user.baseAttack); //TODO: replace base attack with actual attack!
+            target.hitpoints -= (this.Power + user.species.getBaseAttack()); //TODO: replace base attack with actual attack!
             this.AddEffects(outputs,target, user);
-            outputs.add("Opponent's health: "+ target.health);
+            outputs.add("Opponent's health: "+ target.hitpoints);
         }
         else
             outputs.add("You missed!");
