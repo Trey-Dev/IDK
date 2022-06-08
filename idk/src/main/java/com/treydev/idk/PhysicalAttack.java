@@ -10,7 +10,6 @@ public abstract class PhysicalAttack extends Move {
      * and the like. These use "atk" and "def" stats to deal
      * damage.
      */
-
     private int Power, Accuracy;
 
     public PhysicalAttack(String name, int Power, int Accuracy)
