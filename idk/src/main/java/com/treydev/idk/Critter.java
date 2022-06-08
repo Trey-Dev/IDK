@@ -6,8 +6,7 @@ public class Critter {
     
 
     public String name;
-    // public int baseAttack;
-    // public int health;
+    //TODO: IMPLEMENT LEVEL!!!
     public Move[] moveset;
     public int hitpoints;
     public Species species; //TODO: make private, immutable
