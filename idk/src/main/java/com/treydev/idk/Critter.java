@@ -3,32 +3,47 @@ package com.treydev.idk;
 import java.util.ArrayList;
 
 public class Critter {
-    private static ArrayList<Critter> critters = new ArrayList<Critter>();
+    
 
     public String name;
-    public int baseAttack;
-    public int baseDefense;
+    //TODO: IMPLEMENT LEVEL!!!
+    public Move[] moveset;
+    public int hitpoints;
+    public Species species; //TODO: make private, immutable
 
-    private Critter(String name, int baseAttack, int baseDefense)
+    public Critter(String name, Species species,  Move[] moveset)
     {
-        this.baseAttack = baseAttack;
-        this.baseDefense = baseDefense;
+        // this.baseAttack = baseAttack;
+        // this.health = Health;
         this.name = name;
+        this.moveset = moveset;
+        this.species = species;
+        this.hitpoints = this.species.getBaseHitPoints();
     }
 
-    public Critter()
+    public static ArrayList<Critter> initializeStubbedParty()
     {
-        // Initialize critter library
-        critters.add(new Critter("Widget", 10, 5));
-        critters.add(new Critter("Gadget", 5, 10));
-    }
+        ArrayList<Critter> value = new ArrayList<>();
+        value.add(new Critter("Widget", Species.stubWidget(), Move.implementStubbedMoveList()));
+        // value.get(0).moveset[0] = new Move("just punch him I guess") {
 
-    public static Critter GetRandomCritter()
-    {
-        int random = (int)(Math.random() * critters.size());
-        Critter critter = Critter.critters.get(random);
-        critter.baseAttack += (int)(Math.random() - Math.random())*5;
-        critter.baseDefense += (int)(Math.random() - Math.random())*5;
-        return critter;
+        //     @Override
+        //     public void Execute(ArrayList<String> outputs, Critter target, Critter user) {
+        //         outputs.add("You used" + this.name);
+        //         target.health -= 15;
+        //     }
+            
+        //};
+        value.add(new Critter("Gadget", Species.stubGadget(), new Move[4]));
+        value.get(1).moveset[0] = new Move("just punch him I guess") {
+
+            @Override
+            public void Execute(ArrayList<String> outputs, Critter target, Critter user) {
+                outputs.add("You used" + this.name);
+                target.hitpoints -= 15;
+            }
+            
+        };
+        return value;
     }
 }
