@@ -16,11 +16,13 @@ public class Element
 
     private Type type;
 
+    // Constructor
     private Element(Type type)
     {
         this.type = type;
     }
 
+    // Getters
     public static Element getElement(Type element)
     {
         return new Element(element);
@@ -43,7 +45,7 @@ public class Element
         return 1.0;
     }
 
-    public String Name()
+    public String getName()
     {
         if (this.type == Type.NONE)
             return "";
@@ -51,7 +53,7 @@ public class Element
             return this.type.name().toString().toLowerCase();
     }
 
-    public Type type()
+    public Type getType()
     {
         return this.type;
     }

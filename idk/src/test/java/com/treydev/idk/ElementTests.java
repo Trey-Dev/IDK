@@ -9,14 +9,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ElementTests
 {
 	@Test
+    /// Tests that the getElement() method returns the correct element
 	void returnsElementName()
     {
-        Assert.isTrue(Element.getElement(Type.NONE).Name() == "", "Failed NONE name test");
-        Assert.isTrue(Element.getElement(Type.FIRE).Name().equals("fire"), "Failed FIRE name test");
-        Assert.isTrue(Element.getElement(Type.AIR).Name().equals("air"), "Failed AIR name test");
+        Assert.isTrue(Element.getElement(Type.NONE).getName() == "", "Failed NONE name test");
+        Assert.isTrue(Element.getElement(Type.FIRE).getName().equals("fire"), "Failed FIRE name test");
+        Assert.isTrue(Element.getElement(Type.AIR).getName().equals("air"), "Failed AIR name test");
 	}
 
 	@Test
+    /// Tests that the getCombatMultiplier() method returns the correct value for two different elements
 	void returnsCombatMultiplier()
     {
         Element fire = Element.getElement(Type.FIRE);
@@ -30,18 +32,19 @@ class ElementTests
 	}
 
 	@Test
+    /// Tests that the getRandomElement() method returns the correct element based on a known seed number
 	void returnsRandomElement()
     {
         Element e = Element.getRandomElement();
         Assert.notNull(e, "Failure getting a random element");
 
         e = Element.getRandomElement(0.1);
-        Assert.isTrue(e.type() == Type.NONE, "Incorrect name for 'random' NONE");
+        Assert.isTrue(e.getType() == Type.NONE, "Incorrect name for 'random' NONE");
 
         e = Element.getRandomElement(0.2);
-        Assert.isTrue(e.type() == Type.FIRE, "Incorrect name for 'random' FIRE");
+        Assert.isTrue(e.getType() == Type.FIRE, "Incorrect name for 'random' FIRE");
 
         e = Element.getRandomElement(0.3);
-        Assert.isTrue(e.type() == Type.WATER, "Incorrect name for 'random' WATER");
+        Assert.isTrue(e.getType() == Type.WATER, "Incorrect name for 'random' WATER");
     }
 }
