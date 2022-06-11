@@ -22,7 +22,7 @@ public class CombatHandler {
         this.opponent = opponent;
     }
 
-    public static CombatHandler initializeStubbed()
+    public static CombatHandler initializeStubbed() //TODO: move to nonstatic constructor.
     {
         CombatHandler value = new CombatHandler();
         value.outputs.add("A wild "+ value.opponent.name + " attacks");
