@@ -1,7 +1,5 @@
 package com.treydev.idk.location;
 
-import static org.mockito.ArgumentMatchers.booleanThat;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
@@ -40,7 +38,7 @@ public class CityTest {
 
         // Seed of 23 will generate a suffixed name
         cityName = City.generateExtendedCityName("Suffix",23);
-        Assert.isTrue(cityName.equals("Suffixshire"), "Received city name " + cityName + " instead of 'Suffixshire'");
+        Assert.isTrue(cityName.equals("Suffixtown"), "Received city name " + cityName + " instead of 'Suffixshire'");
 
         // Seed of 10 will generate a prefixed name
         cityName = City.generateExtendedCityName("Prefix",10);

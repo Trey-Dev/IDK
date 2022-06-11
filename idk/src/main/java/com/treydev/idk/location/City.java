@@ -77,7 +77,7 @@ public class City {
                 int prefixIndex = generator.nextInt(prefix.length);
                 return prefix[prefixIndex] + coreName;
             case 1:
-                String[] suffix = new String[]{"ton", " City", "town", "shire", " Township"};
+                String[] suffix = new String[]{"ton", " City", "town", "shire", " Township", "ville"};
                 int suffixIndex = generator.nextInt(suffix.length);
                 return coreName + suffix[suffixIndex];
             default:
