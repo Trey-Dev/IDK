@@ -59,7 +59,7 @@ public class Species {
         this.baseSpeed = statpoolSize * SpdPercent / total;
         this.baseSDefence = statpoolSize * SDPercent / total;
         this.baseHPStat = statpoolSize * HPPercent / total;
-        String name = ""; //TODO: implement generate name function!!!
+        // String name = ""; //TODO: implement generate name function!!!
         for(int i = 0; i < 10; i++)
             name += (char) random.nextInt(50) + 65;
         this.description = "STUBBED DESCRIPTION!! IMPLEMENT LATER"; //TODO: implement description generator!!

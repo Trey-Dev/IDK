@@ -6,14 +6,14 @@ import org.springframework.util.Assert;
 public class CityTest {
     @Test
     public void testCity() {
-        City city = City.getCity();
+        City city = City.getCity(1);
         Assert.isTrue(city.getName().length() > 0, "City name is empty");
     }
 
     @Test
     public void testCityCount() {
         // This will inherently create a city and add it to the list
-        City.getCity();
+        City.getCity(1);
         Assert.isTrue(City.getCityCount() > 0, "City count is zero");
     }
 
@@ -22,7 +22,7 @@ public class CityTest {
         int testCount = 10;
         for (int i = 0; i < testCount; i++) {
             // Each time we get a city, there is a decreasing chance that it will be new
-            City.getCity();
+            City.getCity(50);
         }
         // NOTE: Based on current logic - 1000 attempts returns 44, 100 returns 15, and 10 returns 3
         Assert.isTrue(City.getCityCount() < testCount, "All cities were unique");
