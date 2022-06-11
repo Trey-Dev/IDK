@@ -29,7 +29,7 @@ public class CityTest {
     }
 
     @Test
-    void testGenerateExtendedCityName() {
+    public void testGenerateExtendedCityName() {
         String cityName;
 
         // Seed of 3 will generate a non-extended name
@@ -43,5 +43,15 @@ public class CityTest {
         // Seed of 10 will generate a prefixed name
         cityName = City.generateExtendedCityName("Prefix",10);
         Assert.isTrue(cityName.equals("City of Prefix"), "Received city name " + cityName + " instead of 'City of Prefix'");
+    }
+
+    @Test
+    public void testCityListByLevel() {
+        // This will create a series of cities based on target levels
+        for(int i=1;i<100; i++) {
+            City c = City.getCity(i);
+            System.out.println(Integer.toString(i) + " - " + c.getName() + " - " + c.getLevel());
+        }
+        Assert.isTrue(City.getCityCount() > 0, "City count is zero");
     }
 }
