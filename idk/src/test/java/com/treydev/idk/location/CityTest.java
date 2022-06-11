@@ -1,5 +1,7 @@
 package com.treydev.idk.location;
 
+import static org.mockito.ArgumentMatchers.booleanThat;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
@@ -48,10 +50,19 @@ public class CityTest {
     @Test
     public void testCityListByLevel() {
         // This will create a series of cities based on target levels
-        for(int i=1;i<100; i++) {
-            City c = City.getCity(i);
-            System.out.println(Integer.toString(i) + " - " + c.getName() + " - " + c.getLevel());
+        // Start with a seeded city for level 1, to control randomness
+        City c = City.getCity(1000, 1);
+        verifyCityLevel(1, c);
+
+        for(int i=2;i<100; i++) {
+            c = City.getCity(i);
+            verifyCityLevel(i, c);
         }
-        Assert.isTrue(City.getCityCount() > 0, "City count is zero");
+    }
+
+    private void verifyCityLevel(int targetLevel, City c) {
+        // System.out.println(Integer.toString(targetLevel) + " - " + c.getName() + " - " + c.getLevel());
+        boolean valid = (c.getLevel() >= targetLevel*(1-City.LEVEL_TOLERANCE)) && (c.getLevel() <= targetLevel*(1+City.LEVEL_TOLERANCE));
+        Assert.isTrue(valid, "Invalid city for target level " + targetLevel);
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class City {
+    public final static double LEVEL_TOLERANCE = 0.25;
     private static ArrayList<City> cities = new ArrayList<City>();
 
     private String name;
@@ -19,7 +20,6 @@ public class City {
     // private String description;
     // private ArrayList<Gym> gyms = new ArrayList<Gym>();
 
-
     private City(long seed, int targetLevel) {
         this.name = City.generateCityName(seed);
         this.baseLevel = targetLevel;
@@ -33,29 +33,27 @@ public class City {
     }
 
     public static City getCity(long seed, int targetLevel) {
-        // Find all existing cities within +/-25% of the target level
+        // Find all existing cities within +/- LEVEL_TOLERANCE of the target level
         ArrayList<City> possibleCities = new ArrayList<City>();
         cities.forEach(city -> {
-            if ((city.getLevel() >= targetLevel*0.75) && (city.getLevel() <= targetLevel*1.25)) {
+            if ((city.getLevel() >= targetLevel*(1-City.LEVEL_TOLERANCE)) 
+                && (city.getLevel() <= targetLevel*(1+City.LEVEL_TOLERANCE))) {
                 possibleCities.add(city);
             }
         });
 
-        // If there are no cities within +/-25% of the target level, create a new one
-        if (possibleCities.size() == 0) {
-            City newCity = new City(seed, targetLevel);
-            cities.add(newCity);
-            return newCity;
-        }
-
         // First determine if a new or existing - as the list gets longer, new will be less often
         Random generator = new Random(seed);
-        int index = generator.nextInt(cities.size()+1);
-        if (index >= cities.size()) {
-            City city = new City(generator.nextLong(), targetLevel);
+        int index = generator.nextInt(possibleCities.size()+2);
+        if (index >= possibleCities.size()) {
+            // If this is a new city. make it target level to + LEVEL_TOLERANCE%
+            int newTarget = targetLevel + (int)(generator.nextDouble() * targetLevel * City.LEVEL_TOLERANCE);
+            City city = new City(generator.nextLong(), newTarget);
             cities.add(city);
+            return city;
         }
-        return cities.get(index);
+        else
+            return possibleCities.get(index);
     }
 
 
