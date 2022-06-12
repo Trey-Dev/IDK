@@ -1,5 +1,6 @@
 package com.treydev.idk;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class Species {
@@ -10,7 +11,10 @@ public class Species {
     //Name and description
     public String name;
     public String description;
+    public String Ability; //TODO: WHEN ABILITY IS IMPLEMENTED, replace with ACTUAL ABILITY!
+    private Species evolution;
     //TODO implement types!!!
+    private HashMap<Integer,Move> Movelist;
     
      //base stats
     private int baseAttack;
@@ -23,7 +27,7 @@ public class Species {
 
     private static Random random;
 
-    public Species(int Atk, int Def, int  HP, int SpA, int Spd, int Spf, String name, String description)
+    private Species(int Atk, int Def, int  HP, int SpA, int Spd, int Spf, String name, String description, Species evolution, HashMap<Integer,Move> movelist)
     {
         this.baseAttack = Atk;
         this.baseDefense = Def;
@@ -33,6 +37,9 @@ public class Species {
         this.baseSDefence = Spf;
         this.name = name;
         this.description = description;
+        this.Ability = ""; //TODO: UPDATE ABILITY ONCE ABILITY CLASS IS CREATED
+        this.evolution = evolution;
+        this.Movelist = movelist;
     }
 
     public static void initializeRandom(long seed)
@@ -40,12 +47,11 @@ public class Species {
         random = new Random(seed);
     }
 
-    //TODO: implement static method that generates evolutions with differing statpools
-    public Species(int individualStatSize)
+    public static Species GenRandomSpecies(int individualStatSize)
     {
         //This is the randomized constructor
         int statpoolSize = individualStatSize * 6;
-        if(this.random == null) initializeRandom(0); //TODO: NOTE THIS IS STUBBED CODE WITH SEED 0
+        if(random == null) initializeRandom(0); //TODO: NOTE THIS IS STUBBED CODE WITH SEED 0
         int AtkPercent = random.nextInt(100); //0 to 99
         int DefPercent = random.nextInt(100);
         int SAPercent = random.nextInt(100);
@@ -53,16 +59,18 @@ public class Species {
         int SDPercent = random.nextInt(100);
         int HPPercent = random.nextInt(100);
         int total = AtkPercent + DefPercent + SAPercent + SpdPercent + SDPercent + HPPercent;
-        this.baseAttack = statpoolSize * AtkPercent / total;
-        this.baseDefense = statpoolSize * DefPercent / total;
-        this.baseSpecial = statpoolSize * SAPercent / total;
-        this.baseSpeed = statpoolSize * SpdPercent / total;
-        this.baseSDefence = statpoolSize * SDPercent / total;
-        this.baseHPStat = statpoolSize * HPPercent / total;
+        int baseAttack = statpoolSize * AtkPercent / total;
+        int baseDefense = statpoolSize * DefPercent / total;
+        int baseSpecial = statpoolSize * SAPercent / total;
+        int baseSpeed = statpoolSize * SpdPercent / total;
+        int baseSDefence = statpoolSize * SDPercent / total;
+        int baseHPStat = statpoolSize * HPPercent / total;
         String name = ""; //TODO: implement generate name function!!!
         for(int i = 0; i < 10; i++)
             name += (char) random.nextInt(50) + 65;
-        this.description = "STUBBED DESCRIPTION!! IMPLEMENT LATER"; //TODO: implement description generator!!
+        String description = "STUBBED DESCRIPTION!! IMPLEMENT LATER"; 
+        return new Species(baseAttack, baseDefense, baseHPStat, baseSpecial, baseSpeed, baseSDefence, name, description);
+
     }
 
     //base stat accessors, NO MUTATORS! these variables are IMMUTABLE!
@@ -96,15 +104,15 @@ public class Species {
     //TODO: Upadate stubs so they aren't called externally!!
     public static Species stubWidget()
     {
-        return new Species(20, 40, 30, 30, 30, 30, "Widget", "A widgety type critter, the widget widgets widgely");
+        return new Species(20, 40, 30, 30, 30, 30, "Widget", "A widgety type critter, the widget widgets widgely",null, null);
     }
     public static Species stubGadget()
     {
-        return new Species( 40, 20, 40, 30, 20, 30, "Gadget", "Like, you know, a doohickey.");
+        return new Species( 40, 20, 40, 30, 20, 30, "Gadget", "Like, you know, a doohickey.", null, null);
     }
     public static Species stubWadget()
     {
-        return new Species(1,1,1,1,1,1, "Wadget", "A failure. Don't catch it or you will be called names by your friends, and rightly so.");
+        return new Species(1,1,1,1,1,1, "Wadget", "A failure. Don't catch it or you will be called names by your friends, and rightly so.", null, null);
     }
 
 }

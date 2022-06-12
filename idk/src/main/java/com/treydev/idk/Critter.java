@@ -25,16 +25,6 @@ public class Critter {
     {
         ArrayList<Critter> value = new ArrayList<>();
         value.add(new Critter("Widget", Species.stubWidget(), Move.implementStubbedMoveList()));
-        //TODO: Maybe delete this?
-        // value.get(0).moveset[0] = new Move("just punch him I guess") {
-
-        //     @Override
-        //     public void Execute(ArrayList<String> outputs, Critter target, Critter user) {
-        //         outputs.add("You used" + this.name);
-        //         target.health -= 15;
-        //     }
-            
-        //};
         value.add(new Critter("Gadget", Species.stubGadget(), new Move[4]));
         value.get(1).moveset[0] = new Move("just punch him I guess") {
 
