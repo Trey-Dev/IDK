@@ -2,8 +2,6 @@ package com.treydev.idk;
 
 import java.util.Random;
 
-import ch.qos.logback.core.joran.conditional.ElseAction;
-
 public class Element
 {    
     private static final String[] elementNames={"Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"};
