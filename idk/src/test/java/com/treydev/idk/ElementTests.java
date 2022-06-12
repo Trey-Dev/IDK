@@ -2,49 +2,54 @@ package com.treydev.idk;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
-import com.treydev.idk.Element.Type;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class ElementTests
 {
 	@Test
-    /// Tests that the getElement() method returns the correct element
-	void returnsElementName()
-    {
-        Assert.isTrue(Element.getElement(Type.NONE).getName() == "", "Failed NONE name test");
-        Assert.isTrue(Element.getElement(Type.FIRE).getName().equals("fire"), "Failed FIRE name test");
-        Assert.isTrue(Element.getElement(Type.AIR).getName().equals("air"), "Failed AIR name test");
+	void testElementCount() {
+        Assert.isTrue(Element.getElementCount() > 0, "Element.getElementCount() should return a positive number");
 	}
 
-	@Test
-    /// Tests that the getCombatMultiplier() method returns the correct value for two different elements
-	void returnsCombatMultiplier()
-    {
-        Element fire = Element.getElement(Type.FIRE);
-        Element water = Element.getElement(Type.WATER);
-        Element none = Element.getElement(Type.NONE);
+    @Test
+    void testGetId() {
+        Element element = Element.getRandomElement();
+        Assert.isTrue(element.getId() >= 0 && element.getId() < Element.getElementCount(), "Element.getId() should return a number between 0 and Element.getElementCount()");
+    }
 
-        Assert.isTrue(fire.getCombatMultiplierFor(water) == 1.0, "Wrong multiplier for Fire/Water");
-        Assert.isTrue(water.getCombatMultiplierFor(water) == 1.0, "Wrong multiplier for Water/Water");
-        Assert.isTrue(none.getCombatMultiplierFor(fire) == 1.0, "Wrong multiplier for None/Fire");
-        Assert.isTrue(fire.getCombatMultiplierFor(none) == 1.0, "Wrong multiplier for Fire/None");
-	}
+    @Test
+    void testGetRandomElement() {
+        Element element = Element.getRandomElement();
+        Assert.isTrue(element.getId() >= 0 && element.getId() < Element.getElementCount(), 
+            "Element.getRandomElement() should return an element with an id between 0 and Element.getElementCount()");
+        
+        element = Element.getRandomElement(100);
+        Assert.isTrue(element.getId() >= 0 && element.getId() < Element.getElementCount(), 
+            "Element.getRandomElement(seed) should return an element with an id between 0 and Element.getElementCount()");
+    }
 
-	@Test
-    /// Tests that the getRandomElement() method returns the correct element based on a known seed number
-	void returnsRandomElement()
-    {
-        Element e = Element.getRandomElement();
-        Assert.notNull(e, "Failure getting a random element");
+    @Test
+    void testGetName() {
+        // For this seed, we'll get id=5
+        Element element = Element.getRandomElement(1000);
+        Assert.isTrue(element.getName().equals("Indigo"), "Element.getName() should return the name of the element with id 5");
+    }
 
-        e = Element.getRandomElement(0.1);
-        Assert.isTrue(e.getType() == Type.NONE, "Incorrect name for 'random' NONE");
+    @Test
+    void testGetByName() {
+        Element element = Element.getByName("Orange");
+        Assert.isTrue(element.getId() == 1,  "Element.getId() should return a known element");
 
-        e = Element.getRandomElement(0.2);
-        Assert.isTrue(e.getType() == Type.FIRE, "Incorrect name for 'random' FIRE");
+        element = Element.getByName("Unknown"); 
+        Assert.isTrue(element == null, "Element.getByName() should return null for an unknown element");
+    }
 
-        e = Element.getRandomElement(0.3);
-        Assert.isTrue(e.getType() == Type.WATER, "Incorrect name for 'random' WATER");
+    @Test void testGetById() {
+        Element element = Element.getById(0);
+        Assert.isTrue(element.getName().equals("Red"), "Element.getById() should return the element with id 0");
+
+        element = Element.getById(Element.getElementCount());
+        Assert.isTrue(element == null, "Element.getById() should return null for an unknown element");
     }
 }

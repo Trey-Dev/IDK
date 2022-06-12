@@ -1,60 +1,68 @@
 package com.treydev.idk;
 
+import java.util.Random;
+
+import ch.qos.logback.core.joran.conditional.ElseAction;
+
 public class Element
-{
-    public enum Type
-    {
-        NONE,
-        FIRE,
-        WATER,
-        EARTH,
-        AIR,
-        MUD,
-        STONE,
-        ELECTRIC
+{    
+    private static final String[] elementNames={"Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"};
+    private static final Element elements[] = new Element[elementNames.length];
+    private int id;
+
+    // Initialize the elements array to point to the element names
+    static {
+        for (int i = 0; i < elementNames.length; i++) {
+            elements[i] = new Element(i);
+        }
     }
 
-    private Type type;
-
-    // Constructor
-    private Element(Type type)
+    // Static methods
+    public static int getElementCount()
     {
-        this.type = type;
+        return elements.length;
     }
 
-    // Getters
-    public static Element getElement(Type element)
-    {
-        return new Element(element);
+    public static Element getRandomElement() {
+        long seed = (long)(Math.random() * Long.MAX_VALUE);
+        return getRandomElement(seed);
     }
 
-    public static Element getRandomElement(double randomNumber)
+    public static Element getRandomElement(long seed)
     {
-        int i = (int)(Type.values().length * randomNumber);
-        Type t = Type.values()[i];
-        return new Element(t);      
+        Random generator = new Random(seed);
+        return elements[generator.nextInt(elementNames.length)];
     }
 
-    public static Element getRandomElement()
+    public static Element getByName(String name)
     {
-        return getRandomElement(Math.random());
+        for (int i = 0; i < elementNames.length; i++) {
+            if (elementNames[i].equals(name)) {
+                return elements[i];
+            }
+        }
+        return null;
     }
 
-    public double getCombatMultiplierFor(Element e)
+    public static Element getById(int id) {
+        if (id >= 0 && id < elementNames.length)
+            return elements[id];
+        else
+            return null;
+    }
+
+    // Instance methods
+    private Element(int id)
     {
-        return 1.0;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName()
     {
-        if (this.type == Type.NONE)
-            return "";
-        else
-            return this.type.name().toString().toLowerCase();
-    }
-
-    public Type getType()
-    {
-        return this.type;
+        return elementNames[this.id];
     }
 }
