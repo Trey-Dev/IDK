@@ -57,7 +57,6 @@ public class HelloWorldController {
     @GetMapping("Inventory")
     public String menu(Model model)
     {
-        //TODO: in actual implementation, something to get menu type
        model.addAttribute("TableName", "Inventory");
        if(Item.inventory == null)
        {
@@ -72,7 +71,6 @@ public class HelloWorldController {
     @PostMapping("Inventory")
     public String consume(@RequestParam("name") String name,Model model)
     {
-        //TODO: in actual implementation, something to get menu type
        model.addAttribute("TableName", "Inventory");
        Item.InitializeStubbedInventory();
 
@@ -96,7 +94,6 @@ public class HelloWorldController {
                 sessionCombatHandler = CombatHandler.initializeStubbed();
             }
         //sessionCombatHandler.updateCombatOptions();
-       //TODO replace stubbed code with actual implementation.
        
         model.addAttribute("CombatOutput", sessionCombatHandler.outputs);
         model.addAttribute("FightOptions", sessionCombatHandler.CombatOptions);

@@ -24,10 +24,12 @@ public abstract class PhysicalAttack extends Move {
         outputs.add("You used " + this.name);
         if(checkHit())
         {
+            //TODO: Move this to another function, so it can be modified independently.
             outputs.add("You hit!");
             target.hitpoints -= (this.Power + user.species.getBaseAttack()); //TODO: replace base attack with actual attack!
             this.AddEffects(outputs,target, user);
             outputs.add("Opponent's health: "+ target.hitpoints);
+            //TODO: Modify this code until we have something that works!
         }
         else
             outputs.add("You missed!");
@@ -36,6 +38,7 @@ public abstract class PhysicalAttack extends Move {
     private boolean checkHit()
     {
         return (Math.random() * 100 < Accuracy);
+        //TODO: check and test this and the damage function. Tweak until it feels nice.
     }
     protected abstract void AddEffects(ArrayList<String> outputs, Critter Target, Critter user);
 }

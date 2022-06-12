@@ -25,6 +25,7 @@ public class Critter {
     {
         ArrayList<Critter> value = new ArrayList<>();
         value.add(new Critter("Widget", Species.stubWidget(), Move.implementStubbedMoveList()));
+        //TODO: Maybe delete this?
         // value.get(0).moveset[0] = new Move("just punch him I guess") {
 
         //     @Override

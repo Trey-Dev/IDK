@@ -93,6 +93,7 @@ public class Species {
     }
 
     //Stubs, as method so they don't have to be instantiated.
+    //TODO: Upadate stubs so they aren't called externally!!
     public static Species stubWidget()
     {
         return new Species(20, 40, 30, 30, 30, 30, "Widget", "A widgety type critter, the widget widgets widgely");
