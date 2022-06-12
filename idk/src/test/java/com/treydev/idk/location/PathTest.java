@@ -34,11 +34,8 @@ public class PathTest {
 
         ArrayList<Path> paths = Path.getPaths(city1, 1000);
 
-        // Verify we have a new city with exactly 1 path
-        Assert.isTrue(paths.size() == 1, "We should have exactly 1 path");
-
-        // Verify the new city is within tolderance level and has a distance
-
-
+        // Verify we have a new city with 1 to MAX paths
+        Assert.isTrue(paths.size() >= 1, "We should have exactly 1 path");
+        Assert.isTrue(paths.size() <= 6, "We should have 6 or fewer paths");
     }
 }

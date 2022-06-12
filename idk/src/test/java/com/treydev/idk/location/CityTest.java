@@ -20,9 +20,10 @@ public class CityTest {
     @Test
     public void testGetCityReturnsExisting() {
         int testCount = 10;
+        City.clearMap();
         for (int i = 0; i < testCount; i++) {
             // Each time we get a city, there is a decreasing chance that it will be new
-            City.getCity(50);
+            City.getCity(10000*i, 50);
         }
         // NOTE: Based on current logic - 1000 attempts returns 44, 100 returns 15, and 10 returns 3
         Assert.isTrue(City.getCityCount() < testCount, "All cities were unique");

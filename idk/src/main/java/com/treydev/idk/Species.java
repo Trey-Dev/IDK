@@ -37,7 +37,7 @@ public class Species {
 
     public static void initializeRandom(long seed)
     {
-        random = new Random(seed);
+        Species.random = new Random(seed);
     }
 
     //TODO: implement static method that generates evolutions with differing statpools
@@ -45,7 +45,7 @@ public class Species {
     {
         //This is the randomized constructor
         int statpoolSize = individualStatSize * 6;
-        if(this.random == null) initializeRandom(0); //TODO: NOTE THIS IS STUBBED CODE WITH SEED 0
+        if(Species.random == null) initializeRandom(0); //TODO: NOTE THIS IS STUBBED CODE WITH SEED 0
         int AtkPercent = random.nextInt(100); //0 to 99
         int DefPercent = random.nextInt(100);
         int SAPercent = random.nextInt(100);

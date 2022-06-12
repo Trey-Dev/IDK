@@ -18,7 +18,7 @@ public class Path {
         }
     }
 
-    private final static int MAX_PATHS = 4;
+    private final static int MAX_PATHS = 6;
     private final static double MIN_PATH_DISTANCE = 0.1; // 10% of the level of the current city
     private final static double MAX_PATH_DISTANCE = 1.5; // 150% of the level of the current city
     private static ArrayList<Path> paths = new ArrayList<Path>();
@@ -47,15 +47,34 @@ public class Path {
         }
 
         // We always need paths to other cities, so if there are no paths, we need to add one
+        Random generator = new Random(seed);
         if (possiblePaths.size() == 0) {
             // Find or create a new city
             City newCity = City.getCity(seed, location.getLevel()+1);
             // Create a new path
-            Random generator = new Random(seed);
             int distance = (int)(generator.nextDouble() * (location.getLevel() * Path.MAX_PATH_DISTANCE - location.getLevel() * Path.MIN_PATH_DISTANCE) + location.getLevel() * Path.MIN_PATH_DISTANCE);
             Path newPath = new Path(location, newCity, distance );
             Path.paths.add(newPath);
             possiblePaths.add(newPath);
+        }
+
+        if (possiblePaths.size() < Path.MAX_PATHS) {
+            // If we have under the max number of paths, we are allowed to add more
+            // We will try to find an existing city in the right level range that doesn't have too many connections
+
+            // The higher the level, the less likely you'll find additional paths
+            double likelyhood = 1.5 - (location.getLevel() / 100 );
+            // And the more existing paths, the less ikely to find more
+            likelyhood /= possiblePaths.size();
+            if (generator.nextDouble() < likelyhood) {
+                // Find or create a new city
+                City newCity = City.getCity(seed, location.getLevel()+1);
+                // Create a new path
+                int distance = (int)(generator.nextDouble() * (location.getLevel() * Path.MAX_PATH_DISTANCE - location.getLevel() * Path.MIN_PATH_DISTANCE) + location.getLevel() * Path.MIN_PATH_DISTANCE);
+                Path newPath = new Path(location, newCity, distance );
+                Path.paths.add(newPath);
+                possiblePaths.add(newPath);
+            }
         }
 
         return possiblePaths;

@@ -32,6 +32,11 @@ public class City {
         return getCity(seed, targetLevel);
     }
 
+    // This is mainly for testing - hopefully not a real use case
+    public static void clearMap() {
+        City.cities.clear();
+    }
+
     public static City getCity(long seed, int targetLevel) {
         // Find all existing cities within +/- LEVEL_TOLERANCE of the target level
         ArrayList<City> possibleCities = new ArrayList<City>();
