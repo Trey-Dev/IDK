@@ -2,6 +2,7 @@ package com.treydev.idk.location;
 
 import java.util.ArrayList;
 import java.util.Random;
+import com.treydev.idk.NameGenerator;
 
 public class City {
     public final static double LEVEL_TOLERANCE = 0.25;
@@ -26,10 +27,18 @@ public class City {
         // TO DO: Generate the rest of the city attributes
     }
 
-    public static City getCity(int targetLevel) {
+    public static City getCityByLevel(int targetLevel) {
         // Generate a random seed to use for the predictable random number generator
         long seed = (long)(Math.random() * Long.MAX_VALUE);
         return getCity(seed, targetLevel);
+    }
+
+    public static City getCityById(int id) {
+        // Id is really just the index but we don't say
+        if (id >= City.cities.size())
+            return null;
+        else
+            return City.cities.get(id);
     }
 
     // This is mainly for testing - hopefully not a real use case
@@ -61,13 +70,12 @@ public class City {
             return possibleCities.get(index);
     }
 
-
     public static int getCityCount() {
         return cities.size();
     }
 
     public static String generateCityName(long seed) {
-        String coreName = "Stub"; // TO DO: call Trey's name generator with the seed
+        String coreName = NameGenerator.generateRandomName(seed);
         return generateExtendedCityName(coreName, seed);
     }
 

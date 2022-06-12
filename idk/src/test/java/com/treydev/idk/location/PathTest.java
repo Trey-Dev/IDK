@@ -30,7 +30,7 @@ public class PathTest {
     @Test
     void testGetSinglePath() {
         // Starting from scratch, try to get a path to a city (should create a second)
-        City city1 = City.getCity(50);
+        City city1 = City.getCityByLevel(50);
 
         ArrayList<Path> paths = Path.getPaths(city1, 1000);
 

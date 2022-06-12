@@ -5,15 +5,29 @@ import org.springframework.util.Assert;
 
 public class CityTest {
     @Test
-    public void testCity() {
-        City city = City.getCity(1);
+    public void testCityByLevel() {
+        City city = City.getCityByLevel(1);
         Assert.isTrue(city.getName().length() > 0, "City name is empty");
+    }
+
+    @Test
+    void testCityById() {
+        City.clearMap();
+        City city1 = City.getCityByLevel(1);
+        City city2 = City.getCityByLevel(10);
+        City city3 = City.getCityByLevel(50);
+
+        Assert.isTrue(City.getCityCount() == 3, "Should have three unique cities");
+        Assert.isTrue(City.getCityById(0).equals(city1), "First city should have Id=0");
+        Assert.isTrue(City.getCityById(1).equals(city2), "Second city should have Id=1");
+        Assert.isTrue(City.getCityById(2).equals(city3), "Third city should have Id=2");
+        Assert.isNull(City.getCityById(3), "Should return null for invalid Id");
     }
 
     @Test
     public void testCityCount() {
         // This will inherently create a city and add it to the list
-        City.getCity(1);
+        City.getCityByLevel(1);
         Assert.isTrue(City.getCityCount() > 0, "City count is zero");
     }
 
@@ -54,7 +68,7 @@ public class CityTest {
         verifyCityLevel(1, c);
 
         for(int i=2;i<100; i++) {
-            c = City.getCity(i);
+            c = City.getCityByLevel(i);
             verifyCityLevel(i, c);
         }
     }
