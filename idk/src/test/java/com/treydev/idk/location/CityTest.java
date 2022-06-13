@@ -90,4 +90,11 @@ public class CityTest {
         Assert.isTrue(elements[0].affinity == 0.9, "Element affinity should be 90%");
         Assert.isTrue(elements[0].element != null, "Element should be valid");
     }
+
+    @Test
+    void testGetGyms() {
+        City c = City.getCity(1000, 1);
+        // For this release, we will always have exactly one gym
+        Assert.isTrue(c.getGyms().size() == 1, "City should have exactly one gym");
+    }
 }

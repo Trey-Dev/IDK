@@ -37,7 +37,14 @@ public class City {
 
     // private Region region;
     // private String description;
-    // private ArrayList<Gym> gyms = new ArrayList<Gym>();
+    private ArrayList<Gym> gyms = null;
+    public ArrayList<Gym> getGyms() {
+        if (gyms == null) {
+            gyms = new ArrayList<Gym>();
+            gyms.add(new Gym(this));
+        }
+        return gyms;
+    }
 
     private City(long seed, int targetLevel) {
         this.name = City.generateCityName(seed);
