@@ -2,6 +2,7 @@ package com.treydev.idk.location;
 
 import java.util.ArrayList;
 import java.util.Random;
+import com.treydev.idk.Element;
 import com.treydev.idk.NameGenerator;
 
 public class City {
@@ -13,6 +14,23 @@ public class City {
 
     private int baseLevel;
     public int getLevel() { return baseLevel; }
+
+    public class ElementAffinity {
+        public Element element;
+        public double affinity;
+    }
+
+    private ElementAffinity[] elementAffinities;
+    public ElementAffinity[] getElements() { 
+        if (elementAffinities == null) {
+            // For this version, we are only using one element and 90% affinity
+            this.elementAffinities = new ElementAffinity[1];
+            this.elementAffinities[0] = new ElementAffinity();
+            this.elementAffinities[0].element = Element.getRandomElement();
+            this.elementAffinities[0].affinity = 0.9;
+        }
+        return elementAffinities;
+    }
 
     // private ArrayList<City> neighbors = new ArrayList<City>();
     // public ArrayList<City> getNeighbors() { return neighbors; }

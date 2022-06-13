@@ -3,6 +3,8 @@ package com.treydev.idk.location;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
+import com.treydev.idk.location.City.ElementAffinity;
+
 public class CityTest {
     @Test
     public void testCityByLevel() {
@@ -77,5 +79,15 @@ public class CityTest {
         // System.out.println(Integer.toString(targetLevel) + " - " + c.getName() + " - " + c.getLevel());
         boolean valid = (c.getLevel() >= targetLevel*(1-City.LEVEL_TOLERANCE)) && (c.getLevel() <= targetLevel*(1+City.LEVEL_TOLERANCE));
         Assert.isTrue(valid, "Invalid city for target level " + targetLevel);
+    }
+    
+    @Test
+    void testGetCityElements() {
+        City c = City.getCity(1000, 1);
+        ElementAffinity[] elements = c.getElements();
+        // For this version, we wil have exactly one element with 90% affinity
+        Assert.isTrue(elements.length == 1, "City should have exactly one element");
+        Assert.isTrue(elements[0].affinity == 0.9, "Element affinity should be 90%");
+        Assert.isTrue(elements[0].element != null, "Element should be valid");
     }
 }
