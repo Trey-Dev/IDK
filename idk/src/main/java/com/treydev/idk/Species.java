@@ -69,7 +69,7 @@ public class Species {
         for(int i = 0; i < 10; i++)
             name += (char) random.nextInt(50) + 65;
         String description = "STUBBED DESCRIPTION!! IMPLEMENT LATER"; 
-        return new Species(baseAttack, baseDefense, baseHPStat, baseSpecial, baseSpeed, baseSDefence, name, description);
+        return new Species(baseAttack, baseDefense, baseHPStat, baseSpecial, baseSpeed, baseSDefence, name, description, null, null);
 
     }
 

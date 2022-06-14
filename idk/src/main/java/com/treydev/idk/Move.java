@@ -52,6 +52,7 @@ public abstract class Move {
 
     public static Move[] implementStubbedMoveList()
     {
+    //if(allMoves == null) initializeStatic(0);//TODO: refactor
         Move[] value = new Move[4];
         value[0] = allMoves.get(0);
         value[1] = allMoves.get(1);

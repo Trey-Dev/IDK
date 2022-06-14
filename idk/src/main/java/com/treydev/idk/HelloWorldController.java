@@ -88,7 +88,10 @@ public class HelloWorldController {
     public String combat(Model model)
     {
         if(PlayerParty == null)
-            PlayerParty = Critter.initializeStubbedParty();
+            {
+                PlayerParty = Critter.initializeStubbedParty();
+                Move.initializeStatic(0); //TODO: REFACTOR!
+            }
         if(sessionCombatHandler == null)
             {
                 sessionCombatHandler = CombatHandler.initializeStubbed();
