@@ -8,14 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-<<<<<<< HEAD:idk/src/main/java/com/treydev/idk/HelloWorldController.java
-public class HelloWorldController {
-
-    
-
-=======
 public class IdkController {
->>>>>>> main:idk/src/main/java/com/treydev/idk/IdkController.java
     //@RequestMapping(value="/")
     //@ResponseBody
     @GetMapping("/")
