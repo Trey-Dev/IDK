@@ -3,25 +3,16 @@ package com.treydev.idk.location;
 import java.util.ArrayList;
 import com.treydev.idk.*;
 
-public class Gym {
-
-    private String name;
-    public String getName() { return name; }
-
-    private int level;
-    public int getLevel() { return level; }
-
-    private String owner;
-    public String getOwner() { return owner; }
+public class Gym extends LocationBase {
+    public String getOwner() { return this.locationLeader; }
 
     private ArrayList<Object> critters;
     public ArrayList<Object> getCritters() { return critters; }
 
     public Gym(City city, long seed) {
+        super(seed, city.getLevel());
         this.name = Gym.generateGymName(city);
-        this.level = city.getLevel();
-        this.owner = NameGenerator.generateRandomName(seed);
-        this.critters = new ArrayList<Object>(); // Place holder for critters
+        this.critters = new ArrayList<Object>(); // Place holder for critters in this Gym
     }
 
     public Gym(City city) {
