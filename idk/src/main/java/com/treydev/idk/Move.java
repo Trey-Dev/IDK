@@ -14,19 +14,21 @@ public abstract class Move {
     private static ArrayList<Move> allMoves;
 
     //TODO: Generate something that creates a random move
-    private static Move[] AllMoves = {
-        new PhysicalAttack("Just hit it.", 15, 80)
-        {
-            @Override 
-            protected void AddEffects(ArrayList<String> outputs, Critter Target, Critter user) {}
-        },
-        new PhysicalAttack("Hit it harder!", 30, 40)
-        {
-            @Override 
-            protected void AddEffects(ArrayList<String> outputs, Critter Target, Critter user) {}
-        }
-    };
+    // private static Move[] AllMoves = {
+    //     new PhysicalAttack("Just hit it.", 15, 80)
+    //     {
+    //         @Override 
+    //         protected void AddEffects(ArrayList<String> outputs, Critter Target, Critter user) {}
+    //     },
+    //     new PhysicalAttack("Hit it harder!", 30, 40)
+    //     {
+    //         @Override 
+    //         protected void AddEffects(ArrayList<String> outputs, Critter Target, Critter user) {}
+    //     }
+    // };
 
+    //TODO: something that creates a (stubbed) movelist
+    //TODO: something that generates a nonstubbed moveset
     public static void initializeStatic(long seed)
     {
         random = new Random(seed);

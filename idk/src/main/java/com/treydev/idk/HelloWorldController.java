@@ -89,8 +89,9 @@ public class HelloWorldController {
     {
         if(PlayerParty == null)
             {
-                PlayerParty = Critter.initializeStubbedParty();
+                
                 Move.initializeStatic(0); //TODO: REFACTOR!
+                PlayerParty = Critter.initializeStubbedParty();
             }
         if(sessionCombatHandler == null)
             {
