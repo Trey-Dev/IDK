@@ -79,7 +79,9 @@ public class IdkController {
     public String combat(Model model)
     {
         if(PlayerParty == null)
-            PlayerParty = Critter.initializeStubbedParty();
+            {
+                PlayerParty = Critter.initializeStubbedParty(); //TODO: replace with 
+            }
         if(sessionCombatHandler == null)
             {
                 sessionCombatHandler = CombatHandler.initializeStubbed();
