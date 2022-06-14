@@ -27,10 +27,8 @@ public abstract class Move {
     //     }
     // };
 
-    //TODO: something that creates a (stubbed) movelist
-    //TODO: something that generates a nonstubbed moveset
-    public static void initializeStatic(long seed)
-    {
+    static{
+        long seed = 0; //TODO: remove hardcoded stub!
         random = new Random(seed);
         allMoves = new ArrayList<>();
         allMoves.add(new PhysicalAttack("Just hit it.", 15, 80)
@@ -44,6 +42,9 @@ public abstract class Move {
             protected void AddEffects(ArrayList<String> outputs, Critter Target, Critter user) {}
         });
     }
+
+    //TODO: something that creates a (stubbed) movelist
+    //TODO: something that generates a nonstubbed moveset
 
     public abstract void Execute(ArrayList<String> outputs, Critter target, Critter user);
     

@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HelloWorldController {
+
+    
+
     //@RequestMapping(value="/")
     //@ResponseBody
     @GetMapping("/")
@@ -89,9 +92,7 @@ public class HelloWorldController {
     {
         if(PlayerParty == null)
             {
-                
-                Move.initializeStatic(0); //TODO: REFACTOR!
-                PlayerParty = Critter.initializeStubbedParty();
+                PlayerParty = Critter.initializeStubbedParty(); //TODO: replace with 
             }
         if(sessionCombatHandler == null)
             {

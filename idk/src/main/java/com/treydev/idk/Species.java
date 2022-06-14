@@ -24,6 +24,9 @@ public class Species {
     private int baseSDefence;
     private int baseSpeed;
 
+    static{
+        initializeRandom(0); //TODO: replace with nonstubbed seed value!
+    }
 
     private static Random random;
 
@@ -51,7 +54,7 @@ public class Species {
     {
         //This is the randomized constructor
         int statpoolSize = individualStatSize * 6;
-        if(random == null) initializeRandom(0); //TODO: NOTE THIS IS STUBBED CODE WITH SEED 0
+        //if(random == null) initializeRandom(0); //TODO: NOTE THIS IS STUBBED CODE WITH SEED 0
         int AtkPercent = random.nextInt(100); //0 to 99
         int DefPercent = random.nextInt(100);
         int SAPercent = random.nextInt(100);
@@ -114,5 +117,4 @@ public class Species {
     {
         return new Species(1,1,1,1,1,1, "Wadget", "A failure. Don't catch it or you will be called names by your friends, and rightly so.", null, null);
     }
-
 }
