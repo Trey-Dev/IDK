@@ -1,7 +1,6 @@
 package com.treydev.idk.location;
 
 import java.util.ArrayList;
-import com.treydev.idk.*;
 
 public class Gym extends LocationBase {
     public String getOwner() { return this.locationLeader; }
