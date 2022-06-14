@@ -5,15 +5,9 @@ import java.util.Random;
 import com.treydev.idk.Element;
 import com.treydev.idk.NameGenerator;
 
-public class City {
+public class City extends LocationBase {
     public final static double LEVEL_TOLERANCE = 0.25;
     private static ArrayList<City> cities = new ArrayList<City>();
-
-    private String name;
-    public String getName() { return name; }
-
-    private int baseLevel;
-    public int getLevel() { return baseLevel; }
 
     public class ElementAffinity {
         public Element element;
@@ -37,6 +31,24 @@ public class City {
 
     // private Region region;
     // private String description;
+
+    public String getLeader() {
+        // We are deriving the leader title from the (fixed) level to make it reproducible without needing another attribute
+        final String leaderPrefix[] = {"", "", "", "Mayor", "Sir", "Lady", "Lord", "Baron", "Count", "Countess", "Duke", "Prince", "Princess", "Sheik", "Queen", "King" };
+
+        // Lower level cities will have lower levels
+        int i = this.getLevel() * leaderPrefix.length / 100;
+        if ((i < 0) || (i >= leaderPrefix.length)) {
+            i = 0;
+        }
+
+        if (leaderPrefix[i].length() > 0)
+            return leaderPrefix[i] + " " + this.locationLeader;
+        else
+            return this.locationLeader;
+    }
+
+
     private ArrayList<Gym> gyms = null;
     public ArrayList<Gym> getGyms() {
         if (gyms == null) {
@@ -46,9 +58,18 @@ public class City {
         return gyms;
     }
 
+    private ArrayList<Shop> shops = null;
+    public ArrayList<Shop> getShops() {
+        if (shops == null) {
+            shops = new ArrayList<Shop>();
+            shops.add(new Shop(this));
+        }
+        return shops;
+    }
+
     private City(long seed, int targetLevel) {
+        super(seed, targetLevel);
         this.name = City.generateCityName(seed);
-        this.baseLevel = targetLevel;
         // TO DO: Generate the rest of the city attributes
     }
 
