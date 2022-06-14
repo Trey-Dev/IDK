@@ -1,26 +1,21 @@
 package com.treydev.idk;
 
 import java.util.ArrayList;
-// import java.util.List;
-
-// import com.treydev.myClass;
-
-// import org.springframework.session.Session;
-// import org.springframework.boot.builder.SpringApplicationBuilder;
-// import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-// import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+<<<<<<< HEAD:idk/src/main/java/com/treydev/idk/HelloWorldController.java
 public class HelloWorldController {
 
     
 
+=======
+public class IdkController {
+>>>>>>> main:idk/src/main/java/com/treydev/idk/IdkController.java
     //@RequestMapping(value="/")
     //@ResponseBody
     @GetMapping("/")
@@ -30,7 +25,7 @@ public class HelloWorldController {
         //TODO: STORE PARAMETER Uname INTO SESSION VARIABLES
     }
 
-    @PostMapping("game")
+    @PostMapping("Game")
     public String game(@RequestParam("name") String name, @RequestParam("action") String action, Model model)
     {
         ArrayList<String> gameLog = new ArrayList<String>();
@@ -115,4 +110,9 @@ public class HelloWorldController {
         return "Combat";
     }
     
+    @GetMapping("City")
+    public String city(Model model)
+    {
+        return "City";
+    }
 }
