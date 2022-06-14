@@ -80,7 +80,7 @@ public class IdkController {
     {
         if(PlayerParty == null)
             {
-                PlayerParty = Critter.initializeStubbedParty(); //TODO: replace with 
+                PlayerParty = Critter.initializeStubbedParty(); //TODO: replace with non stubbed party eventually
             }
         if(sessionCombatHandler == null)
             {

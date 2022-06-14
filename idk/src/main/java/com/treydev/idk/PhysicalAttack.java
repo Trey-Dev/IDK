@@ -40,5 +40,6 @@ public abstract class PhysicalAttack extends Move {
         return (Math.random() * 100 < Accuracy);
         //TODO: check and test this and the damage function. Tweak until it feels nice.
     }
+    //TODO: Refactor so A) AddEffects is a member of whatever we name the interface, and B) Another class takes care of effect attacks.
     protected abstract void AddEffects(ArrayList<String> outputs, Critter Target, Critter user);
 }
