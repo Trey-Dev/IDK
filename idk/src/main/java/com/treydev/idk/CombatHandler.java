@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class CombatHandler {
     public ArrayList<String> outputs;
     public ArrayList<String> CombatOptions;
-    //public int enemyHealth; //TODO: Send this to its own class.
     public Critter opponent;
 
     public CombatHandler()
@@ -22,20 +21,18 @@ public class CombatHandler {
         this.opponent = opponent;
     }
 
-    public static CombatHandler initializeStubbed() //TODO: move to nonstatic constructor.
+    public static CombatHandler initializeStubbed() 
     {
         CombatHandler value = new CombatHandler();
         value.outputs.add("A wild "+ value.opponent.name + " attacks");
         //value.CombatOptions.add("Just fricking punch it I guess");
         value.updateCombatOptions();
-        //value.enemyHealth = 45;
         return value;
     }
 
     public void takeAction(String action)
     {
         //This will change the outputs and combatoptions fields.
-        //TODO: This is STUBBED code, it will always just output the command given.
         outputs.clear();
         outputs.add("You used the action " + action);
         //Should just say: you used the action just fricking punch it I guess

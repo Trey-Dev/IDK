@@ -13,10 +13,13 @@ public class Species {
     public String description;
     public String Ability; //TODO: WHEN ABILITY IS IMPLEMENTED, replace with ACTUAL ABILITY!
     private Species evolution;
-    //TODO implement types!!!
+    private Element type1;
+    private Element type2;
     private HashMap<Integer,Move> Movelist;
     
      //base stats
+     //TODO: remove base stats as variables? or remove from constructor? Derived from species.
+     //TODO: implement nature
     private int baseAttack;
     private int baseHPStat; //NOTE! HP stat DERIVES base hit points, but it's not the SAME!!!!
     private int baseDefense;
@@ -30,7 +33,7 @@ public class Species {
 
     private static Random random;
 
-    private Species(int Atk, int Def, int  HP, int SpA, int Spd, int Spf, String name, String description, Species evolution, HashMap<Integer,Move> movelist)
+    private Species(int Atk, int Def, int  HP, int SpA, int Spd, int Spf, String name, String description, Species evolution, HashMap<Integer,Move> movelist, Element type1, Element type2)
     {
         this.baseAttack = Atk;
         this.baseDefense = Def;
@@ -40,9 +43,11 @@ public class Species {
         this.baseSDefence = Spf;
         this.name = name;
         this.description = description;
-        this.Ability = ""; //TODO: UPDATE ABILITY ONCE ABILITY CLASS IS CREATED
+        this.Ability = "";
         this.evolution = evolution;
         this.Movelist = movelist;
+        this.type1 = type1;
+        this.type2 = type2;
     }
 
     public static void initializeRandom(long seed)
@@ -54,7 +59,6 @@ public class Species {
     {
         //This is the randomized constructor
         int statpoolSize = individualStatSize * 6;
-        //if(random == null) initializeRandom(0); //TODO: NOTE THIS IS STUBBED CODE WITH SEED 0
         int AtkPercent = random.nextInt(100); //0 to 99
         int DefPercent = random.nextInt(100);
         int SAPercent = random.nextInt(100);
@@ -68,12 +72,11 @@ public class Species {
         int baseSpeed = statpoolSize * SpdPercent / total;
         int baseSDefence = statpoolSize * SDPercent / total;
         int baseHPStat = statpoolSize * HPPercent / total;
-        String name = ""; //TODO: implement generate name function!!!
+        String name = NameGenerator.generateRandomName(random.nextLong(Long.MAX_VALUE)); 
         for(int i = 0; i < 10; i++)
             name += (char) random.nextInt(50) + 65;
         String description = "STUBBED DESCRIPTION!! IMPLEMENT LATER"; 
-        return new Species(baseAttack, baseDefense, baseHPStat, baseSpecial, baseSpeed, baseSDefence, name, description, null, null);
-
+        return new Species(baseAttack, baseDefense, baseHPStat, baseSpecial, baseSpeed, baseSDefence, name, description, null, null, null, null);
     }
 
     //base stat accessors, NO MUTATORS! these variables are IMMUTABLE!
@@ -104,17 +107,17 @@ public class Species {
     }
 
     //Stubs, as method so they don't have to be instantiated.
-    //TODO: Change stubbed code to not be called externally!
+
     public static Species stubWidget()
     {
-        return new Species(20, 40, 30, 30, 30, 30, "Widget", "A widgety type critter, the widget widgets widgely",null, null);
+        return new Species(20, 40, 30, 30, 30, 30, "Widget", "A widgety type critter, the widget widgets widgely",null, null, null, null);
     }
     public static Species stubGadget()
     {
-        return new Species( 40, 20, 40, 30, 20, 30, "Gadget", "Like, you know, a doohickey.", null, null);
+        return new Species( 40, 20, 40, 30, 20, 30, "Gadget", "Like, you know, a doohickey.", null, null, null, null);
     }
     public static Species stubWadget()
     {
-        return new Species(1,1,1,1,1,1, "Wadget", "A failure. Don't catch it or you will be called names by your friends, and rightly so.", null, null);
+        return new Species(1,1,1,1,1,1, "Wadget", "A failure. Don't catch it or you will be called names by your friends, and rightly so.", null, null, null, null);
     }
 }
