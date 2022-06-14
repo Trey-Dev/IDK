@@ -11,6 +11,9 @@ public abstract class Move {
     public String name;
     private static Random random;
 
+    private static ArrayList<Move> allMoves;
+
+    //TODO: Generate something that creates a random move
     private static Move[] AllMoves = {
         new PhysicalAttack("Just hit it.", 15, 80)
         {
@@ -24,9 +27,20 @@ public abstract class Move {
         }
     };
 
-    public static void initializeRandom(long seed)
+    public static void initializeStatic(long seed)
     {
         random = new Random(seed);
+        allMoves = new ArrayList<>();
+        allMoves.add(new PhysicalAttack("Just hit it.", 15, 80)
+        {
+            @Override 
+            protected void AddEffects(ArrayList<String> outputs, Critter Target, Critter user) {}
+        });
+        allMoves.add(new PhysicalAttack("Hit it harder!", 30, 40)
+        {
+            @Override 
+            protected void AddEffects(ArrayList<String> outputs, Critter Target, Critter user) {}
+        });
     }
 
     public abstract void Execute(ArrayList<String> outputs, Critter target, Critter user);
@@ -39,13 +53,14 @@ public abstract class Move {
     public static Move[] implementStubbedMoveList()
     {
         Move[] value = new Move[4];
-        value[0] = AllMoves[0];
-        value[1] = AllMoves[1];
+        value[0] = allMoves.get(0);
+        value[1] = allMoves.get(1);
         return value;
     }
     public static Move getRandomMove()
     {
-        return AllMoves[random.nextInt(AllMoves.length)];
+        //TODO: Implement method that either gets or generates a random move.
+        return allMoves.get(random.nextInt(allMoves.size()));
     }
 
 }
