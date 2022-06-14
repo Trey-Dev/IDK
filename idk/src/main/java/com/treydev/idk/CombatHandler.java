@@ -39,7 +39,7 @@ public class CombatHandler {
         outputs.clear();
         outputs.add("You used the action " + action);
         //Should just say: you used the action just fricking punch it I guess
-        Critter currentCritter = HelloWorldController.PlayerParty.get(0);
+        Critter currentCritter = IdkController.PlayerParty.get(0);
 
 
         Move[] CurrentMoveset = currentCritter.moveset;
@@ -57,7 +57,7 @@ public class CombatHandler {
     private void updateCombatOptions()
     {
         CombatOptions.clear();
-        Move[] moves = HelloWorldController.PlayerParty.get(0).moveset;
+        Move[] moves = IdkController.PlayerParty.get(0).moveset;
         for (Move option : moves)
         {
             //option = Move.implementStubbedMoveList()[0];

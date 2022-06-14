@@ -37,7 +37,7 @@ public class Species {
 
     public static void initializeRandom(long seed)
     {
-        random = new Random(seed);
+        Species.random = new Random(seed);
     }
 
     //TODO: implement static method that generates evolutions with differing statpools
@@ -45,7 +45,7 @@ public class Species {
     {
         //This is the randomized constructor
         int statpoolSize = individualStatSize * 6;
-        if(this.random == null) initializeRandom(0); //TODO: NOTE THIS IS STUBBED CODE WITH SEED 0
+        if(Species.random == null) initializeRandom(0); //TODO: NOTE THIS IS STUBBED CODE WITH SEED 0
         int AtkPercent = random.nextInt(100); //0 to 99
         int DefPercent = random.nextInt(100);
         int SAPercent = random.nextInt(100);
@@ -59,7 +59,7 @@ public class Species {
         this.baseSpeed = statpoolSize * SpdPercent / total;
         this.baseSDefence = statpoolSize * SDPercent / total;
         this.baseHPStat = statpoolSize * HPPercent / total;
-        String name = ""; //TODO: implement generate name function!!!
+        // String name = ""; //TODO: implement generate name function!!!
         for(int i = 0; i < 10; i++)
             name += (char) random.nextInt(50) + 65;
         this.description = "STUBBED DESCRIPTION!! IMPLEMENT LATER"; //TODO: implement description generator!!
@@ -93,7 +93,7 @@ public class Species {
     }
 
     //Stubs, as method so they don't have to be instantiated.
-    //TODO: Upadate stubs so they aren't called externally!!
+    //TODO: Change stubbed code to not be called externally!
     public static Species stubWidget()
     {
         return new Species(20, 40, 30, 30, 30, 30, "Widget", "A widgety type critter, the widget widgets widgely");
