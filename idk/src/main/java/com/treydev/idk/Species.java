@@ -13,7 +13,7 @@ public class Species {
     public String description;
     public String Ability; //TODO: WHEN ABILITY IS IMPLEMENTED, replace with ACTUAL ABILITY!
     private Species evolution;
-    private Element type1;
+    private Element type1; //TODO: array?
     private Element type2;
     private HashMap<Integer,Move> Movelist;
     
