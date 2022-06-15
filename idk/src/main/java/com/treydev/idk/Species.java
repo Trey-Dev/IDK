@@ -13,7 +13,7 @@ public class Species {
     public String description;
     public String Ability; //TODO: WHEN ABILITY IS IMPLEMENTED, replace with ACTUAL ABILITY!
     private Species evolution;
-    private Element type1;
+    private Element type1; //TODO: array?
     private Element type2;
     private HashMap<Integer,Move> Movelist;
     
@@ -104,6 +104,14 @@ public class Species {
     public int getBaseSpeed()
     {
         return baseSpeed;
+    }
+    public Element getTypeOne()
+    {
+        return this.type1;
+    }
+    public Element getTypeTwo()
+    {
+        return this.type2;
     }
 
     //Stubs, as method so they don't have to be instantiated.
