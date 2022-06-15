@@ -10,12 +10,11 @@ of data and actions about each element as hidden elements.
 If someone clicks on the element, clientside JS will hide and
 unhide the elements.
 -->
-
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
     <title> Menu viewing</title>
-    <div th:insert="fragments/SampleNavbar" id="huh">
-    </div>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <div th:insert="fragments/header"></div>
 </head>
 
 <body>
