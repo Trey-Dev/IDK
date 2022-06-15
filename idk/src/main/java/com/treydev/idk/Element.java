@@ -49,6 +49,11 @@ public class Element
             return null;
     }
 
+    public static float checkEffectiveness(Element attacker, Element defender, Element defenderSecond)
+    {
+        return 1.0f;
+    }
+
     // Instance methods
     private Element(int id)
     {

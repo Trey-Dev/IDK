@@ -105,6 +105,14 @@ public class Species {
     {
         return baseSpeed;
     }
+    public Element getTypeOne()
+    {
+        return this.type1;
+    }
+    public Element getTypeTwo()
+    {
+        return this.type2;
+    }
 
     //Stubs, as method so they don't have to be instantiated.
 

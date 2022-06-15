@@ -12,7 +12,7 @@ public abstract class Move {
     //  P & Sp: "Execute" function runs private "Damage" function, then call "Effect"
     //  Status can just be implemented as a base move.
 
-    private Element moveType;
+    protected Element moveType;
     public String name;
     private static Random random;
 
@@ -24,16 +24,16 @@ public abstract class Move {
         long seed = 0; //TODO: remove hardcoded stub!
         random = new Random(seed);
         allMoves = new ArrayList<>();
-        allMoves.add(new PhysicalAttack("Just hit it.", null, 60, 80));
-        allMoves.add(new PhysicalAttack("Hit it harder!", null, 120, 40));
-        allMoves.add(new PhysicalAttack("Hit it softer...?", null, 40, 100));
-        allMoves.add(new PhysicalAttack("Don't hit it?", null, 1000, 0));
-        allMoves.add(new PhysicalAttack("Really risky, don't try it.", null, 800, 10));
-        allMoves.add(new SpecialAttack("Spit on it.", null, 60, 80));
-        allMoves.add(new SpecialAttack("Spit harder!", null, 120, 40));
-        allMoves.add(new SpecialAttack("Spit softer...?", null, 40, 100));
-        allMoves.add(new SpecialAttack("Don't spit on it?", null, 1000, 0));
-        allMoves.add(new SpecialAttack("Very imprecise lazer spit", null, 800, 10));
+        allMoves.add(new PhysicalAttack("Just hit it.", Element.getByName("Red"), 60, 80));
+        allMoves.add(new PhysicalAttack("Hit it harder!", Element.getByName("Red"), 120, 40));
+        allMoves.add(new PhysicalAttack("Hit it softer...?", Element.getByName("Red"), 40, 100));
+        allMoves.add(new PhysicalAttack("Don't hit it?", Element.getByName("Red"), 1000, 0));
+        allMoves.add(new PhysicalAttack("Really risky, don't try it.", Element.getByName("Red"), 800, 10));
+        allMoves.add(new SpecialAttack("Spit on it.", Element.getByName("Orange"), 60, 80));
+        allMoves.add(new SpecialAttack("Spit harder!", Element.getByName("Orange"), 120, 40));
+        allMoves.add(new SpecialAttack("Spit softer...?", Element.getByName("Orange"), 40, 100));
+        allMoves.add(new SpecialAttack("Don't spit on it?", Element.getByName("Orange"), 1000, 0));
+        allMoves.add(new SpecialAttack("Very imprecise lazer spit", Element.getByName("Orange"), 800, 10));
     }
 
 
@@ -93,7 +93,7 @@ public abstract class Move {
     {
         //TODO: add something that generates a random move
         HashMap<Integer,Move> value = new HashMap<Integer,Move>();
-        for(int i = 0; i < 21; i++) //TODO: Undo hardcoding of 25
+        for(int i = 0; i < 25; i++) //TODO: Undo hardcoding of 25
             {
                 value.put(random.nextInt(100), Move.getRandomMove()); //TODO: Make sure no moves can be obtained for lower/higher level than evolutions!
                 System.out.println(value.keySet().toString());
