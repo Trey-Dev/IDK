@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import com.treydev.idk.location.SpecialAttack;
+
 public abstract class Move {
 
     
@@ -27,6 +29,11 @@ public abstract class Move {
         allMoves.add(new PhysicalAttack("Hit it softer...?", null, 40, 100));
         allMoves.add(new PhysicalAttack("Don't hit it?", null, 1000, 0));
         allMoves.add(new PhysicalAttack("Really risky, don't try it.", null, 800, 10));
+        allMoves.add(new SpecialAttack("Spit on it.", null, 60, 80));
+        allMoves.add(new SpecialAttack("Spit harder!", null, 120, 40));
+        allMoves.add(new SpecialAttack("Spit softer...?", null, 40, 100));
+        allMoves.add(new SpecialAttack("Don't spit on it?", null, 1000, 0));
+        allMoves.add(new SpecialAttack("Very imprecise lazer spit", null, 800, 10));
     }
 
 
