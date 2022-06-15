@@ -44,10 +44,9 @@ public class PhysicalAttack extends Move {
         damage += 2;
         damage *= Element.checkEffectiveness(this.moveType, target.species.getTypeOne(), target.species.getTypeTwo());
         outputs.add("Dealt " + damage + " damage");
-        //TODO: add multiplier for TYPECHART!
         target.hitpoints -= damage;
         outputs.add("Opponent's health: "+ target.hitpoints);
-        //TODO: Modify this code until we have something that works!
+        //TODO: Tweak this code until we have something that works!
     }
 
     private boolean checkHit()
@@ -55,7 +54,6 @@ public class PhysicalAttack extends Move {
         return (Math.random() * 100 < Accuracy); //TODO: Replace with Util.random
         //TODO: check and test this and the damage function. Tweak until it feels nice.
     }
-    //TODO: create another class that implements additional effects.
-    //TODO: IN OTHER CLASS (Copy over when new class is implemented) add additional effects 
+    //TODO: create another class that implements additional effects
     //    as a method of the yet unimplemented interface or class.
 }

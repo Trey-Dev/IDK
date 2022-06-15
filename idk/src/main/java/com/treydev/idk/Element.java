@@ -51,7 +51,7 @@ public class Element
 
     public static float checkEffectiveness(Element attacker, Element defender, Element defenderSecond)
     {
-        return 1.0f;
+        return 1.0f;//TODO: edit this STUBBED CODE
     }
 
     // Instance methods

@@ -41,7 +41,6 @@ public class SpecialAttack extends Move {
         damage += 2;
         damage *= Element.checkEffectiveness(this.moveType, target.species.getTypeOne(), target.species.getTypeTwo());
         outputs.add("Dealt " + damage + " damage");
-        //TODO: add multiplier for TYPECHART!
         target.hitpoints -= damage;
         outputs.add("Opponent's health: "+ target.hitpoints);
         //TODO: Modify this code until we have something that works!
