@@ -13,8 +13,6 @@ public class Critter {
 
     public Critter(String name, Species species,  Move[] moveset)
     {
-        // this.baseAttack = baseAttack;
-        // this.health = Health;
         this.name = name;
         this.moveset = moveset;
         this.species = species;

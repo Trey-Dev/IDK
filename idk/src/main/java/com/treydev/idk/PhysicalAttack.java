@@ -24,20 +24,34 @@ public class PhysicalAttack extends Move {
         outputs.add("You used " + this.name);
         if(checkHit())
         {
-            //TODO: Move this to another function, so it can be modified independently.
-            outputs.add("You hit!");
-            target.hitpoints -= (this.Power + user.species.getBaseAttack()); //TODO: replace base attack with actual attack!
-            //this.AddEffects(outputs,target, user);
-            outputs.add("Opponent's health: "+ target.hitpoints);
-            //TODO: Modify this code until we have something that works!
+            dealDamage(outputs, target, user);
+            
         }
         else
             outputs.add("You missed!");
     }
 
+    private void dealDamage(ArrayList<String> outputs, Critter target, Critter user) {
+        outputs.add("You hit!");
+        //TODO: (optional) move actual damage calculation to yet another equation so the equation can be overridden.
+        int attack = user.species.getBaseAttack();//TODO: replace base attack with actual attack!
+        int defense = target.species.getBaseDefense();
+        int level = 50;//TODO: REPLACE WITH ACTUAL LEVEL!
+        int damage = Power;
+        damage *= attack;
+        damage *= 2 * (level + 10);
+        damage /= (defense * 250);
+        damage += 2;
+        outputs.add("Dealt " + damage + " damage");
+        //TODO: add multiplier for TYPECHART!
+        target.hitpoints -= damage;
+        outputs.add("Opponent's health: "+ target.hitpoints);
+        //TODO: Modify this code until we have something that works!
+    }
+
     private boolean checkHit()
     {
-        return (Math.random() * 100 < Accuracy);
+        return (Math.random() * 100 < Accuracy); //TODO: Replace with Util.random
         //TODO: check and test this and the damage function. Tweak until it feels nice.
     }
     //TODO: create another class that implements additional effects.

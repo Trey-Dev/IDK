@@ -22,13 +22,12 @@ public abstract class Move {
         long seed = 0; //TODO: remove hardcoded stub!
         random = new Random(seed);
         allMoves = new ArrayList<>();
-        allMoves.add(new PhysicalAttack("Just hit it.", null, 15, 80));
-        allMoves.add(new PhysicalAttack("Hit it harder!", null, 30, 40));
-        allMoves.add(new PhysicalAttack("Hit it softer...?", null, 5, 100));
-        allMoves.add(new PhysicalAttack("Don't hit it?", null, 123, 0));
-        allMoves.add(new PhysicalAttack("Really risky, don't try it.", null, 80, 10));
+        allMoves.add(new PhysicalAttack("Just hit it.", null, 60, 80));
+        allMoves.add(new PhysicalAttack("Hit it harder!", null, 120, 40));
+        allMoves.add(new PhysicalAttack("Hit it softer...?", null, 40, 100));
+        allMoves.add(new PhysicalAttack("Don't hit it?", null, 1000, 0));
+        allMoves.add(new PhysicalAttack("Really risky, don't try it.", null, 800, 10));
     }
-    //TODO: something that generates a nonstubbed moveset
 
 
     public static Move []genMoveset(int level, HashMap<Integer,Move> moveList)
