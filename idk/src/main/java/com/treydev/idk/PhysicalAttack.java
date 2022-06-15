@@ -12,9 +12,9 @@ public class PhysicalAttack extends Move {
      */
     private int Power, Accuracy;
 
-    public PhysicalAttack(String name, int Power, int Accuracy)
+    public PhysicalAttack(String name, Element MoveType, int Power, int Accuracy)
     {
-        super(name);
+        super(name, MoveType);
         this.Accuracy = Accuracy;
         this.Power = Power;
     }

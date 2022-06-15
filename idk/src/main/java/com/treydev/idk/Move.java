@@ -22,11 +22,11 @@ public abstract class Move {
         long seed = 0; //TODO: remove hardcoded stub!
         random = new Random(seed);
         allMoves = new ArrayList<>();
-        allMoves.add(new PhysicalAttack("Just hit it.", 15, 80));
-        allMoves.add(new PhysicalAttack("Hit it harder!", 30, 40));
-        allMoves.add(new PhysicalAttack("Hit it softer...?", 5, 100));
-        allMoves.add(new PhysicalAttack("Don't hit it?", 123, 0));
-        allMoves.add(new PhysicalAttack("Really risky, don't try it.", 80, 10));
+        allMoves.add(new PhysicalAttack("Just hit it.", null, 15, 80));
+        allMoves.add(new PhysicalAttack("Hit it harder!", null, 30, 40));
+        allMoves.add(new PhysicalAttack("Hit it softer...?", null, 5, 100));
+        allMoves.add(new PhysicalAttack("Don't hit it?", null, 123, 0));
+        allMoves.add(new PhysicalAttack("Really risky, don't try it.", null, 80, 10));
     }
 
     //TODO: something that creates a (stubbed) movelist
@@ -34,9 +34,10 @@ public abstract class Move {
 
     public abstract void Execute(ArrayList<String> outputs, Critter target, Critter user);
     
-    public Move(String name)
+    public Move(String name, Element Movetype)
     {
         this.name = name;
+        this.moveType = Movetype;
     }
 
     public static Move[] implementStubbedMoveList()
@@ -55,9 +56,13 @@ public abstract class Move {
 
     public static HashMap<Integer,Move> genMoveList()
     {
+        //TODO: add something that generates a random move
         HashMap<Integer,Move> value = new HashMap<Integer,Move>();
-        for(int i = 0; i < 25; i++)
-            value.put(random.nextInt(100), Move.getRandomMove());
+        for(int i = 0; i < 21; i++) //TODO: Undo hardcoding of 25
+            {
+                value.put(random.nextInt(100), Move.getRandomMove()); //TODO: Make sure no moves can be obtained for lower/higher level than evolutions!
+                System.out.println(value.keySet().toString());
+            }
         return value;
     }
 }
