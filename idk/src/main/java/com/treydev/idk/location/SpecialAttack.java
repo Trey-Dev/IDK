@@ -39,7 +39,7 @@ public class SpecialAttack extends Move {
         damage *= 2 * (level + 10);
         damage /= (defense * 250);
         damage += 2;
-        damage *= Element.checkEffectiveness(this.moveType, target.species.getTypeOne(), target.species.getTypeTwo());
+        damage = (int) ((float) damage * Element.checkEffectiveness(this.moveType, target.species.getTypeOne(), target.species.getTypeTwo()));
         outputs.add("Dealt " + damage + " damage");
         target.hitpoints -= damage;
         outputs.add("Opponent's health: "+ target.hitpoints);
