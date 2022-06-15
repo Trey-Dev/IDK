@@ -42,6 +42,10 @@ public class MoveTests {
             for(String outputString : outputStrings)
                 System.out.println(outputString);
         }
+        Assert.isTrue(sampleMoveset[0] != null, "First move in moveset empty in genMoveset function");
+        Assert.isTrue(sampleMoveset[1] != null, "Second move in moveset empty in genMoveset function");
+        Assert.isTrue(sampleMoveset[2] != null, "Third move in moveset empty in genMoveset function");
+        Assert.isTrue(sampleMoveset[3] != null, "Fourth move in moveset empty in genMoveset function");
     }
 
     @Test
@@ -49,9 +53,11 @@ public class MoveTests {
         System.out.println("vvvvvvvvvvv TESTING GETRANDOMMOVE vvvvvvvvvvvvv");
         ArrayList<String> sampleOutputs = new ArrayList<String>();
         Move random = Move.getRandomMove();
+        
         ArrayList<Critter> critters = Critter.initializeStubbedParty();
         random.Execute(sampleOutputs, critters.get(0), critters.get(1));
         for(String output : sampleOutputs)
             System.out.println(output);
+        Assert.isTrue(random != null, "getRandomMove returned null");
     }
 }
