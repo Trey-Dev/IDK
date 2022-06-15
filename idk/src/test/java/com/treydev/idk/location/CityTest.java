@@ -97,4 +97,23 @@ public class CityTest {
         // For this release, we will always have exactly one gym
         Assert.isTrue(c.getGyms().size() == 1, "City should have exactly one gym");
     }
+
+    @Test
+    void testGetShops() {
+        City c = City.getCity(1000, 1);
+        // For this release, we will always have exactly one shop
+        Assert.isTrue(c.getShops().size() == 1, "City should have exactly one shop");
+    }
+
+    @Test
+    void testGetLeader() {
+        City c = City.getCity(2000, 1);
+        // For this release, we will always have exactly one leader
+        Assert.isTrue(c.getLeader() != null, "City should have exactly one leader");
+        // At low levels, the leader will not have a title and we assume this works for the rest
+        String leaderName = c.getLeader();
+        c = City.getCity(2000, 20);
+        Assert.isTrue(c.getLeader().contains(leaderName), "Higher level cities should use the same name");
+        Assert.isTrue(c.getLeader().length() > leaderName.length(), "Higher level cities should include a prefix");
+    }
 }
