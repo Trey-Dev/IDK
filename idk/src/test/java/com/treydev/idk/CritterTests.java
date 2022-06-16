@@ -23,7 +23,42 @@ public class CritterTests {
     @Test
     void testCombatStages()
     {
-        
+        ArrayList<Critter> party = Critter.initializeStubbedParty();
+        Critter Attacker = party.get(0);
+        Critter Defender = party.get(1); //Poor guy
+        ArrayList<String> outputs = new ArrayList<>();
+        for(Move move: Attacker.moveset)
+        {
+            if(move == null) break;
+            System.out.println("Testing no buffs!");
+            do{
+                outputs.clear();
+                move.Execute(outputs, Attacker, Defender);
+            } while(outputs.contains("You missed!")); //Execute move until hit!
+            for(String output : outputs) System.out.println(output);
+            
+            System.out.println("Testing one buff!");
+            Attacker.increaseAtk();
+            do{
+                outputs.clear();
+                move.Execute(outputs, Attacker, Defender);
+                } while(outputs.contains("You missed!"));
+            for(String output : outputs) System.out.println(output);
+            System.out.println("Testing debuff, back to base!");
+            Attacker.decreaseAtk();
+            do{
+                outputs.clear();
+                move.Execute(outputs, Attacker, Defender);
+                } while(outputs.contains("You missed!"));
+            for(String output : outputs) System.out.println(output); 
+            System.out.println("Testing one more debuff, lower than original!");
+            Attacker.decreaseAtk();
+            do{
+                outputs.clear();
+                move.Execute(outputs, Attacker, Defender);
+                } while(outputs.contains("You missed!"));
+            for(String output : outputs) System.out.println(output); 
+        }
     }
 
 }

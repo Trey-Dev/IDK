@@ -85,4 +85,16 @@ public class Critter {
         return species.getBaseHitPoints(); //TODO: actually CALCULATE base HP!!!
     }
 
+    //TODO: Create function to level up
+    
+    //Stat stage modifiers
+    public void increaseAtk()
+    {
+        AttackStage = Math.min(AttackStage + 1, 6);
+    }
+    public void decreaseAtk()
+    {
+        AttackStage = Math.max(AttackStage - 1, -6);
+    }
+
 }
