@@ -12,13 +12,13 @@
     <p>Shops:</p>
     <ul>
         <li th:each="shop : ${shops}">
-            <a th:text="${shop}" />
+            <a th:href="@{/shop/{id}(id=${shop.name})}" th:text="${shop.name}" />
         </li>
     </ul>
     <p>Gyms:</p>
     <ul>
         <li th:each="gym : ${gyms}">
-            <a th:text="${gym}" />
+            <a th:href="@{/gym/{id}(id=${gym.name})}" th:text="${gym.name}" />
         </li>
     </ul>
     <p>Paths:</p>

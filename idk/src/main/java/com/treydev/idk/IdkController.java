@@ -130,8 +130,8 @@ public class IdkController {
         model.addAttribute("cityName", c.getName());
 
         // Extract names for Shops, Gyms and Paths and place into sessino arrays
-        model.addAttribute("shops", c.getShopNames());
-        model.addAttribute("gyms", c.getGymNames());
+        model.addAttribute("shops", c.getShops());
+        model.addAttribute("gyms", c.getGyms());
 
         // STUB
         ArrayList<Path> paths = Path.getPaths(c);
