@@ -34,8 +34,8 @@ public class PhysicalAttack extends Move {
     private void dealDamage(ArrayList<String> outputs, Critter target, Critter user) {
         outputs.add("You hit!");
         //TODO: (optional) move actual damage calculation to yet another equation so the equation can be overridden.
-        int attack = user.species.getBaseAttack();//TODO: replace base attack with actual attack!
-        int defense = target.species.getBaseDefense();
+        int attack = user.getAttack();//TODO: replace base attack with actual attack!
+        int defense = target.getDefence();
         int level = 50;//TODO: REPLACE WITH ACTUAL LEVEL!
         int damage = Power;
         damage *= attack;
