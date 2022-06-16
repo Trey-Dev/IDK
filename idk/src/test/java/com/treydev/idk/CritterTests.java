@@ -12,36 +12,18 @@ public class CritterTests {
         {
             creature.enterCombat();
             System.out.println("Stats: ");
-            System.out.println(creature.getAttack());
-            System.out.println(creature.getDefence());
-            System.out.println(creature.getSpecDef());
-            System.out.println(creature.getSpecial());
-            System.out.println(creature.getSpeed());
+            System.out.println("A" + creature.getAttack());
+            System.out.println("D" + creature.getDefence());
+            System.out.println("SD" + creature.getSpecDef());
+            System.out.println("SA" + creature.getSpecial());
+            System.out.println("S" + creature.getSpeed());
         }
     }
 
     @Test
-    void testGetAttack() {
-
+    void testCombatStages()
+    {
+        
     }
 
-    @Test
-    void testGetDefence() {
-
-    }
-
-    @Test
-    void testGetSpecDef() {
-
-    }
-
-    @Test
-    void testGetSpecial() {
-
-    }
-
-    @Test
-    void testGetSpeed() {
-
-    }
 }

@@ -11,7 +11,7 @@ public class CombatHandler {
     {
         this.outputs = new ArrayList<String>();
         this.CombatOptions = new ArrayList<String>();
-        this.opponent = new Critter("Wadget", Species.stubWadget(), null);
+        this.opponent = new Critter("Wadget", Species.stubWadget(), null, 5);
     }
 
     public CombatHandler(ArrayList<String> outputs, ArrayList<String> CombatOptions, Critter opponent)
