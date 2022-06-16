@@ -85,6 +85,8 @@ public class IdkController {
         if(sessionCombatHandler == null)
             {
                 sessionCombatHandler = CombatHandler.initializeStubbed();
+                for(Critter creature : PlayerParty)
+                    creature.enterCombat();//TODO: call from combatHandler
             }
         //sessionCombatHandler.updateCombatOptions();
        
