@@ -7,9 +7,24 @@
 </head>
 
 <body>
-    <h3>Welcome to [the city]</h3> 
+    <h3 th:text="${cityName}"></h3>
     <br/>
-    <form action="game" method="post">
-        <p>TO DO: Add content</p>
-    </form>
+    <p>Shops:</p>
+    <ul>
+        <li th:each="shop : ${shops}">
+            <a th:text="${shop}" />
+        </li>
+    </ul>
+    <p>Gyms:</p>
+    <ul>
+        <li th:each="gym : ${gyms}">
+            <a th:text="${gym}" />
+        </li>
+    </ul>
+    <p>Paths:</p>
+    <ul>
+        <li th:each="path : ${paths}">
+            <a th:text="${path}" />
+        </li>
+    </ul>
 </html>
