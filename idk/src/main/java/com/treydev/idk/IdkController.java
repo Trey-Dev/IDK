@@ -132,21 +132,24 @@ public class IdkController {
         // Extract names for Shops, Gyms and Paths and place into sessino arrays
         // TO DO: This code is excessive and should be streamlined/refactored
         String[] shops = new String[c.getShops().size()];
-        for(int i = 0; i < c.getShops().size(); i++)
-        {
+        for(int i = 0; i < c.getShops().size(); i++) {
             shops[i] = c.getShops().get(i).getName();
         }
         model.addAttribute("shops", shops);
 
         String[] gyms = new String[c.getGyms().size()];
-        for(int i = 0; i < c.getShops().size(); i++)
-        {
+        for(int i = 0; i < c.getShops().size(); i++) {
             gyms[i] = c.getGyms().get(i).getName();
         }
         model.addAttribute("gyms", gyms);
 
         // STUB
-        model.addAttribute("paths", new String[]{"Path 1", "Path 2", "Path 3"});
+        ArrayList<Path> paths = Path.getPaths(c);
+        ArrayList<String> p = new ArrayList<String>(paths.size());
+        for( Path path : paths ) {
+            p.add( path.getPathText(c) );
+        }
+        model.addAttribute("paths", p.toArray());
 
         dumpModel(model);
         return "City";
