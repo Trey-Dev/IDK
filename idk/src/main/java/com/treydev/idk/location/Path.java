@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Path {    
-    //For now, we are only supporting city-to-city paths
+    //For now, we are only supporting city-to-city paths - no forks
     private City location1;
     private City location2;
     private int distance;

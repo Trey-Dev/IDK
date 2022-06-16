@@ -96,6 +96,12 @@ public class CityTest {
         City c = City.getCity(1000, 1);
         // For this release, we will always have exactly one gym
         Assert.isTrue(c.getGyms().size() == 1, "City should have exactly one gym");
+
+        // Tests for getGymNames()
+        Assert.isTrue(c.getGymNames().length == c.getGyms().size(), "Should have same number of gym names as gyms");
+        for(int i=0; i<c.getGyms().size(); i++) {
+            Assert.isTrue(c.getGymNames()[i].equals(c.getGyms().get(i).getName()), "Gym names don't match");
+        }
     }
 
     @Test
@@ -103,6 +109,12 @@ public class CityTest {
         City c = City.getCity(1000, 1);
         // For this release, we will always have exactly one shop
         Assert.isTrue(c.getShops().size() == 1, "City should have exactly one shop");
+
+        // Tests for getShopNames()
+        Assert.isTrue(c.getShopNames().length == c.getShops().size(), "Should have same number of shop names as shops");
+        for(int i=0; i<c.getShops().size(); i++) {
+            Assert.isTrue(c.getShopNames()[i].equals(c.getShops().get(i).getName()), "Shop names don't match");
+        }
     }
 
     @Test

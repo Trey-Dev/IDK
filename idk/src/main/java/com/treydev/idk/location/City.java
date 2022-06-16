@@ -58,6 +58,14 @@ public class City extends LocationBase {
         return gyms;
     }
 
+    public String[] getGymNames() {
+        String names[] = new String[getGyms().size()];
+        for (int i = 0; i < names.length; i++) {
+            names[i] = getGyms().get(i).getName();
+        }
+        return names;
+    }
+
     private ArrayList<Shop> shops = null;
     public ArrayList<Shop> getShops() {
         if (shops == null) {
@@ -65,6 +73,14 @@ public class City extends LocationBase {
             shops.add(new Shop(this));
         }
         return shops;
+    }
+
+    public String[] getShopNames() {
+        String names[] = new String[getShops().size()];
+        for (int i = 0; i < names.length; i++) {
+            names[i] = getShops().get(i).getName();
+        }
+        return names;
     }
 
     private City(long seed, int targetLevel) {
