@@ -26,7 +26,7 @@ public abstract class PhysicalAttack extends Move {
         {
             //TODO: Move this to another function, so it can be modified independently.
             outputs.add("You hit!");
-            target.hitpoints -= (this.Power + user.species.getBaseAttack()); //TODO: replace base attack with actual attack!
+            target.hitpoints -= (this.Power + user.getAttack()); //TODO: replace base attack with actual attack!
             this.AddEffects(outputs,target, user);
             outputs.add("Opponent's health: "+ target.hitpoints);
             //TODO: Modify this code until we have something that works!
