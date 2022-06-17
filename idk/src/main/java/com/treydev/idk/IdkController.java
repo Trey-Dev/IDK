@@ -108,4 +108,9 @@ public class IdkController {
     {
         return "City";
     }
+    @GetMapping("CritterDetails")
+    public String CritterDetails(Model model)
+    {
+        return "CritterDescription";
+    }
 }
