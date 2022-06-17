@@ -32,6 +32,8 @@ public class CritterDetailsModel {
         for(int i = 0; i < HiP; i++)
             HP += '█';
         HP += " HP: " + HiP; //TODO: normalize HP so it doesn't take up more than every other stat.
+        //TODO: MAYBE replace i++ with i+= 2, scale, then add a half box if i%2==1.
+        //      OR simply decrease the font size, maybe fit 6 on a screen!
         name = C.name;
         SpeciesName = C.species.name;
     }
