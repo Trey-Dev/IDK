@@ -1,33 +1,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
+        <div th:insert="fragments/header" id="huh"></div>
+    </head>
+    <body>
         <!--TODO: add dropdown to cycle through party!-->
         <table id="NameAndSpecies">
             <tr>
-                <td th:text="${Name}">
+                <td th:text="${C.name}">
                 </td>
                 <td> || </td>
-                <td th:text="${SName}">
+                <td th:text="${C.SpeciesName}">
                 </td>
             </tr>
         </table>
         <table id="StatsSidebar"><!-- Uses id for CSS to format page position-->
             <tr>
-                <td>A</td>
+                <td th:text="${C.A}"></td>
             </tr>
             <tr>
-                <td>D</td>
+                <td th:text="${C.D}">D</td>
             </tr>
             <tr>
-                <td>SA</td>
+                <td th:text="${C.SA}"></td>
             </tr>
             <tr>
-               <td>SD</td>
+               <td th:text="${C.SD}"></td>
             </tr>
             <tr>
-                <td>SP</td>
+                <td th:text="${C.SPD}"></td>
             </tr>
             <tr>
-                <td>HP</td>
+                <td th:text="${C.HP}"></td>
             </tr>
         </table>
         <p>
@@ -36,5 +39,5 @@
         <p>
             Nature
         </p>
-    </head>
+    </body>
 </html>
