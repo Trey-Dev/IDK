@@ -119,8 +119,11 @@ public class IdkController {
          *  >Ability string
          *  >Nature (nature description)
          */
-        CritterDetailsModel displayCritter = new CritterDetailsModel(PlayerParty.get(0));
-        model.addAttribute("C", displayCritter);
+        //CritterDetailsModel displayCritter = new CritterDetailsModel(PlayerParty.get(0));
+        ArrayList<CritterDetailsModel> PartyModel = new ArrayList<>();
+        for(Critter member : PlayerParty)
+            PartyModel.add(new CritterDetailsModel(member));
+        model.addAttribute("Critters", PartyModel);
         return "CritterDescription";
     }
 }

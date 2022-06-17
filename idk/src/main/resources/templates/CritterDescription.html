@@ -4,40 +4,42 @@
     </head>
     <body>
         <!--TODO: add dropdown to cycle through party!-->
-        <table id="NameAndSpecies">
-            <tr>
-                <td th:text="${C.name}">
-                </td>
-                <td> || </td>
-                <td th:text="${C.SpeciesName}">
-                </td>
-            </tr>
-        </table>
-        <table id="StatsSidebar"><!-- Uses id for CSS to format page position-->
-            <tr>
-                <td th:text="${C.A}"></td>
-            </tr>
-            <tr>
-                <td th:text="${C.D}">D</td>
-            </tr>
-            <tr>
-                <td th:text="${C.SA}"></td>
-            </tr>
-            <tr>
-               <td th:text="${C.SD}"></td>
-            </tr>
-            <tr>
-                <td th:text="${C.SPD}"></td>
-            </tr>
-            <tr>
-                <td th:text="${C.HP}"></td>
-            </tr>
-        </table>
-        <p>
-            Insert ability details here
-        </p>
-        <p>
-            Nature
-        </p>
+        <div th:each="C: ${Critters}">
+            <table  id="NameAndSpecies">
+                <tr>
+                    <td th:text="${C.name}">
+                    </td>
+                    <td> || </td>
+                    <td th:text="${C.SpeciesName}">
+                    </td>
+                </tr>
+            </table>
+            <table id="StatsSidebar"><!-- Uses id for CSS to format page position-->
+                <tr>
+                    <td th:text="${C.A}" style="color:red"></td>
+                </tr>
+                <tr>
+                    <td th:text="${C.D}" style="color:cadetblue">D</td>
+                </tr>
+                <tr>
+                    <td th:text="${C.SA}" style="color:purple"></td>
+                </tr>
+                <tr>
+                <td th:text="${C.SD}" style="color:blue"></td>
+                </tr>
+                <tr>
+                    <td th:text="${C.SPD}" style="color:orange"></td>
+                </tr>
+                <tr>
+                    <td th:text="${C.HP}" style="color:yellow"></td>
+                </tr>
+            </table>
+            <p>
+                Insert ability details here
+            </p>
+            <p>
+                Nature
+            </p>
+        </div>
     </body>
 </html>
