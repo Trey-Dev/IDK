@@ -26,11 +26,17 @@ public class City extends LocationBase {
         return elementAffinities;
     }
 
-    // private ArrayList<City> neighbors = new ArrayList<City>();
-    // public ArrayList<City> getNeighbors() { return neighbors; }
-
-    // private Region region;
-    // private String description;
+    private int population;
+    public int getPopulation() {
+        if (this.population == 0) {
+            double bellcurve = 0;
+            for (int i=0; i< 500; i++) {
+                bellcurve += Math.random() * 10;
+            }
+            this.population = (int)bellcurve;
+        }
+        return this.population;
+    }
 
     public String getLeader() {
         // We are deriving the leader title from the (fixed) level to make it reproducible without needing another attribute
