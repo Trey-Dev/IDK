@@ -90,6 +90,9 @@ public class City extends LocationBase {
     // This is mainly for testing - hopefully not a real use case
     public static void clearMap() {
         City.cities.clear();
+        Gym.clearGyms();
+        Shop.clearShops();
+        Path.clearPaths();
     }
 
     public static City getCity(long seed, int targetLevel) {
@@ -142,5 +145,10 @@ public class City extends LocationBase {
             default:
                 return coreName;
         }
+    }
+
+    @Override
+    public int getId() {
+        return cities.indexOf(this);
     }
 }

@@ -79,4 +79,12 @@ public class Path {
 
         return possiblePaths;
     }
+
+    public int getId() {
+        return Path.paths.indexOf(this);
+    }
+
+    public static void clearPaths() {
+        Path.paths.clear();
+    }
 }

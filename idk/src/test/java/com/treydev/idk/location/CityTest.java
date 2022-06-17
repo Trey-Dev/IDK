@@ -116,4 +116,14 @@ public class CityTest {
         Assert.isTrue(c.getLeader().contains(leaderName), "Higher level cities should use the same name");
         Assert.isTrue(c.getLeader().length() > leaderName.length(), "Higher level cities should include a prefix");
     }
+
+    @Test
+    void testGetId() {
+        City.clearMap();
+        City c1 = City.getCity(1000, 1);
+        Assert.isTrue(c1.getId() == 0, "First city should have Id=0");
+        City c2 = City.getCity(2000, 20);
+        Assert.isTrue(c2.getId() == 1, "Second city should have Id=1");
+    }
+
 }

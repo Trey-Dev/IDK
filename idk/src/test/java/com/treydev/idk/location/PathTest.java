@@ -38,4 +38,23 @@ public class PathTest {
         Assert.isTrue(paths.size() >= 1, "We should have exactly 1 path");
         Assert.isTrue(paths.size() <= 6, "We should have 6 or fewer paths");
     }
+
+    @Test
+    void testGetId() {
+        City city1 = City.getCityByLevel(5);
+        // For the first city, all paths should be the same as the 
+        ArrayList<Path> paths1 = Path.getPaths(city1, 1000);
+        for (int i=0; i< paths1.size(); i++) {
+            Path path = paths1.get(i);
+            Assert.isTrue(path.getId() == i, "Path ID should be " + i);
+        }
+
+        // For the second city, paths IDs should continue from the previous city
+        City city2 = City.getCityByLevel(70);
+        ArrayList<Path> paths2 = Path.getPaths(city2, 1000);
+        for (int i=0; i< paths2.size(); i++) {
+            Path path = paths2.get(i);
+            Assert.isTrue(path.getId() == i + paths1.size(), "Path ID should be " + i);
+        }        
+    }
 }
