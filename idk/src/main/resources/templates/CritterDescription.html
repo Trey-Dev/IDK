@@ -1,13 +1,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
+        <!--TODO: add dropdown to cycle through party!-->
         <table id="NameAndSpecies">
             <tr>
-                <td>
-                    Insert Critter Name
+                <td th:text="${Name}">
                 </td>
+                <td> || </td>
                 <td>
                     Insert Species Name
-            </td>
+                </td>
             </tr>
         </table>
         <table id="StatsSidebar"><!-- Uses id for CSS to format page position-->
