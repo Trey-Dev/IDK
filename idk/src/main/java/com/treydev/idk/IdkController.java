@@ -121,6 +121,7 @@ public class IdkController {
          */
         Critter displayCritter = PlayerParty.get(0);
         model.addAttribute("Name",displayCritter.name);
+        model.addAttribute("SName", displayCritter.species.name);
         return "CritterDescription";
     }
 }
