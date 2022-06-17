@@ -12,9 +12,16 @@ public class CritterDetailsModel {
             this.attributeColor = color;
         }
     }
+    private static String AttributeToString(int AttributeValue, String name)
+    {
+        //TODO: possibly scale to fit!
+        String TextValue = "";
+        for(int i = 0; i < AttributeValue; i++)
+            TextValue += '█';
+        TextValue += name + ": " + AttributeValue;
+        return TextValue;
+    }
 
-    // public String  A, D, SA, SD, SPD, HP;
-    // public String A = "";
     public String name, SpeciesName;
     public final String[] statNames = {"Attack", "Defense", "Special Attack", "Special Defense", "Speed", "Hit Points"};
     public final String[] colors={"Red", "DarkGrey", "DarkMagenta", "Blue", "Orange", "ForestGreen"};
@@ -22,38 +29,11 @@ public class CritterDetailsModel {
     //TODO: when ability is implemented, add ability details!
     public CritterDetailsModel(Critter C)
     {
-        String  A, D, SA, SD, SPD, HP;
-        A = D = SA = SD = SPD = HP = "";
-        int Atk = C.species.getBaseAttack();//TODO: WHEN THIS MERGES, IMPLEMENT ACTUAL STAT AQUIRATION.
-        for(int i = 0; i < Atk; i++)
-            A += '█';
-        A += " Attack: " + Atk;
-        int Def = C.species.getBaseDefense();
-        for(int i = 0; i < Def; i++)
-            D += '█';
-        D += " Defense: " + Def;
-        int SpA = C.species.getBaseSpecial();
-        for(int i = 0; i < SpA; i++)
-            SA += '█';
-        SA += " Special Attack: " + SpA;
-        int SpD = C.species.getBaseSDefence();
-        for(int i = 0; i < SpD; i++)
-            SD += '█';
-        SD += " Special Defense: " + SpD;
-        int Spe = C.species.getBaseSpeed();
-        for(int i = 0; i < Spe; i++)
-            SPD += '█';
-        SPD += " Speed: " + Spe;
-        int HiP = C.species.getBaseHitPoints();
-        for(int i = 0; i < HiP; i++)
-            HP += '█';
-        HP += " HP: " + HiP; //TODO: normalize HP so it doesn't take up more than every other stat.
-        //TODO: MAYBE replace i++ with i+= 2, scale, then add a half box if i%2==1.
-        //      OR simply decrease the font size, maybe fit 6 on a screen!
-        String[] s =  {A,D,SA,SD,SPD,HP};
         statValues = new statLine[6];
-        for(int i = 0; i < s.length; i++)
-            statValues[i] = new statLine(statNames[i], s[i], colors[i]);
+        int []statIntegers = {C.species.getBaseAttack(), C.species.getBaseDefense(), C.species.getBaseSpecial(),     C.species.getBaseSDefence(),
+    C.species.getBaseSpeed(), C.species.getBaseHitPoints()}; //TODO: REPLACE WITH ACTUAL STATS!!!!
+        for(int i = 0; i < 6; i++)
+            statValues[i] = new statLine(statNames[i], AttributeToString(statIntegers[i], statNames[i]), colors[i]);
         name = C.name;
         SpeciesName = C.species.name;
     }
