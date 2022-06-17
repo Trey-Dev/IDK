@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <div th:insert="fragments/header" id="huh"></div>
+        <link th:href="@{/css/style.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <!--TODO: add dropdown to cycle through party!-->
+        <div th:each="C: ${Critters}">
+            <table  id="NameAndSpecies">
+                <tr>
+                    <td th:text="${C.name}">
+                    </td>
+                    <td> || </td>
+                    <td th:text="${C.SpeciesName}">
+                    </td>
+                </tr>
+            </table>
+            <table id="StatsSidebar"><!-- Uses id for CSS to format page position-->
+                <tr th:each="E: ${C.statValues}">
+                    <td th:text="${E.attributeValue}" th:style="'color:' + ${E.attributeColor}"></td>
+                </tr>
+            </table>
+            <p>
+                Insert ability details here
+            </p>
+            <p>
+                Nature
+            </p>
+        </div>
+    </body>
+</html>

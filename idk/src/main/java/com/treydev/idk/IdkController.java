@@ -145,6 +145,17 @@ public class IdkController {
         return "City";
     }
 
+    @GetMapping("CritterDetails")
+    public String CritterDetails(Model model)
+    {
+        //CritterDetailsModel displayCritter = new CritterDetailsModel(PlayerParty.get(0));
+        ArrayList<CritterDetailsModel> PartyModel = new ArrayList<>();
+        for(Critter member : PlayerParty)
+            PartyModel.add(new CritterDetailsModel(member));
+        model.addAttribute("Critters", PartyModel);
+        return "CritterDescription";
+    }
+
     @GetMapping("Gym")
     public String Gym(Model model, HttpSession session)
     {
