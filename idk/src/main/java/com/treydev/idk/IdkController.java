@@ -111,14 +111,6 @@ public class IdkController {
     @GetMapping("CritterDetails")
     public String CritterDetails(Model model)
     {
-        //TODO: NOTE assuming party.get(0) is CURRENT CRITTER!
-        //TODO: add variables from critter to the model:
-        /*  >Stats
-         *  >Name
-         *  >Species.name
-         *  >Ability string
-         *  >Nature (nature description)
-         */
         //CritterDetailsModel displayCritter = new CritterDetailsModel(PlayerParty.get(0));
         ArrayList<CritterDetailsModel> PartyModel = new ArrayList<>();
         for(Critter member : PlayerParty)
