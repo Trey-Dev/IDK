@@ -13,6 +13,7 @@ public class Gym extends LocationBase {
     public ArrayList<Critter> getCritters() { return critters; }
 
     private City city;
+    public City getCity() { return city; }
 
     public Gym(City city, long seed) {
         super(seed, city.getLevel());

@@ -41,6 +41,7 @@ public class PathTest {
 
     @Test
     void testGetId() {
+        City.clearMap();
         City city1 = City.getCityByLevel(5);
         // For the first city, all paths should be the same as the 
         ArrayList<Path> paths1 = Path.getPaths(city1, 1000);

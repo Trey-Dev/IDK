@@ -9,6 +9,11 @@ public class LocationBaseTest {
             super(level);
             this.name = "Test Location";
         }
+
+        @Override
+        public int getId() {
+            return 0;
+        }
     }
 
     @Test

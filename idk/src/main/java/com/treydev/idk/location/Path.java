@@ -85,6 +85,8 @@ public class Path {
 
     public static void clearPaths() {
         Path.paths.clear();
+    }
+
     private static boolean pathAlreadyExists(City location1, City location2) {
         for (Path path : Path.paths) {
             if (path.location1.equals(location1) && path.location2.equals(location2)) {
