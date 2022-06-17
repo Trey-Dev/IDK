@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Path {    
-    //For now, we are only supporting city-to-city paths
+    //For now, we are only supporting city-to-city paths - no forks
     private City location1;
     private City location2;
     private int distance;
@@ -38,6 +38,11 @@ public class Path {
         }
     }
 
+    public static ArrayList<Path> getPaths(City location) {
+        long seed = (long)(Math.random() * Long.MAX_VALUE);
+        return getPaths(location, seed);
+    }
+
     public static ArrayList<Path> getPaths(City location, long seed) {
         ArrayList<Path> possiblePaths = new ArrayList<Path>();
         for (Path path : Path.paths) {
@@ -49,11 +54,7 @@ public class Path {
         // We always need paths to other cities, so if there are no paths, we need to add one
         Random generator = new Random(seed);
         if (possiblePaths.size() == 0) {
-            // Find or create a new city
-            City newCity = City.getCity(seed, location.getLevel()+1);
-            // Create a new path
-            int distance = (int)(generator.nextDouble() * (location.getLevel() * Path.MAX_PATH_DISTANCE - location.getLevel() * Path.MIN_PATH_DISTANCE) + location.getLevel() * Path.MIN_PATH_DISTANCE);
-            Path newPath = new Path(location, newCity, distance );
+            Path newPath = generateNewPath(location, generator);
             Path.paths.add(newPath);
             possiblePaths.add(newPath);
         }
@@ -67,13 +68,11 @@ public class Path {
             // And the more existing paths, the less ikely to find more
             likelyhood /= possiblePaths.size();
             if (generator.nextDouble() < likelyhood) {
-                // Find or create a new city
-                City newCity = City.getCity(seed, location.getLevel()+1);
-                // Create a new path
-                int distance = (int)(generator.nextDouble() * (location.getLevel() * Path.MAX_PATH_DISTANCE - location.getLevel() * Path.MIN_PATH_DISTANCE) + location.getLevel() * Path.MIN_PATH_DISTANCE);
-                Path newPath = new Path(location, newCity, distance );
-                Path.paths.add(newPath);
-                possiblePaths.add(newPath);
+                Path newPath = generateNewPath(location, generator);
+                if (!pathAlreadyExists(newPath.location1, newPath.location2)) {
+                    Path.paths.add(newPath);
+                    possiblePaths.add(newPath);
+                }
             }
         }
 
@@ -86,5 +85,23 @@ public class Path {
 
     public static void clearPaths() {
         Path.paths.clear();
+    private static boolean pathAlreadyExists(City location1, City location2) {
+        for (Path path : Path.paths) {
+            if (path.location1.equals(location1) && path.location2.equals(location2)) {
+                return true;
+            }
+            if (path.location1.equals(location2) && path.location2.equals(location1)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static Path generateNewPath(City location, Random generator) {
+        // Find or create a new city
+        City newCity = City.getCity(generator.nextLong(), location.getLevel()+1);
+        // Create a new path
+        int distance = 2 + (int)(generator.nextDouble() * (location.getLevel() * Path.MAX_PATH_DISTANCE - location.getLevel() * Path.MIN_PATH_DISTANCE) + location.getLevel() * Path.MIN_PATH_DISTANCE);
+        Path newPath = new Path(location, newCity, distance );        return newPath;
     }
 }
