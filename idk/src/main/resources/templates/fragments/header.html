@@ -6,9 +6,19 @@
     <a href="/">Main Page</a>
     <a href="City">City</a>
     <a href="CritterDetails"> Critter Descriptions</a>
-    <table>
+    <table width="100%">
+        <tr>
+            <td colspan="3" align="center">Critter Quest</td>
+        </tr>
         <tr>
             <td>
+                <a href="EnterCombat">Combat</a>
+                <a href="Inventory">Inventory</a>
+                <a href="Game?action=review">Game</a>
+                <a href="/">Main Page</a>
+                <a href="City">City</a>
+            </td>
+            <td align="center">
                 <form action="Inventory" method="get">
                     <input type="submit" value="Inventory"/>
                     <input type="submit" value="Critter details"/>
@@ -22,6 +32,9 @@
                         <!--TODO: implement NONSTUBBED dropdown.-->
                     </select>
                 </form>
+            </td>
+            <td align="right">
+                <div th:text="${name}"></div>
             </td>
         </tr>
     </table>
