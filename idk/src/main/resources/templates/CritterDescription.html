@@ -16,9 +16,10 @@
                 </tr>
             </table>
             <table id="StatsSidebar"><!-- Uses id for CSS to format page position-->
-                <tr>
-                    <td th:text="${C.A}" style="color:red"></td>
+                <tr th:each="E: ${C.statValues}">
+                    <td th:text="${E.attributeValue}" th:style="'color:' + ${E.attributeColor}"></td>
                 </tr>
+                <!--
                 <tr>
                     <td th:text="${C.D}" style="color:cadetblue">D</td>
                 </tr>
@@ -34,6 +35,7 @@
                 <tr>
                     <td th:text="${C.HP}" style="color:yellow"></td>
                 </tr>
+                -->
             </table>
             <p>
                 Insert ability details here
