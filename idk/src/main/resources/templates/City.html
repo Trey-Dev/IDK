@@ -3,28 +3,30 @@
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
     <title>City view</title>
     <link th:href="@{/css/style.css}" rel="stylesheet" />
-    <div th:insert="fragments/header" id="huh"></div>   
+    <div th:insert="fragments/header"></div>   
 </head>
 
 <body>
-    <h3 th:text="@{Welcome to {name}(name=${cityName})}!"></h3>
+    <h3 th:text="${cityName}"></h3>
     <br/>
+    <!-- TO DO: For all of the below, we should have an associated ID -->
     <p>Shops:</p>
     <ul>
         <li th:each="shop : ${shops}">
-            <a th:href="@{/shop/{id}(id=${shop.name})}" th:text="${shop.name}" />
+            <!-- <a th:href="@{/Shop/{id}(id=${shop.name})}" th:text="${shop.name}" /> -->
+            <a href="/Shop" th:text="${shop.name}" />
         </li>
     </ul>
     <p>Gyms:</p>
     <ul>
         <li th:each="gym : ${gyms}">
-            <a th:href="@{/gym/{id}(id=${gym.name})}" th:text="${gym.name}" />
+            <a href="/Gym" th:text="${gym.name}" />
         </li>
     </ul>
     <p>Paths:</p>
     <ul>
         <li th:each="path : ${paths}">
-            <a th:text="${path}" />
+            <a href="/Path" th:text="${path}" />
         </li>
     </ul>
 </html>

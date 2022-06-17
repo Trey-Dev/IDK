@@ -126,14 +126,14 @@ public class IdkController {
         }
 
         model.addAttribute("name", session.getAttribute("name"));
+
         City c = (City)session.getAttribute("city");
         model.addAttribute("cityName", c.getName());
 
-        // Extract names for Shops, Gyms and Paths and place into sessino arrays
+        // Extract names for Shops, Gyms and Paths and place into the model
         model.addAttribute("shops", c.getShops());
         model.addAttribute("gyms", c.getGyms());
 
-        // STUB
         ArrayList<Path> paths = Path.getPaths(c);
         ArrayList<String> p = new ArrayList<String>(paths.size());
         for( Path path : paths ) {
@@ -143,6 +143,35 @@ public class IdkController {
 
         dumpModel(model);
         return "City";
+    }
+
+    @GetMapping("Gym")
+    public String Gym(Model model, HttpSession session)
+    {
+        // TO DO: Get ID from the passed in info... but for now, just use the first gym
+        Gym g = ((City)session.getAttribute("city")).getGyms().get(0);
+        model.addAttribute("gymName", g.getName());
+        return "Gym";
+    }
+
+    @GetMapping("Shop")
+    public String shop(Model model, HttpSession session)
+    {
+        // TO DO: Get ID from the passed in info... but for now, just use the first shop
+        Shop s = ((City)session.getAttribute("city")).getShops().get(0);
+        model.addAttribute("shopName", s.getName());
+        return "Shop";
+    }
+
+    @GetMapping("Path")
+    public String path(Model model, HttpSession session)
+    {
+        // TO DO: Get ID from the passed in info... but for now, just use the first shop
+        City city = (City)session.getAttribute("city");
+        ArrayList<Path> paths = Path.getPaths(city);
+        Path p = paths.get(0);
+        model.addAttribute("pathName", p.getPathText(city));
+        return "Path";
     }
 
     private void dumpModel(Model model)
