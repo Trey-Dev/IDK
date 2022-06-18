@@ -57,8 +57,8 @@ public class Critter {
     private float getPercent(int stage)
     {
         if(stage > 0)
-            return (2f + stage) / 2f;
-        return 2f / (stage + 2f);
+            return (2f + stage) / 2;
+        return 2f / (2 - stage);
     }
     //"Accessors" for base stats! (note, these aren't the exact same as accessors, because these aren't their own variables.)
     public int getAttack()
