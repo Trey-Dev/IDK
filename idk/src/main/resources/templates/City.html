@@ -7,26 +7,26 @@
 </head>
 
 <body>
-    <h3 th:text="${cityName}"></h3>
+    <h3 th:text="@{'Welcome to ' + ${cityName}}" />
+    <p th:text="@{'This city is governed by ' + ${leader}}" />
+    <p th:text="@{'The population is ' + ${population}}" />
     <br/>
-    <!-- TO DO: For all of the below, we should have an associated ID -->
     <p>Shops:</p>
     <ul>
         <li th:each="shop : ${shops}">
-            <!-- <a th:href="@{/Shop/{id}(id=${shop.name})}" th:text="${shop.name}" /> -->
-            <a href="/Shop" th:text="${shop.name}" />
+            <a th:href="@{/Shop/{id}(id=${shop.value})}" th:text="${shop.key}" />
         </li>
     </ul>
     <p>Gyms:</p>
     <ul>
         <li th:each="gym : ${gyms}">
-            <a href="/Gym" th:text="${gym.name}" />
+            <a th:href="@{/Gym/{id}(id=${gym.value})}" th:text="${gym.key}" />
         </li>
     </ul>
     <p>Paths:</p>
     <ul>
         <li th:each="path : ${paths}">
-            <a href="/Path" th:text="${path}" />
+            <a th:href="@{/Path/{id}(id=${path.value})}" th:text="${path.key}" />
         </li>
     </ul>
 </html>

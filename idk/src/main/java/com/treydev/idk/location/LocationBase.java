@@ -1,8 +1,6 @@
 package com.treydev.idk.location;
 
-import java.util.ArrayList;
 import java.util.Random;
-
 import com.treydev.idk.*;
 
 public abstract class LocationBase {
@@ -14,8 +12,7 @@ public abstract class LocationBase {
 
     protected String locationLeader;
 
-    private ArrayList<Object> critters;
-    public ArrayList<Object> getCritters() { return critters; }
+    public abstract int getId();
 
     protected LocationBase(long seed, int level) {
         Random generator = new Random(seed);

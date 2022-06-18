@@ -2,18 +2,23 @@ package com.treydev.idk.location;
 
 import java.util.ArrayList;
 import java.util.Random;
+import com.treydev.idk.Item;
 
 public class Shop extends LocationBase {
     public String getOwner() { return this.locationLeader; }
 
+    private static ArrayList<Shop> allShops = new ArrayList<Shop>();
+
     // TO DO: This is very much a place holder for items in this Shop
-    private ArrayList<Object> items;
-    public ArrayList<Object> getItems() { return items; }
+    private ArrayList<Item> items;
+    public ArrayList<Item> getItems() { return items; }
 
     public Shop(City city, long seed) {
         super(seed, city.getLevel());
         this.name = this.generateShopName(seed, city);
-        this.items = new ArrayList<Object>(); // Place holder for items in this shop
+        this.items = new ArrayList<Item>();
+        // TODO: Populate Shop items
+        Shop.allShops.add(this);
     }
 
     public Shop(City city) {
@@ -27,11 +32,24 @@ public class Shop extends LocationBase {
             case 0:
                 return "The " + city.getName() + " Shop";
             case 1:
-                return "The " + city.getName() + " Bizare";  
+                return "The " + city.getName() + " Marketplace";  
             case 2:
                 return this.getOwner() + "'s Market";
             default:
                 return city.getName() + "'s Exchange";
         }
+    }
+
+    public static Shop getById(int id) {
+        return Shop.allShops.get(id);
+    }
+
+    @Override
+    public int getId() {
+        return Shop.allShops.indexOf(this);
+    }
+
+    public static void clearShops() {
+        Shop.allShops.clear();
     }
 }
