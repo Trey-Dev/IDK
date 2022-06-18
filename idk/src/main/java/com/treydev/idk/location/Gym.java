@@ -33,6 +33,10 @@ public class Gym extends LocationBase {
         return "The " + city.getName() + " Gym";
     }
 
+    public static Gym getById(int id) {
+        return Gym.allGyms.get(id);
+    }
+
     @Override
     public int getId() {
         return Gym.allGyms.indexOf(this);

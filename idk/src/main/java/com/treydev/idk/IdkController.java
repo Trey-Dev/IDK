@@ -133,7 +133,7 @@ public class IdkController {
         City c = (City)session.getAttribute("city");
         model.addAttribute("cityName", c.getName());
 
-        // Extract names for Shops, Gyms and Paths and place into the model
+        // Extract text and Id for Shops/Gyms/Paths and add to model
         HashMap<String, Integer> shopHash = new HashMap<String, Integer>();        
         ArrayList<Shop> shops = c.getShops();
         shops.forEach(shop -> shopHash.put(shop.getName(), shop.getId()));
@@ -144,20 +144,19 @@ public class IdkController {
         gyms.forEach(gym -> gymHash.put(gym.getName(), gym.getId()));
         model.addAttribute("gyms", gymHash);
 
-        HashMap<String, Double> pathHash = new HashMap<String, Double>();
+        HashMap<String, String> pathHash = new HashMap<String, String>();
         ArrayList<Path> paths = Path.getPaths(c);
-        paths.forEach(path -> pathHash.put(path.getPathText(c), path.getId()/10.0  + c.getId()));
+        paths.forEach(path -> pathHash.put(path.getPathText(c), c.getId() + "." + path.getId()));
         model.addAttribute("paths", pathHash);
 
         dumpModel(model);
         return "City";
     }
 
-    @GetMapping("Gym")
-    public String Gym(Model model, HttpSession session)
+    @GetMapping("/Gym/{id}")
+    public String Gym(Model model, HttpSession session, @PathVariable(value = "id") int id)
     {
-        // TO DO: Get ID from the passed in info... but for now, just use the first gym
-        Gym g = ((City)session.getAttribute("city")).getGyms().get(0);
+        Gym g = Gym.getById(id);
         model.addAttribute("gymName", g.getName());
         return "Gym";
     }
@@ -165,19 +164,16 @@ public class IdkController {
     @GetMapping("/Shop/{id}")
     public String shop(Model model, HttpSession session, @PathVariable(value = "id") int id)
     {
-        // TO DO: Get ID from the passed in info... but for now, just use the first shop
-        Shop s = ((City)session.getAttribute("city")).getShops().get(0);
+        Shop s = Shop.getById(id);
         model.addAttribute("shopName", s.getName());
         return "Shop";
     }
 
-    @GetMapping("Path")
-    public String path(Model model, HttpSession session)
+    @GetMapping("/Path/{id}")
+    public String path(Model model, HttpSession session, @PathVariable(value = "id") String id)
     {
-        // TO DO: Get ID from the passed in info... but for now, just use the first shop
         City city = (City)session.getAttribute("city");
-        ArrayList<Path> paths = Path.getPaths(city);
-        Path p = paths.get(0);
+        Path p = Path.getById(id);
         model.addAttribute("pathName", p.getPathText(city));
         return "Path";
     }

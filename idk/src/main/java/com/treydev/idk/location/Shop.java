@@ -40,6 +40,10 @@ public class Shop extends LocationBase {
         }
     }
 
+    public static Shop getById(int id) {
+        return Shop.allShops.get(id);
+    }
+
     @Override
     public int getId() {
         return Shop.allShops.indexOf(this);
