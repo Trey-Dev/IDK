@@ -110,7 +110,7 @@ public class Path {
 
     public static Path getById(String id) {
         String pathId = id.substring(id.indexOf(".")+1);
-        String cityId = id.substring(0, id.indexOf("."));
+        // String sourceCityId = id.substring(0, id.indexOf("."));
         return Path.paths.get(Integer.parseInt(pathId));
     }
 }

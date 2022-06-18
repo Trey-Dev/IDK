@@ -132,6 +132,8 @@ public class IdkController {
 
         City c = (City)session.getAttribute("city");
         model.addAttribute("cityName", c.getName());
+        model.addAttribute("leader", c.getLeader());
+        model.addAttribute("population", c.getPopulation());
 
         // Extract text and Id for Shops/Gyms/Paths and add to model
         HashMap<String, Integer> shopHash = new HashMap<String, Integer>();        
@@ -175,6 +177,24 @@ public class IdkController {
         City city = (City)session.getAttribute("city");
         Path p = Path.getById(id);
         model.addAttribute("pathName", p.getPathText(city));
+
+        StringBuilder sb = new StringBuilder();
+        City destination = p.getOtherCity(city);
+        sb.append("You walk towards ");
+        sb.append(destination.getName());
+        sb.append("... ");
+        for (int i = 0; i < p.getDistance(); i++)
+        {
+            sb.append("and walk... ");
+        }
+        sb.append("and arrive at ");
+        sb.append(p.getOtherCity(city).getName());
+        sb.append("!");
+        model.addAttribute("pathText", sb.toString());
+
+        model.addAttribute("otherVityName", session.getAttribute("name"));
+        session.setAttribute("city", destination);
+
         return "Path";
     }
 
