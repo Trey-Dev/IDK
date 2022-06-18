@@ -56,9 +56,9 @@ public class Critter {
     //internal logic for base stat calculation in accessors
     private float getPercent(int stage)
     {
-        //TODO: IMPLEMENT ACTUAL STAT EQUATION! (2/2 = 1 base, add 1 to numerator for each 
-        //      positive stage, denominator for negative)
-        return (5.0f + stage) / 5.0f;
+        if(stage > 0)
+            return (2f + stage) / 2f;
+        return 2f / (stage + 2f);
     }
     //"Accessors" for base stats! (note, these aren't the exact same as accessors, because these aren't their own variables.)
     public int getAttack()
