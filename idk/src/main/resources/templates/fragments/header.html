@@ -1,13 +1,19 @@
 <div class="header">
     <p align="center">Critter Quest</p>
-    <a href="EnterCombat">Combat</a>
-    <a href="Inventory">Inventory</a>
-    <a href="Game">Game</a>
-    <a href="/">Main Page</a>
-    <a href="City">City</a>
-    <table>
+    <table width="100%">
+        <tr>
+            <td colspan="3" align="center">Critter Quest</td>
+        </tr>
         <tr>
             <td>
+                <a href="EnterCombat">Combat</a>
+                <a href="Inventory">Inventory</a>
+                <a href="Game?action=review">Game</a>
+                <a href="/">Main Page</a>
+                <a href="City">City</a>
+                <a href="CritterDetails"> Critter Descriptions</a>
+            </td>
+            <td align="center">
                 <form action="Inventory" method="get">
                     <input type="submit" value="Inventory"/>
                     <input type="submit" value="Critter details"/>
@@ -18,8 +24,12 @@
                         <option value="1">Red Widget (4/4)</option>
                         <option value="2">Blue flaming widget (20/20)</option>
                         <option value="2">Ice gadget (10/18)</option>
+                        <!--TODO: implement NONSTUBBED dropdown.-->
                     </select>
                 </form>
+            </td>
+            <td align="right">
+                <div th:text="${name}"></div>
             </td>
         </tr>
     </table>
