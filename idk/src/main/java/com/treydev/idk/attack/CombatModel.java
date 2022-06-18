@@ -1,4 +1,4 @@
-package com.treydev.idk;
+package com.treydev.idk.attack;
 
 import java.util.ArrayList;
 

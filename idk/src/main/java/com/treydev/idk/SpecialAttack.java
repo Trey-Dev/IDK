@@ -2,6 +2,9 @@ package com.treydev.idk;
 
 import java.util.ArrayList;
 
+import com.treydev.idk.attack.Move;
+import com.treydev.idk.critter.Critter;
+
 public class SpecialAttack extends Move {
     //TODO: Create separate class that this and physical attack extend!
     private int Power, Accuracy;

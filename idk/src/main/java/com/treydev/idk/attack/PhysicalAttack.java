@@ -1,6 +1,9 @@
-package com.treydev.idk;
+package com.treydev.idk.attack;
 import java.util.ArrayList;
 //import jakarta.security.auth.message.MessagePolicy.Target; //WHY THE HECK DID I FIND THIS HERE?
+
+import com.treydev.idk.Element;
+import com.treydev.idk.critter.Critter;
 
 public class PhysicalAttack extends Move {
     /*

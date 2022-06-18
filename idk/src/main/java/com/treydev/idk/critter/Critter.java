@@ -1,6 +1,8 @@
-package com.treydev.idk;
+package com.treydev.idk.critter;
 
 import java.util.ArrayList;
+
+import com.treydev.idk.attack.Move;
 
 public class Critter {
 

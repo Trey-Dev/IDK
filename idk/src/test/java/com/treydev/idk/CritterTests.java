@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import com.treydev.idk.attack.Move;
+import com.treydev.idk.critter.Critter;
+
 public class CritterTests {
     @Test
     void testEnterCombat() {

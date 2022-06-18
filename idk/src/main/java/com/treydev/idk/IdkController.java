@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
+
+import com.treydev.idk.attack.CombatHandler;
+import com.treydev.idk.critter.Critter;
+import com.treydev.idk.critter.CritterDetailsModel;
 import com.treydev.idk.location.*;
 
 @Controller

@@ -1,7 +1,11 @@
-package com.treydev.idk;
+package com.treydev.idk.critter;
 
 import java.util.HashMap;
 import java.util.Random;
+
+import com.treydev.idk.Element;
+import com.treydev.idk.NameGenerator;
+import com.treydev.idk.attack.Move;
 
 public class Species {
     /*

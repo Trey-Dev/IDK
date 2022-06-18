@@ -1,4 +1,4 @@
-package com.treydev.idk;
+package com.treydev.idk.critter;
 
 public class CritterDetailsModel {
     public class statLine {
