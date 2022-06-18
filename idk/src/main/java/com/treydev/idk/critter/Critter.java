@@ -9,7 +9,7 @@ public class Critter {
     
 
     public String name;
-    private int Level; //TODO: Watch the keyword "private". If it's not useful, don't keep it private.
+    private int level; //TODO: Watch the keyword "private". If it's not useful, don't keep it private.
     public Move[] moveset;
     public int hitpoints;
     private int maxHitpoints;
@@ -29,7 +29,7 @@ public class Critter {
         this.moveset = moveset;
         this.species = species;
         this.hitpoints = this.species.getBaseHitPoints();
-        this.Level = Level;
+        this.level = Level;
     }
     public static ArrayList<Critter> initializeStubbedParty()
     {
@@ -87,8 +87,17 @@ public class Critter {
         return species.getBaseHitPoints(); //TODO: actually CALCULATE base HP!!!
     }
 
-    //TODO: Create function to level up
-    
+    //level functions.
+    public void levelUp()
+    {
+        this.level++;
+        //TODO: scan movelist, check evolution.
+    }
+    public int getLevel()
+    {
+        return level;
+    }
+
     //Stat stage modifiers
     public void increaseAtk()
     {
@@ -98,5 +107,38 @@ public class Critter {
     {
         AttackStage = Math.max(AttackStage - 1, -6);
     }
-
+    public void increaseDefense()
+    {
+        DefStage = Math.min(DefStage + 1, 6);
+    }
+    public void decreaseDefense()
+    {
+        DefStage = Math.max(DefStage - 1, -6);
+    }
+    public void increaseSpAtk()
+    {
+        SpecialAttackStage  = Math.min(SpecialAttackStage + 1, 6);
+    }
+    public void decreaseSpAtk()
+    {
+        SpecialAttackStage = Math.max(SpecialAttackStage - 1, -6);
+    }
+    public void increaseSpDefense()
+    {
+        SpecDefStage = Math.min(SpecDefStage + 1, 6);
+    }
+    public void decreaseSpDefense()
+    {
+        SpecDefStage = Math.max(SpecDefStage - 1, -6);
+    }
+    public void increaseSpeed()
+    {
+        speedStage = Math.min(speedStage + 1, 6);
+    }
+    public void decreaseSpeed()
+    {
+        speedStage = Math.max(speedStage - 1, -6);
+    }
+    
+    
 }
