@@ -1,6 +1,8 @@
 package com.treydev.idk;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -131,15 +133,20 @@ public class IdkController {
         model.addAttribute("cityName", c.getName());
 
         // Extract names for Shops, Gyms and Paths and place into the model
-        model.addAttribute("shops", c.getShops());
-        model.addAttribute("gyms", c.getGyms());
+        HashMap<String, Integer> shopHash = new HashMap<String, Integer>();        
+        ArrayList<Shop> shops = c.getShops();
+        shops.forEach(shop -> shopHash.put(shop.getName(), shop.getId()));
+        model.addAttribute("shops", shopHash);
 
+        HashMap<String, Integer> gymHash = new HashMap<String, Integer>();        
+        ArrayList<Gym> gyms = c.getGyms();
+        gyms.forEach(gym -> gymHash.put(gym.getName(), gym.getId()));
+        model.addAttribute("gyms", gymHash);
+
+        HashMap<String, Double> pathHash = new HashMap<String, Double>();
         ArrayList<Path> paths = Path.getPaths(c);
-        ArrayList<String> p = new ArrayList<String>(paths.size());
-        for( Path path : paths ) {
-            p.add( path.getPathText(c) );
-        }
-        model.addAttribute("paths", p.toArray());
+        paths.forEach(path -> pathHash.put(path.getPathText(c), path.getId()/10.0  + c.getId()));
+        model.addAttribute("paths", pathHash);
 
         dumpModel(model);
         return "City";
