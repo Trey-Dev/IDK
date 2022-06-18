@@ -41,7 +41,7 @@ public class Critter {
     }
     
     //Return critters' status to normal at the beginning of combat.
-    public void enterCombat()
+    public void enterCombat() //NOTE: could also be endCombat()
     {
         //Zero the "stages", returning stats to base values.
         this.AttackStage = 0;
@@ -58,7 +58,7 @@ public class Critter {
     {
         //TODO: IMPLEMENT ACTUAL STAT EQUATION! (2/2 = 1 base, add 1 to numerator for each 
         //      positive stage, denominator for negative)
-        return (5 + stage) / 5;
+        return (5.0f + stage) / 5.0f;
     }
     //"Accessors" for base stats! (note, these aren't the exact same as accessors, because these aren't their own variables.)
     public int getAttack()

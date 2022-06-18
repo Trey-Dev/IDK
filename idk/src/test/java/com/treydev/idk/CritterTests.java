@@ -36,7 +36,7 @@ public class CritterTests {
             System.out.println("Testing no buffs!");
             do{
                 outputs.clear();
-                move.Execute(outputs, Attacker, Defender);
+                move.Execute(outputs, Defender, Attacker);
             } while(outputs.contains("You missed!")); //Execute move until hit!
             for(String output : outputs) System.out.println(output);
             
@@ -44,21 +44,21 @@ public class CritterTests {
             Attacker.increaseAtk();
             do{
                 outputs.clear();
-                move.Execute(outputs, Attacker, Defender);
+                move.Execute(outputs, Defender, Attacker);
                 } while(outputs.contains("You missed!"));
             for(String output : outputs) System.out.println(output);
             System.out.println("Testing debuff, back to base!");
             Attacker.decreaseAtk();
             do{
                 outputs.clear();
-                move.Execute(outputs, Attacker, Defender);
+                move.Execute(outputs, Defender, Attacker);
                 } while(outputs.contains("You missed!"));
             for(String output : outputs) System.out.println(output); 
             System.out.println("Testing one more debuff, lower than original!");
             Attacker.decreaseAtk();
             do{
                 outputs.clear();
-                move.Execute(outputs, Attacker, Defender);
+                move.Execute(outputs, Defender, Attacker);
                 } while(outputs.contains("You missed!"));
             for(String output : outputs) System.out.println(output); 
         }
