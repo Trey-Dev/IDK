@@ -59,7 +59,7 @@ public class CityTest {
 
         // Seed of 10 will generate a prefixed name
         cityName = City.generateExtendedCityName("Prefix",10);
-        Assert.isTrue(cityName.equals("City of Prefix"), "Received city name " + cityName + " instead of 'City of Prefix'");
+        Assert.isTrue(cityName.equals("The City of Prefix"), "Received city name " + cityName + " instead of 'City of Prefix'");
     }
 
     @Test
