@@ -141,7 +141,7 @@ public class City extends LocationBase {
 
         switch (randomNumber) {
             case 0:
-                String[] prefix = new String[]{"City of ", "New ", "Village of "};
+                String[] prefix = new String[]{"The City of ", "New ", "The Village of "};
                 int prefixIndex = generator.nextInt(prefix.length);
                 return prefix[prefixIndex] + coreName;
             case 1:
