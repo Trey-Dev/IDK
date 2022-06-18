@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import com.treydev.idk.location.SpecialAttack;
-
 public abstract class Move {
 
     

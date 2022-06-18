@@ -1,4 +1,4 @@
-package com.treydev.idk.location;
+package com.treydev.idk;
 
 import java.util.ArrayList;
 

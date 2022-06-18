@@ -15,7 +15,8 @@ public class City extends LocationBase {
     }
 
     private ElementAffinity[] elementAffinities;
-    public ElementAffinity[] getElements() { 
+
+    public ElementAffinity[] getElements() {
         if (elementAffinities == null) {
             // For this version, we are only using one element and 90% affinity
             this.elementAffinities = new ElementAffinity[1];
@@ -27,20 +28,23 @@ public class City extends LocationBase {
     }
 
     private int population;
+
     public int getPopulation() {
         if (this.population == 0) {
             double bellcurve = 0;
-            for (int i=0; i< 500; i++) {
+            for (int i = 0; i < 500; i++) {
                 bellcurve += Math.random() * 10;
             }
-            this.population = (int)bellcurve;
+            this.population = (int) bellcurve;
         }
         return this.population;
     }
 
     public String getLeader() {
-        // We are deriving the leader title from the (fixed) level to make it reproducible without needing another attribute
-        final String leaderPrefix[] = {"", "", "", "Mayor", "Sir", "Lady", "Lord", "Baron", "Count", "Countess", "Duke", "Prince", "Princess", "Sheik", "Queen", "King" };
+        // We are deriving the leader title from the (fixed) level to make it
+        // reproducible without needing another attribute
+        final String leaderPrefix[] = { "", "", "", "Mayor", "Sir", "Lady", "Lord", "Baron", "Count", "Countess",
+                "Duke", "Prince", "Princess", "Sheik", "Queen", "King" };
 
         // Lower level cities will have lower levels
         int i = this.getLevel() * leaderPrefix.length / 100;
@@ -54,8 +58,8 @@ public class City extends LocationBase {
             return this.locationLeader;
     }
 
-
     private ArrayList<Gym> gyms = null;
+
     public ArrayList<Gym> getGyms() {
         if (gyms == null) {
             gyms = new ArrayList<Gym>();
@@ -65,6 +69,7 @@ public class City extends LocationBase {
     }
 
     private ArrayList<Shop> shops = null;
+
     public ArrayList<Shop> getShops() {
         if (shops == null) {
             shops = new ArrayList<Shop>();
@@ -81,7 +86,7 @@ public class City extends LocationBase {
 
     public static City getCityByLevel(int targetLevel) {
         // Generate a random seed to use for the predictable random number generator
-        long seed = (long)(Math.random() * Long.MAX_VALUE);
+        long seed = (long) (Math.random() * Long.MAX_VALUE);
         return getCity(seed, targetLevel);
     }
 
@@ -105,23 +110,23 @@ public class City extends LocationBase {
         // Find all existing cities within +/- LEVEL_TOLERANCE of the target level
         ArrayList<City> possibleCities = new ArrayList<City>();
         cities.forEach(city -> {
-            if ((city.getLevel() >= targetLevel*(1-City.LEVEL_TOLERANCE)) 
-                && (city.getLevel() <= targetLevel*(1+City.LEVEL_TOLERANCE))) {
+            if ((city.getLevel() >= targetLevel * (1 - City.LEVEL_TOLERANCE))
+                    && (city.getLevel() <= targetLevel * (1 + City.LEVEL_TOLERANCE))) {
                 possibleCities.add(city);
             }
         });
 
-        // First determine if a new or existing - as the list gets longer, new will be less often
+        // First determine if a new or existing - as the list gets longer, new will be
+        // less often
         Random generator = new Random(seed);
-        int index = generator.nextInt(possibleCities.size()+2);
+        int index = generator.nextInt(possibleCities.size() + 2);
         if (index >= possibleCities.size()) {
             // If this is a new city. make it target level to + LEVEL_TOLERANCE%
-            int newTarget = targetLevel + (int)(generator.nextDouble() * targetLevel * City.LEVEL_TOLERANCE);
+            int newTarget = targetLevel + (int) (generator.nextDouble() * targetLevel * City.LEVEL_TOLERANCE);
             City city = new City(generator.nextLong(), newTarget);
             cities.add(city);
             return city;
-        }
-        else
+        } else
             return possibleCities.get(index);
     }
 
@@ -141,11 +146,11 @@ public class City extends LocationBase {
 
         switch (randomNumber) {
             case 0:
-                String[] prefix = new String[]{"The City of ", "New ", "The Village of "};
+                String[] prefix = new String[] { "The City of ", "New ", "The Village of " };
                 int prefixIndex = generator.nextInt(prefix.length);
                 return prefix[prefixIndex] + coreName;
             case 1:
-                String[] suffix = new String[]{"ton", " City", "town", "shire", " Township", "ville"};
+                String[] suffix = new String[] { "ton", " City", "town", "shire", " Township", "ville" };
                 int suffixIndex = generator.nextInt(suffix.length);
                 return coreName + suffix[suffixIndex];
             default:
