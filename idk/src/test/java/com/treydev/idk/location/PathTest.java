@@ -17,13 +17,15 @@ public class PathTest {
         // Check text for direction 1
         String pathText = paths.get(0).getPathText(city1);
         Assert.isTrue(pathText.contains("It is "), "Path text should contain 'It is'");
-        Assert.isTrue(pathText.contains(foundPath.getDistance() + " cliques to "), "Path text should contain 'cliques to'");
+        Assert.isTrue(pathText.contains(foundPath.getDistance() + " cliques to "),
+                "Path text should contain 'cliques to'");
         Assert.isTrue(pathText.endsWith(city2.getName()), "Path text should contain the destination city name");
-        
+
         // Check text for direction 1
         pathText = paths.get(0).getPathText(city2);
         Assert.isTrue(pathText.contains("It is "), "Path text should contain 'It is'");
-        Assert.isTrue(pathText.contains(foundPath.getDistance() + " cliques to "), "Path text should contain 'cliques to'");
+        Assert.isTrue(pathText.contains(foundPath.getDistance() + " cliques to "),
+                "Path text should contain 'cliques to'");
         Assert.isTrue(pathText.contains(city1.getName()), "Path text should contain the destination city name");
     }
 
@@ -43,9 +45,9 @@ public class PathTest {
     void testGetId() {
         City.clearMap();
         City city1 = City.getCityByLevel(5);
-        // For the first city, all paths should be the same as the 
+        // For the first city, all paths should be the same as the
         ArrayList<Path> paths1 = Path.getPaths(city1, 1000);
-        for (int i=0; i< paths1.size(); i++) {
+        for (int i = 0; i < paths1.size(); i++) {
             Path path = paths1.get(i);
             Assert.isTrue(path.getId() == i, "Path ID should be " + i);
         }
@@ -53,9 +55,9 @@ public class PathTest {
         // For the second city, paths IDs should continue from the previous city
         City city2 = City.getCityByLevel(70);
         ArrayList<Path> paths2 = Path.getPaths(city2, 1000);
-        for (int i=0; i< paths2.size(); i++) {
+        for (int i = 0; i < paths2.size(); i++) {
             Path path = paths2.get(i);
             Assert.isTrue(path.getId() == i + paths1.size(), "Path ID should be " + i);
-        }        
+        }
     }
 }

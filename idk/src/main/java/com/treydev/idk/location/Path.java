@@ -3,17 +3,20 @@ package com.treydev.idk.location;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Path {    
-    //For now, we are only supporting city-to-city paths - no forks
+public class Path {
+    // For now, we are only supporting city-to-city paths - no forks
     private City location1;
     private City location2;
     private int distance;
-    public int getDistance() { return distance; }
+
+    public int getDistance() {
+        return distance;
+    }
+
     public City getOtherCity(City source) {
         if (this.location1.equals(source)) {
             return this.location2;
-        }
-        else {
+        } else {
             return this.location1;
         }
     }
@@ -32,14 +35,13 @@ public class Path {
     public String getPathText(City location) {
         if (this.location1.equals(location)) {
             return "It is " + this.distance + " cliques to " + this.location2.getName();
-        }
-        else {
+        } else {
             return "It is " + this.distance + " cliques to " + this.location1.getName();
         }
     }
 
     public static ArrayList<Path> getPaths(City location) {
-        long seed = (long)(Math.random() * Long.MAX_VALUE);
+        long seed = (long) (Math.random() * Long.MAX_VALUE);
         return getPaths(location, seed);
     }
 
@@ -51,7 +53,8 @@ public class Path {
             }
         }
 
-        // We always need paths to other cities, so if there are no paths, we need to add one
+        // We always need paths to other cities, so if there are no paths, we need to
+        // add one
         Random generator = new Random(seed);
         if (possiblePaths.size() == 0) {
             Path newPath = generateNewPath(location, generator);
@@ -61,10 +64,11 @@ public class Path {
 
         if (possiblePaths.size() < Path.MAX_PATHS) {
             // If we have under the max number of paths, we are allowed to add more
-            // We will try to find an existing city in the right level range that doesn't have too many connections
+            // We will try to find an existing city in the right level range that doesn't
+            // have too many connections
 
             // The higher the level, the less likely you'll find additional paths
-            double likelyhood = 1.5 - (location.getLevel() / 100 );
+            double likelyhood = 1.5 - (location.getLevel() / 100);
             // And the more existing paths, the less ikely to find more
             likelyhood /= possiblePaths.size();
             if (generator.nextDouble() < likelyhood) {
@@ -101,15 +105,17 @@ public class Path {
 
     private static Path generateNewPath(City location, Random generator) {
         // Find or create a new city
-        City newCity = City.getCity(generator.nextLong(), location.getLevel()+1);
+        City newCity = City.getCity(generator.nextLong(), location.getLevel() + 1);
         // Create a new path
-        int distance = 2 + (int)(generator.nextDouble() * (location.getLevel() * Path.MAX_PATH_DISTANCE - location.getLevel() * Path.MIN_PATH_DISTANCE) + location.getLevel() * Path.MIN_PATH_DISTANCE);
-        Path newPath = new Path(location, newCity, distance );        
+        int distance = 2 + (int) (generator.nextDouble()
+                * (location.getLevel() * Path.MAX_PATH_DISTANCE - location.getLevel() * Path.MIN_PATH_DISTANCE)
+                + location.getLevel() * Path.MIN_PATH_DISTANCE);
+        Path newPath = new Path(location, newCity, distance);
         return newPath;
     }
 
     public static Path getById(String id) {
-        String pathId = id.substring(id.indexOf(".")+1);
+        String pathId = id.substring(id.indexOf(".") + 1);
         // String sourceCityId = id.substring(0, id.indexOf("."));
         return Path.paths.get(Integer.parseInt(pathId));
     }
