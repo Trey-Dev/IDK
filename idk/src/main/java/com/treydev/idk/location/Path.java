@@ -79,6 +79,14 @@ public class Path {
         return possiblePaths;
     }
 
+    public int getId() {
+        return Path.paths.indexOf(this);
+    }
+
+    public static void clearPaths() {
+        Path.paths.clear();
+    }
+
     private static boolean pathAlreadyExists(City location1, City location2) {
         for (Path path : Path.paths) {
             if (path.location1.equals(location1) && path.location2.equals(location2)) {
@@ -96,6 +104,13 @@ public class Path {
         City newCity = City.getCity(generator.nextLong(), location.getLevel()+1);
         // Create a new path
         int distance = 2 + (int)(generator.nextDouble() * (location.getLevel() * Path.MAX_PATH_DISTANCE - location.getLevel() * Path.MIN_PATH_DISTANCE) + location.getLevel() * Path.MIN_PATH_DISTANCE);
-        Path newPath = new Path(location, newCity, distance );        return newPath;
+        Path newPath = new Path(location, newCity, distance );        
+        return newPath;
+    }
+
+    public static Path getById(String id) {
+        String pathId = id.substring(id.indexOf(".")+1);
+        // String sourceCityId = id.substring(0, id.indexOf("."));
+        return Path.paths.get(Integer.parseInt(pathId));
     }
 }
