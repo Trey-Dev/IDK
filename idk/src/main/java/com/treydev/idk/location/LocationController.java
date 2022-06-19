@@ -19,7 +19,7 @@ public class LocationController {
             session.setAttribute("city", c);
         }
 
-        model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("username", session.getAttribute("username"));
 
         City c = (City) session.getAttribute("city");
         model.addAttribute("cityName", c.getName());
@@ -79,7 +79,7 @@ public class LocationController {
         sb.append("!");
         model.addAttribute("pathText", sb.toString());
 
-        model.addAttribute("otherVityName", session.getAttribute("name"));
+        model.addAttribute("otherVityName", session.getAttribute("username"));
         session.setAttribute("city", destination);
 
         return "Path";

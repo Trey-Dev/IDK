@@ -1,7 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-    <title> IDK </title> 
+    <title>Login view</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <!-- <div th:insert="fragments/header"></div> -->
 </head>
 
 <body>
@@ -15,7 +17,7 @@
             <table>
                 <tr>
                     <td> NAME: </td>
-                    <td><input id="name" name="name"> </td>
+                    <td><input id="username" name="username"> </td>
                     <td><input type="submit" value="Submit"></td> 
                 </tr>
             </table>

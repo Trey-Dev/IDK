@@ -26,9 +26,9 @@ public class IdkController {
     }
 
     @PostMapping("Login")
-    public String login(@RequestParam("name") String name, HttpSession session, Model model) {
-        model.addAttribute("name", name);
-        session.setAttribute("name", name);
+    public String login(@RequestParam("username") String name, HttpSession session, Model model) {
+        model.addAttribute("username", name);
+        session.setAttribute("username", name);
         return "City";
     }
 
@@ -49,10 +49,10 @@ public class IdkController {
         actionList.add("Action 3");
         actionList.add("Action 4");
 
-        model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("gameLog", gameLog);
         model.addAttribute("actionList", actionList);
-        model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("username", session.getAttribute("username"));
 
         return "Game";
     }
@@ -64,7 +64,7 @@ public class IdkController {
     @GetMapping("Inventory")
     public String menu(Model model, HttpSession session)
     {
-        model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("TableName", "Inventory");
         if(Item.inventory == null)
         {
@@ -77,9 +77,9 @@ public class IdkController {
     }
 
     @PostMapping("Inventory")
-    public String consume(@RequestParam("name") String name,Model model, HttpSession session)
+    public String consume(@RequestParam("username") String name,Model model, HttpSession session)
     {
-        model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("TableName", "Inventory");
         Item.InitializeStubbedInventory();
 
@@ -108,7 +108,7 @@ public class IdkController {
             }
         //sessionCombatHandler.updateCombatOptions();
        
-        model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("CombatOutput", sessionCombatHandler.outputs);
         model.addAttribute("FightOptions", sessionCombatHandler.CombatOptions);
         return "Combat";
@@ -120,19 +120,20 @@ public class IdkController {
         sessionCombatHandler.takeAction(Option);
         model.addAttribute("CombatOutput", sessionCombatHandler.outputs);
         model.addAttribute("FightOptions", sessionCombatHandler.CombatOptions);
-        model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("username", session.getAttribute("username"));
 
         return "Combat";
     }
 
     @GetMapping("CritterDetails")
-    public String CritterDetails(Model model)
+    public String CritterDetails(Model model, HttpSession session)
     {
         //CritterDetailsModel displayCritter = new CritterDetailsModel(PlayerParty.get(0));
         ArrayList<CritterDetailsViewModel> PartyModel = new ArrayList<>();
         for(Critter member : PlayerParty)
             PartyModel.add(new CritterDetailsViewModel(member));
         model.addAttribute("Critters", PartyModel);
+        model.addAttribute("username", session.getAttribute("username"));
         return "CritterDescription";
     }
 }
