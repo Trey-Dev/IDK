@@ -39,9 +39,10 @@ public class CityTest {
         City.clearMap();
         for (int i = 0; i < testCount; i++) {
             // Each time we get a city, there is a decreasing chance that it will be new
-            City.getCity(10000*i, 50);
+            City.getCity(10000 * i, 50);
         }
-        // NOTE: Based on current logic - 1000 attempts returns 44, 100 returns 15, and 10 returns 3
+        // NOTE: Based on current logic - 1000 attempts returns 44, 100 returns 15, and
+        // 10 returns 3
         Assert.isTrue(City.getCityCount() < testCount, "All cities were unique");
     }
 
@@ -50,16 +51,17 @@ public class CityTest {
         String cityName;
 
         // Seed of 3 will generate a non-extended name
-        cityName = City.generateExtendedCityName("Core",3);
+        cityName = City.generateExtendedCityName("Core", 3);
         Assert.isTrue(cityName.equals("Core"), "Received city name " + cityName + " instead of 'Core'");
 
         // Seed of 23 will generate a suffixed name
-        cityName = City.generateExtendedCityName("Suffix",23);
+        cityName = City.generateExtendedCityName("Suffix", 23);
         Assert.isTrue(cityName.equals("Suffixtown"), "Received city name " + cityName + " instead of 'Suffixshire'");
 
         // Seed of 10 will generate a prefixed name
-        cityName = City.generateExtendedCityName("Prefix",10);
-        Assert.isTrue(cityName.equals("The City of Prefix"), "Received city name " + cityName + " instead of 'City of Prefix'");
+        cityName = City.generateExtendedCityName("Prefix", 10);
+        Assert.isTrue(cityName.equals("The City of Prefix"),
+                "Received city name " + cityName + " instead of 'City of Prefix'");
     }
 
     @Test
@@ -69,18 +71,20 @@ public class CityTest {
         City c = City.getCity(1000, 1);
         verifyCityLevel(1, c);
 
-        for(int i=2;i<100; i++) {
+        for (int i = 2; i < 100; i++) {
             c = City.getCityByLevel(i);
             verifyCityLevel(i, c);
         }
     }
 
     private void verifyCityLevel(int targetLevel, City c) {
-        // System.out.println(Integer.toString(targetLevel) + " - " + c.getName() + " - " + c.getLevel());
-        boolean valid = (c.getLevel() >= targetLevel*(1-City.LEVEL_TOLERANCE)) && (c.getLevel() <= targetLevel*(1+City.LEVEL_TOLERANCE));
+        // System.out.println(Integer.toString(targetLevel) + " - " + c.getName() + " -
+        // " + c.getLevel());
+        boolean valid = (c.getLevel() >= targetLevel * (1 - City.LEVEL_TOLERANCE))
+                && (c.getLevel() <= targetLevel * (1 + City.LEVEL_TOLERANCE));
         Assert.isTrue(valid, "Invalid city for target level " + targetLevel);
     }
-    
+
     @Test
     void testGetCityElements() {
         City c = City.getCity(1000, 1);
@@ -110,7 +114,8 @@ public class CityTest {
         City c = City.getCity(2000, 1);
         // For this release, we will always have exactly one leader
         Assert.isTrue(c.getLeader() != null, "City should have exactly one leader");
-        // At low levels, the leader will not have a title and we assume this works for the rest
+        // At low levels, the leader will not have a title and we assume this works for
+        // the rest
         String leaderName = c.getLeader();
         c = City.getCity(2000, 20);
         Assert.isTrue(c.getLeader().contains(leaderName), "Higher level cities should use the same name");
