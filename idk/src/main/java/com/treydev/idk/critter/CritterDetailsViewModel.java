@@ -1,6 +1,6 @@
-package com.treydev.idk;
+package com.treydev.idk.critter;
 
-public class CritterDetailsModel {
+public class CritterDetailsViewModel {
     public class statLine {
         public String attributeName;
         public String attributeValue;
@@ -27,7 +27,7 @@ public class CritterDetailsModel {
     public final String[] colors={"Red", "DarkGrey", "DarkMagenta", "Blue", "Orange", "ForestGreen"};
     public statLine []statValues;
     //TODO: when ability is implemented, add ability details!
-    public CritterDetailsModel(Critter C)
+    public CritterDetailsViewModel(Critter C)
     {
         statValues = new statLine[6];
         int []statIntegers = {C.species.getBaseAttack(), C.species.getBaseDefense(), C.species.getBaseSpecial(),     C.species.getBaseSDefence(),

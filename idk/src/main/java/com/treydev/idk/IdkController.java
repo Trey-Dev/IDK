@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 
+import com.treydev.idk.attack.CombatHandler;
+import com.treydev.idk.critter.Critter;
+import com.treydev.idk.critter.CritterDetailsViewModel;
+
+
 @Controller
 public class IdkController {
 
@@ -95,6 +100,8 @@ public class IdkController {
         if(sessionCombatHandler == null)
             {
                 sessionCombatHandler = CombatHandler.initializeStubbed();
+                for(Critter creature : PlayerParty)
+                    creature.enterCombat();//TODO: call from combatHandler
             }
         //sessionCombatHandler.updateCombatOptions();
        
@@ -119,9 +126,9 @@ public class IdkController {
     public String CritterDetails(Model model)
     {
         //CritterDetailsModel displayCritter = new CritterDetailsModel(PlayerParty.get(0));
-        ArrayList<CritterDetailsModel> PartyModel = new ArrayList<>();
+        ArrayList<CritterDetailsViewModel> PartyModel = new ArrayList<>();
         for(Critter member : PlayerParty)
-            PartyModel.add(new CritterDetailsModel(member));
+            PartyModel.add(new CritterDetailsViewModel(member));
         model.addAttribute("Critters", PartyModel);
         return "CritterDescription";
     }

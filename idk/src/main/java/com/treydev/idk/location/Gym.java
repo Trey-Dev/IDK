@@ -1,7 +1,7 @@
 package com.treydev.idk.location;
 
 import java.util.ArrayList;
-import com.treydev.idk.Critter;
+import com.treydev.idk.critter.Critter;
 
 public class Gym extends LocationBase {
     private static ArrayList<Gym> allGyms = new ArrayList<Gym>();

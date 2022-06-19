@@ -2,9 +2,8 @@ package com.treydev.idk;
 
 import java.util.ArrayList;
 
-import com.treydev.idk.Critter;
-import com.treydev.idk.Element;
-import com.treydev.idk.Move;
+import com.treydev.idk.attack.Move;
+import com.treydev.idk.critter.Critter;
 
 public class SpecialAttack extends Move {
     //TODO: Create separate class that this and physical attack extend!
@@ -31,8 +30,8 @@ public class SpecialAttack extends Move {
     private void dealDamage(ArrayList<String> outputs, Critter target, Critter user) {
         outputs.add("You hit!");
         //TODO: (optional) move actual damage calculation to yet another equation so the equation can be overridden.
-        int attack = user.species.getBaseSpecial();//TODO: replace base attack with actual attack!
-        int defense = target.species.getBaseSDefence();
+        int attack = user.getSpecial();//TODO: replace base attack with actual attack!
+        int defense = target.getSpecDef();
         int level = 50;//TODO: REPLACE WITH ACTUAL LEVEL!
         int damage = Power;
         damage *= attack;

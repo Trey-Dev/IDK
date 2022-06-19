@@ -1,7 +1,11 @@
-package com.treydev.idk;
+package com.treydev.idk.critter;
 
 import java.util.HashMap;
 import java.util.Random;
+
+import com.treydev.idk.Element;
+import com.treydev.idk.NameGenerator;
+import com.treydev.idk.attack.Move;
 
 public class Species {
     /*
@@ -115,7 +119,6 @@ public class Species {
     }
 
     //Stubs, as method so they don't have to be instantiated.
-
     public static Species stubWidget()
     {
         return new Species(20, 40, 30, 30, 30, 30, "Widget", "A widgety type critter, the widget widgets widgely",null, null, null, null);
