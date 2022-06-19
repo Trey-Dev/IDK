@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import com.treydev.idk.attack.CombatHandler;
 import com.treydev.idk.critter.Critter;
 import com.treydev.idk.critter.CritterDetailsViewModel;
+import com.treydev.idk.support.Item;
 
 
 @Controller

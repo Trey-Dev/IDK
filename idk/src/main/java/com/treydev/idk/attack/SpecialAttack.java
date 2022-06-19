@@ -1,9 +1,9 @@
-package com.treydev.idk;
+package com.treydev.idk.attack;
 
 import java.util.ArrayList;
 
-import com.treydev.idk.attack.Move;
 import com.treydev.idk.critter.Critter;
+import com.treydev.idk.support.Element;
 
 public class SpecialAttack extends Move {
     // TODO: Create separate class that this and physical attack extend!

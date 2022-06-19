@@ -1,8 +1,9 @@
 package com.treydev.idk.attack;
 
 import java.util.ArrayList;
-import com.treydev.idk.Element;
+
 import com.treydev.idk.critter.Critter;
+import com.treydev.idk.support.Element;
 
 public class PhysicalAttack extends Move {
     /*

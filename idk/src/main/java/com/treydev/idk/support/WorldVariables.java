@@ -1,4 +1,4 @@
-package com.treydev.idk;
+package com.treydev.idk.support;
 
 //TODO: get rid of class?
 public class WorldVariables {

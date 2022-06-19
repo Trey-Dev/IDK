@@ -2,8 +2,9 @@ package com.treydev.idk.location;
 
 import java.util.ArrayList;
 import java.util.Random;
-import com.treydev.idk.Element;
-import com.treydev.idk.NameGenerator;
+
+import com.treydev.idk.support.Element;
+import com.treydev.idk.support.NameGenerator;
 
 public class City extends LocationBase {
     public final static double LEVEL_TOLERANCE = 0.25;

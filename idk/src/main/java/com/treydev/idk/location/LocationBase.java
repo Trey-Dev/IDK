@@ -2,6 +2,7 @@ package com.treydev.idk.location;
 
 import java.util.Random;
 import com.treydev.idk.*;
+import com.treydev.idk.support.NameGenerator;
 
 public abstract class LocationBase {
     protected String name;

@@ -3,9 +3,9 @@ package com.treydev.idk.attack;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-import com.treydev.idk.Element;
-import com.treydev.idk.SpecialAttack;
+
 import com.treydev.idk.critter.Critter;
+import com.treydev.idk.support.Element;
 
 public abstract class Move {
 
