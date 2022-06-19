@@ -7,11 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LocationController {
-
     @GetMapping("City")
     public String city(Model model, HttpSession session) {
         if (session.getAttribute("city") == null) {
@@ -47,7 +47,7 @@ public class LocationController {
     }
 
     @GetMapping("/Gym/{id}")
-    public String Gym(Model model, HttpSession session, @PathVariable(value = "id") int id) {
+    public String gym(Model model, HttpSession session, @PathVariable(value = "id") int id) {
         Gym g = Gym.getById(id);
         model.addAttribute("gymName", g.getName());
         return "Gym";

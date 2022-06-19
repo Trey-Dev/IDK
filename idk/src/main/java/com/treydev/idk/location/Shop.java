@@ -2,7 +2,8 @@ package com.treydev.idk.location;
 
 import java.util.ArrayList;
 import java.util.Random;
-import com.treydev.idk.Item;
+
+import com.treydev.idk.support.Item;
 
 public class Shop extends LocationBase {
     public String getOwner() {
