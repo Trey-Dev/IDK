@@ -47,7 +47,7 @@ public class LocationController {
     }
 
     @GetMapping("/Gym/{id}")
-    public String Gym(Model model, HttpSession session, @PathVariable(value = "id") int id) {
+    public String gym(Model model, HttpSession session, @PathVariable(value = "id") int id) {
         Gym g = Gym.getById(id);
         model.addAttribute("gymName", g.getName());
         return "Gym";
