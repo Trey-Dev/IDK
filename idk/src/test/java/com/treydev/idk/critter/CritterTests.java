@@ -19,7 +19,7 @@ public class CritterTests {
             creature.enterCombat();
             System.out.println("Stats: ");
             System.out.println("A" + creature.getAttack());
-            System.out.println("D" + creature.getDefence());
+            System.out.println("D" + creature.getDefense());
             System.out.println("SD" + creature.getSpecDef());
             System.out.println("SA" + creature.getSpecial());
             System.out.println("S" + creature.getSpeed());

@@ -50,6 +50,8 @@ public class LocationController {
     public String gym(Model model, HttpSession session, @PathVariable(value = "id") int id) {
         Gym g = Gym.getById(id);
         model.addAttribute("gymName", g.getName());
+        model.addAttribute("trainerName", g.getOwner());
+        model.addAttribute("critters", g.getCritters());
         return "Gym";
     }
 

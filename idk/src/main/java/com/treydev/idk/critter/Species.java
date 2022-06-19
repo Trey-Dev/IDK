@@ -62,10 +62,10 @@ public class Species {
 
     public static Species GenRandomSpecies(int individualStatSize) {
         Element e = Element.getRandomElement();
-        return Species.getRandomSpecies(individualStatSize, e);
+        return Species.GenRandomSpecies(individualStatSize, e);
     }
 
-    public static Species getRandomSpecies(int individualStatSize, Element primaryElement) {
+    public static Species GenRandomSpecies(int individualStatSize, Element primaryElement) {
         // This is the randomized constructor
         int statpoolSize = individualStatSize * 6;
         int AtkPercent = random.nextInt(100); // 0 to 99
