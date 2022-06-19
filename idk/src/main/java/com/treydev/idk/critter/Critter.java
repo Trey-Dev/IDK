@@ -1,10 +1,10 @@
 package com.treydev.idk.critter;
 
 import java.util.ArrayList;
+
 import com.treydev.idk.attack.Move;
 
 public class Critter {
-
     public String name;
     private int level; // TODO: Watch the keyword "private". If it's not useful, don't keep it private.
     public Move[] moveset;
