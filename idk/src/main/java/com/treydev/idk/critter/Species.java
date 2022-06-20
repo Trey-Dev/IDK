@@ -82,8 +82,6 @@ public class Species {
         int baseSDefence = statpoolSize * SDPercent / total;
         int baseHPStat = statpoolSize * HPPercent / total;
         String name = NameGenerator.generateRandomName(random.nextLong(Long.MAX_VALUE));
-        for (int i = 0; i < 10; i++)
-            name += (char) random.nextInt(50) + 65;
         String description = "STUBBED DESCRIPTION!! IMPLEMENT LATER";
 
         Element secondaryElement = Element.getRandomElement();
