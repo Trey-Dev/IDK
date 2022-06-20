@@ -21,6 +21,11 @@ public abstract class Move {
     // TODO: Generate something that creates a random move
 
     static {
+        implementStubbedAllMoves();
+    }
+
+    private static void implementStubbedAllMoves()
+    {
         long seed = 0; // TODO: remove hardcoded stub!
         random = new Random(seed);
         allMoves = new ArrayList<>();
