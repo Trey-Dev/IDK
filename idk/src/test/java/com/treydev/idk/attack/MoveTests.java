@@ -68,6 +68,27 @@ public class MoveTests {
     @Test
     void testGenRandomMove()
     {
-        Move move = Move.genRandomMove();
+        //Create 10 different moves, < 0.1% chance none are Special, <.2% chance none are special or physical
+        //TODO: when additional functionality is added, recreate tests as seems fitting to test.
+        Move []testMoves = new Move[10];
+        boolean hasPhysical = false;
+        boolean hasSpecial = false;
+        ArrayList<String> sampleOutputs = new ArrayList<>();
+        ArrayList<Critter> sampleParty = Critter.initializeStubbedParty();
+        for(int i = 0; i < 10; i++)
+        {
+            Move currentTestMove = Move.genRandomMove();
+            currentTestMove.Execute(sampleOutputs, sampleParty.get(0), sampleParty.get(1));
+            Assert.isTrue(currentTestMove.getClass().getName() == "com.treydev.idk.attack.PhysicalAttack"
+                || currentTestMove.getClass().getName() == "com.treydev.idk.attack.SpecialAttack", 
+                "The attack is neither physical nor special!"); //TODO: again, when new types are implemented, change this test.
+            if(currentTestMove.getClass().getName() == "com.treydev.idk.attack.PhysicalAttack")
+                hasPhysical = true;
+            if(currentTestMove.getClass().getName() == "com.treydev.idk.attack.SpecialAttack")
+                hasSpecial = true;
+        }
+        for(String output : sampleOutputs) System.out.println(output);
+        Assert.isTrue(hasPhysical, "In a test of 10 50/50 moves, all were Special");
+        Assert.isTrue(hasSpecial, "In a test of 10 50/50 moves, all were Physical");
     }
 }

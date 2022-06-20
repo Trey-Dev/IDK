@@ -48,8 +48,8 @@ public abstract class Move {
     private static Move genRandomSpecialAttack()
     {
         Element movetype = Element.getRandomElement();
-        int powerRaising = random.nextInt(4); //TODO: definitely need to refactor to change this. Actual max accuracy is "--"...
-        return new PhysicalAttack(NameGenerator.generateRandomName(random.nextLong()), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
+        int powerRaising = random.nextInt(4); 
+        return new SpecialAttack(NameGenerator.generateRandomName(random.nextLong()), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
     }
 
     private static void implementStubbedAllMoves()
