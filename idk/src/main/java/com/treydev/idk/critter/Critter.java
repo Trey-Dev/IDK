@@ -31,8 +31,10 @@ public class Critter {
     public static ArrayList<Critter> initializeStubbedParty() {
         ArrayList<Critter> value = new ArrayList<>();
         value.add(new Critter("Widget", Species.stubWidget(), Move.implementStubbedMoveList(), 5));
-        value.add(new Critter("Gadget", Species.stubGadget(), new Move[4], 5));
+        value.add(new Critter("Gadget", Species.stubGadget(), new Move[4], 8));
         value.get(1).moveset[0] = Move.getRandomMove();
+        value.add(new Critter("Wibble", Species.GenRandomSpecies(30), Move.implementStubbedMoveList(), 2));
+        value.get(2).moveset[0] = Move.getRandomMove();
         return value;
     }
 
@@ -63,7 +65,7 @@ public class Critter {
         // TODO: The "* 1" is for the STUBBED nature!!!!!
     }
 
-    public int getDefence() {
+    public int getDefense() {
         return (int) ((float) (species.getBaseDefense() * 1) * getPercent(DefStage));
     }
 

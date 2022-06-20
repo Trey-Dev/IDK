@@ -15,27 +15,24 @@ import com.treydev.idk.support.Item;
 
 import jakarta.servlet.http.HttpSession;
 
-
 @Controller
 public class IdkController {
 
     @GetMapping("/")
-    public String login(Model model)
-    {
+    public String login(Model model) {
         return "Login";
     }
 
     @PostMapping("Login")
-    public String login(@RequestParam("name") String name, HttpSession session, Model model) {
-        model.addAttribute("name", name);
-        session.setAttribute("name", name);
+    public String login(@RequestParam("username") String name, HttpSession session, Model model) {
+        model.addAttribute("username", name);
+        session.setAttribute("username", name);
         return "City";
     }
 
     @GetMapping("Game")
     @PostMapping("Game")
-    public String game(@RequestParam("action") String action, Model model, HttpSession session)
-    {
+    public String game(@RequestParam("action") String action, Model model, HttpSession session) {
         ArrayList<String> gameLog = new ArrayList<String>();
         gameLog.add("LineOne");
         gameLog.add("LineTwo");
@@ -49,25 +46,23 @@ public class IdkController {
         actionList.add("Action 3");
         actionList.add("Action 4");
 
-        model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("gameLog", gameLog);
         model.addAttribute("actionList", actionList);
-        model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("username", session.getAttribute("username"));
 
         return "Game";
     }
 
-    //!!! These are the persistent memory items for temporary stubs
-    public static CombatHandler sessionCombatHandler; //TODO: replace with SESSION VARIABLES!!!
+    // !!! These are the persistent memory items for temporary stubs
+    public static CombatHandler sessionCombatHandler; // TODO: replace with SESSION VARIABLES!!!
     public static ArrayList<Critter> PlayerParty;
 
     @GetMapping("Inventory")
-    public String menu(Model model, HttpSession session)
-    {
-        model.addAttribute("name", session.getAttribute("name"));
+    public String menu(Model model, HttpSession session) {
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("TableName", "Inventory");
-        if(Item.inventory == null)
-        {
+        if (Item.inventory == null) {
             Item.inventory = new ArrayList<Item>();
             Item.inventory.add(new Item("Red Potion", (short) 15, "Smells kinda fishy"));
             Item.inventory.add(new Item("Pink Potion", (short) 11, "Smells kinda beefy"));
@@ -77,14 +72,13 @@ public class IdkController {
     }
 
     @PostMapping("Inventory")
-    public String consume(@RequestParam("name") String name,Model model, HttpSession session)
-    {
-        model.addAttribute("name", session.getAttribute("name"));
+    public String consume(@RequestParam("username") String name, Model model, HttpSession session) {
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("TableName", "Inventory");
         Item.InitializeStubbedInventory();
 
         String output = "";
-        if(!name.isEmpty())
+        if (!name.isEmpty())
             output += Item.consume(name);
 
         output += "\nWhat would you like to do?";
@@ -94,45 +88,45 @@ public class IdkController {
     }
 
     @GetMapping("EnterCombat")
-    public String combat(Model model, HttpSession session)
-    {
-        if(PlayerParty == null)
-            {
-                PlayerParty = Critter.initializeStubbedParty(); //TODO: replace with non stubbed party eventually
-            }
-        if(sessionCombatHandler == null)
-            {
-                sessionCombatHandler = CombatHandler.initializeStubbed();
-                for(Critter creature : PlayerParty)
-                    creature.enterCombat();//TODO: call from combatHandler
-            }
-        //sessionCombatHandler.updateCombatOptions();
-       
-        model.addAttribute("name", session.getAttribute("name"));
+    public String combat(Model model, HttpSession session) {
+        if (PlayerParty == null) {
+            PlayerParty = Critter.initializeStubbedParty(); // TODO: replace with non stubbed party eventually
+        }
+        if (sessionCombatHandler == null) {
+            sessionCombatHandler = CombatHandler.initializeStubbed();
+            for (Critter creature : PlayerParty)
+                creature.enterCombat();// TODO: call from combatHandler
+        }
+        // sessionCombatHandler.updateCombatOptions();
+
+        model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("CombatOutput", sessionCombatHandler.outputs);
         model.addAttribute("FightOptions", sessionCombatHandler.CombatOptions);
         return "Combat";
     }
-    
+
     @PostMapping("EnterCombat")
-    public String combat(@RequestParam("Option") String Option, Model model, HttpSession session)
-    {
+    public String combat(@RequestParam("Option") String Option, Model model, HttpSession session) {
         sessionCombatHandler.takeAction(Option);
         model.addAttribute("CombatOutput", sessionCombatHandler.outputs);
         model.addAttribute("FightOptions", sessionCombatHandler.CombatOptions);
-        model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("username", session.getAttribute("username"));
 
         return "Combat";
     }
 
     @GetMapping("CritterDetails")
-    public String CritterDetails(Model model)
-    {
-        //CritterDetailsModel displayCritter = new CritterDetailsModel(PlayerParty.get(0));
+    public String CritterDetails(Model model, HttpSession session) {
+        if (PlayerParty == null) {
+            PlayerParty = Critter.initializeStubbedParty(); // TODO: replace with non stubbed party eventually
+        }
+        // CritterDetailsModel displayCritter = new
+        // CritterDetailsModel(PlayerParty.get(0));
         ArrayList<CritterDetailsViewModel> PartyModel = new ArrayList<>();
-        for(Critter member : PlayerParty)
+        for (Critter member : PlayerParty)
             PartyModel.add(new CritterDetailsViewModel(member));
         model.addAttribute("Critters", PartyModel);
+        model.addAttribute("username", session.getAttribute("username"));
         return "CritterDescription";
     }
 }

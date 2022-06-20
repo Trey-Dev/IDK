@@ -1,32 +1,30 @@
 <div class="header">
-    <p align="center">Critter Quest</p>
+    <h2 align="center" class="font-family: cursive">Critter Quest</h2>
     <table width="100%">
         <tr>
             <td>
-                <a href="EnterCombat">Combat</a>
-                <a href="Inventory">Inventory</a>
-                <a href="Game?action=review">Game</a>
-                <a href="/">Main Page</a>
-                <a href="City">City</a>
-                <a href="CritterDetails"> Critter Descriptions</a>
+                <a href="/EnterCombat">Combat</a>
+                <a href="/Inventory">Inventory</a>
+                <a href="/Game?action=review">Game</a>
+                <a href="/City">City</a>
+                <a href="/CritterDetails"> Critter Descriptions</a>
             </td>
             <td align="center">
                 <form action="Inventory" method="get">
-                    <input type="submit" value="Inventory"/>
-                    <input type="submit" value="Critter details"/>
+                    <!-- <input type="submit" value="Inventory"/>
+                    <input type="submit" value="Critter details"/> -->
                     <label for="selected-critter">Active critter:</label>
 
                     <select name="critters" id="selected-critter">
-                        <option value="">--Please choose an option--</option>
+                        <!--TODO: implement NONSTUBBED dropdown.-->
                         <option value="1">Red Widget (4/4)</option>
                         <option value="2">Blue flaming widget (20/20)</option>
                         <option value="2">Ice gadget (10/18)</option>
-                        <!--TODO: implement NONSTUBBED dropdown.-->
                     </select>
                 </form>
             </td>
             <td align="right">
-                <div th:text="${name}"></div>
+                <a href="/" th:text="@{'Account: ' + ${username}}" />
             </td>
         </tr>
     </table>

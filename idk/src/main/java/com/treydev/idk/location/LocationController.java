@@ -19,7 +19,7 @@ public class LocationController {
             session.setAttribute("city", c);
         }
 
-        model.addAttribute("name", session.getAttribute("name"));
+        model.addAttribute("username", session.getAttribute("username"));
 
         City c = (City) session.getAttribute("city");
         model.addAttribute("cityName", c.getName());
@@ -50,6 +50,8 @@ public class LocationController {
     public String gym(Model model, HttpSession session, @PathVariable(value = "id") int id) {
         Gym g = Gym.getById(id);
         model.addAttribute("gymName", g.getName());
+        model.addAttribute("trainerName", g.getOwner());
+        model.addAttribute("critters", g.getCritters());
         return "Gym";
     }
 
@@ -79,7 +81,7 @@ public class LocationController {
         sb.append("!");
         model.addAttribute("pathText", sb.toString());
 
-        model.addAttribute("otherVityName", session.getAttribute("name"));
+        model.addAttribute("otherVityName", session.getAttribute("username"));
         session.setAttribute("city", destination);
 
         return "Path";

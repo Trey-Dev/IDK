@@ -2,7 +2,10 @@ package com.treydev.idk.location;
 
 import java.util.ArrayList;
 
+import com.treydev.idk.support.NameGenerator;
+import com.treydev.idk.attack.Move;
 import com.treydev.idk.critter.Critter;
+import com.treydev.idk.critter.Species;
 
 public class Gym extends LocationBase {
     private static ArrayList<Gym> allGyms = new ArrayList<Gym>();
@@ -28,12 +31,24 @@ public class Gym extends LocationBase {
     }
 
     public Gym(City city, long seed) {
+        // Capture basic attributes
         super(seed, city.getLevel());
         this.name = Gym.generateGymName(city);
         this.city = city;
+
+        // Generate the critter list
+        int critterPower = city.getLevel() / 5 + 20;
         this.critters = new ArrayList<Critter>();
+        int numCritters = 1 + (int)(city.getLevel()/20);
+        if (numCritters > 6) numCritters=6;
+        for (int i = 0; i < numCritters; i++) {
+            // TODO: This should call a method to allow existing species and not only new ones
+            Species s = Species.GenRandomSpecies(critterPower, this.city.getElements()[0].element);
+            String name = NameGenerator.generateRandomName(seed);
+            Critter c = new  Critter(name, s, new Move[4],this.city.getLevel());
+            this.critters.add(c);
+        }
         Gym.allGyms.add(this);
-        // TODO: Populate Gym critters
     }
 
     public Gym(City city) {

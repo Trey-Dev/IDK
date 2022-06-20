@@ -61,6 +61,11 @@ public class Species {
     }
 
     public static Species GenRandomSpecies(int individualStatSize) {
+        Element e = Element.getRandomElement();
+        return Species.GenRandomSpecies(individualStatSize, e);
+    }
+
+    public static Species GenRandomSpecies(int individualStatSize, Element primaryElement) {
         // This is the randomized constructor
         int statpoolSize = individualStatSize * 6;
         int AtkPercent = random.nextInt(100); // 0 to 99
@@ -80,8 +85,14 @@ public class Species {
         for (int i = 0; i < 10; i++)
             name += (char) random.nextInt(50) + 65;
         String description = "STUBBED DESCRIPTION!! IMPLEMENT LATER";
+
+        Element secondaryElement = Element.getRandomElement();
+        if ((random.nextInt(100) < 50) || (secondaryElement == primaryElement)) {
+            secondaryElement = null;
+        }
+
         return new Species(baseAttack, baseDefense, baseHPStat, baseSpecial, baseSpeed, baseSDefence, name, description,
-                null, null, null, null);
+                null, null, primaryElement, secondaryElement);
     }
 
     // base stat accessors, NO MUTATORS! these variables are IMMUTABLE!
