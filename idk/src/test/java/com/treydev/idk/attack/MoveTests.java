@@ -63,4 +63,11 @@ public class MoveTests {
             System.out.println(output);
         Assert.isTrue(random != null, "getRandomMove returned null");
     }
+
+
+    @Test
+    void testGenRandomMove()
+    {
+        Move move = Move.genRandomMove();
+    }
 }

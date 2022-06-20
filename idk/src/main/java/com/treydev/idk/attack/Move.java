@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.treydev.idk.critter.Critter;
 import com.treydev.idk.support.Element;
+import com.treydev.idk.support.NameGenerator;
 
 public abstract class Move {
 
@@ -22,6 +23,33 @@ public abstract class Move {
 
     static {
         implementStubbedAllMoves();
+    }
+
+    public static Move genRandomMove()
+    {
+        //First, check how many "points" are going to be spent on "Numbers" or "Abilities"
+        int randomInt = random.nextInt(100);
+        if(randomInt < 50) //TODO: unstub, add a chance to find attacks with abilities.
+            return genRandomPhysicalAttack();
+        if(randomInt >= 50)
+            return genRandomSpecialAttack();
+        if(false) return null; //Physical with effects
+        if(false) return null; //Special with effects
+        return null; //Status.
+    }
+
+    private static Move genRandomPhysicalAttack()
+    {
+        Element movetype = Element.getRandomElement();
+        int powerRaising = random.nextInt(4); //TODO: definitely need to refactor to change this. Actual max accuracy is "--"...
+        return new PhysicalAttack(NameGenerator.generateRandomName(random.nextLong()), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
+    }
+
+    private static Move genRandomSpecialAttack()
+    {
+        Element movetype = Element.getRandomElement();
+        int powerRaising = random.nextInt(4); //TODO: definitely need to refactor to change this. Actual max accuracy is "--"...
+        return new PhysicalAttack(NameGenerator.generateRandomName(random.nextLong()), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
     }
 
     private static void implementStubbedAllMoves()
