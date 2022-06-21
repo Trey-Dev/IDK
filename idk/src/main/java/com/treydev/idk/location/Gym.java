@@ -2,6 +2,7 @@ package com.treydev.idk.location;
 
 import java.util.ArrayList;
 
+import com.treydev.idk.support.ElementAffinity;
 import com.treydev.idk.support.NameGenerator;
 import com.treydev.idk.attack.Move;
 import com.treydev.idk.critter.Critter;
@@ -43,7 +44,7 @@ public class Gym extends LocationBase {
         if (numCritters > 6) numCritters=6;
         for (int i = 0; i < numCritters; i++) {
             // TODO: This should call a method to allow existing species and not only new ones
-            Species s = Species.GenRandomSpecies(critterPower, this.city.getElements()[0].element);
+            Species s = Species.GenRandomSpecies(critterPower, ElementAffinity.GetRandomAffinity()[0].getElement());
             String name = NameGenerator.generateRandomName(seed);
             Critter c = new  Critter(name, s, new Move[4],this.city.getLevel());
             this.critters.add(c);
