@@ -59,7 +59,7 @@ public class Gym extends LocationBase {
     private static String generateGymName(City city) {
         // Simple for now... future iterations could support thing like "Owner's Gym",
         // "The Best City Gym", "City Arena", etc.
-        return "The " + city.getName() + " Gym";
+        return city.getName() + " Gym";
     }
 
     public static Gym getById(int id) {

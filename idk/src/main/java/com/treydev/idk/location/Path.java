@@ -105,7 +105,13 @@ public class Path {
 
     private static Path generateNewPath(City location, Random generator) {
         // Find or create a new city
-        City newCity = City.getCity(generator.nextLong(), location.getLevel() + 1);
+        City newCity = null;
+        while (newCity == null) {
+            newCity = City.getCity(generator.nextLong(), location.getLevel() + 1);
+            if (newCity.equals(location)) {
+                newCity = null;
+            }
+        }
         // Create a new path
         int distance = 2 + (int) (generator.nextDouble()
                 * (location.getLevel() * Path.MAX_PATH_DISTANCE - location.getLevel() * Path.MIN_PATH_DISTANCE)
