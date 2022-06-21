@@ -13,8 +13,8 @@ public class SpeciesTests {
                 + s.getBaseSpeed() + s.getBaseHitPoints();
 
         // Allowing 10% error in the randomness... 90% of target to 110%
-        Assert.isTrue(totalOfStats > averageStat * 6 * 0.9, "Average generated stat is below threshold");
-        Assert.isTrue(totalOfStats < averageStat * 6 * 1.1, "Average generated stat is above threshold");
+        Assert.isTrue(totalOfStats >= averageStat * 6 * 0.9, "Average generated stat is below threshold");
+        Assert.isTrue(totalOfStats <= averageStat * 6 * 1.1, "Average generated stat is above threshold");
 
         // Test the getters
         Assert.isTrue(s.getBaseAttack() > 0, "BaseAttack is not positive");
