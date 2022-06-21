@@ -47,4 +47,10 @@ public class ElementAffinity {
         
         return elementAffinities.toArray(new ElementAffinity[elementAffinities.size()]);
     }
+
+    public static Element GetRandomElementByAffinity(ElementAffinity[] elementAffinities, long seed) {
+        Random generator = new Random(seed);
+        int index = generator.nextInt(elementAffinities.length);
+        return elementAffinities[index].element;
+    }
 }
