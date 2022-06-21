@@ -19,8 +19,6 @@ public abstract class Move {
 
     private static ArrayList<Move> allMoves;
 
-    // TODO: Generate something that creates a random move
-
     static {
         implementStubbedAllMoves();
     }

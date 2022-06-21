@@ -89,6 +89,6 @@ public class MoveTests {
         }
         for(String output : sampleOutputs) System.out.println(output);
         Assert.isTrue(hasPhysical, "In a test of 10 50/50 moves, all were Special");
-        Assert.isTrue(hasSpecial, "In a test of 10 50/50 moves, all were Physical");
+        Assert.isTrue(hasSpecial, "In a test of 10 50/50 moves, all were Physical")
     }
 }
