@@ -16,4 +16,14 @@ public class SpecialEffect {
         if(effectEvaluator.isEffected(target, user))
             effectExecution.execute(target, user, outputs);
     }
+    public SpecialEffect genRandomSpecialEffect()
+    {
+        effectEvaluator = EffectEvaluator.getEffectEvaluator();
+        effectExecution = new EffectExecution() {
+            public void execute(Critter target, Critter user, ArrayList<String> outputs) {
+                //do nothing
+            }
+        };
+        return new SpecialEffect(effectEvaluator, effectExecution);
+    }
 }
