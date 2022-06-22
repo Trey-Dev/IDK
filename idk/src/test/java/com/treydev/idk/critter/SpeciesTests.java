@@ -2,6 +2,8 @@ package com.treydev.idk.critter;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
+
+import com.treydev.idk.support.ElementAffinity;
 import com.treydev.idk.support.Element;
 
 public class SpeciesTests {
@@ -33,5 +35,14 @@ public class SpeciesTests {
         Element e2 = s.getTypeTwo();
         Assert.isTrue(e1 != e2, "Types are the same");
         Assert.isTrue(e1 != null, "TypeOne is null");
+    }
+
+    @Test
+    void testGetSpecies() {
+        // When possible, GetSpecies will look for an existing species that matches the given criteria
+        // Filter criteria...  ElementAffinity array, Target level, ????
+        Element e1 = Element.getRandomElement(1000);
+        Element e2 = Element.getRandomElement(2000);
+        ElementAffinity[] ea = { };   
     }
 }

@@ -10,24 +10,6 @@ public class City extends LocationBase {
     public final static double LEVEL_TOLERANCE = 0.25;
     private static ArrayList<City> cities = new ArrayList<City>();
 
-    public class ElementAffinity {
-        public Element element;
-        public double affinity;
-    }
-
-    private ElementAffinity[] elementAffinities;
-
-    public ElementAffinity[] getElements() {
-        if (elementAffinities == null) {
-            // For this version, we are only using one element and 90% affinity
-            this.elementAffinities = new ElementAffinity[1];
-            this.elementAffinities[0] = new ElementAffinity();
-            this.elementAffinities[0].element = Element.getRandomElement();
-            this.elementAffinities[0].affinity = 0.9;
-        }
-        return elementAffinities;
-    }
-
     private int population;
 
     public int getPopulation() {
