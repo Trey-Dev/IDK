@@ -36,9 +36,9 @@ public class Shop extends LocationBase {
         int i = generator.nextInt(4);
         switch (i) {
             case 0:
-                return "The " + city.getName() + " Shop";
+                return city.getName() + " Shop";
             case 1:
-                return "The " + city.getName() + " Marketplace";
+                return city.getName() + " Marketplace";
             case 2:
                 return this.getOwner() + "'s Market";
             default:

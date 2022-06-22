@@ -3,7 +3,7 @@ package com.treydev.idk.location;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
-import com.treydev.idk.location.City.ElementAffinity;
+import com.treydev.idk.support.ElementAffinity;
 
 public class CityTest {
     @Test
@@ -88,11 +88,11 @@ public class CityTest {
     @Test
     void testGetCityElements() {
         City c = City.getCity(1000, 1);
-        ElementAffinity[] elements = c.getElements();
+        ElementAffinity[] elements = ElementAffinity.GetRandomAffinity(1000L, 1);
         // For this version, we wil have exactly one element with 90% affinity
         Assert.isTrue(elements.length == 1, "City should have exactly one element");
-        Assert.isTrue(elements[0].affinity == 0.9, "Element affinity should be 90%");
-        Assert.isTrue(elements[0].element != null, "Element should be valid");
+        Assert.isTrue(elements[0].getAffinity() >= 0.0, "Element affinity should be positive");
+        Assert.isTrue(elements[0].getElement() != null, "Element should be valid");
     }
 
     @Test
