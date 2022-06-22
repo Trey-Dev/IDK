@@ -76,11 +76,11 @@ public class Species {
         int HPPercent = random.nextInt(100);
         int total = AtkPercent + DefPercent + SAPercent + SpdPercent + SDPercent + HPPercent;
         int baseAttack = statpoolSize * AtkPercent / total + 1;
-        int baseDefense = statpoolSize * DefPercent / total +1;
-        int baseSpecial = statpoolSize * SAPercent / total+1;
-        int baseSpeed = statpoolSize * SpdPercent / total+1;
-        int baseSDefence = statpoolSize * SDPercent / total+1;
-        int baseHPStat = statpoolSize * HPPercent / total+1;
+        int baseDefense = statpoolSize * DefPercent / total + 1;
+        int baseSpecial = statpoolSize * SAPercent / total + 1;
+        int baseSpeed = statpoolSize * SpdPercent / total + 1;
+        int baseSDefence = statpoolSize * SDPercent / total + 1;
+        int baseHPStat = statpoolSize * HPPercent / total + 1;
         String name = NameGenerator.generateRandomName(random.nextLong(Long.MAX_VALUE));
         String description = "STUBBED DESCRIPTION!! IMPLEMENT LATER";
 

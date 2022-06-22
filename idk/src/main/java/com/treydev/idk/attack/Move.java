@@ -6,7 +6,6 @@ import java.util.Random;
 
 import com.treydev.idk.critter.Critter;
 import com.treydev.idk.support.Element;
-import com.treydev.idk.support.NameGenerator;
 
 public abstract class Move {
 
