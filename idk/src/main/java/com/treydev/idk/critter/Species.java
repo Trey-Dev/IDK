@@ -1,11 +1,11 @@
 package com.treydev.idk.critter;
 
 import java.util.HashMap;
-import java.util.Random;
 
 import com.treydev.idk.attack.Move;
 import com.treydev.idk.support.Element;
 import com.treydev.idk.support.NameGenerator;
+import com.treydev.idk.support.Random;
 
 public class Species {
     /*
@@ -33,12 +33,6 @@ public class Species {
     private int baseSDefence;
     private int baseSpeed;
 
-    static {
-        initializeRandom(0); // TODO: replace with nonstubbed seed value!
-    }
-
-    private static Random random;
-
     private Species(int Atk, int Def, int HP, int SpA, int Spd, int Spf, String name, String description,
             Species evolution, HashMap<Integer, Move> movelist, Element type1, Element type2) {
         this.baseAttack = Atk;
@@ -56,10 +50,6 @@ public class Species {
         this.type2 = type2;
     }
 
-    public static void initializeRandom(long seed) {
-        Species.random = new Random(seed);
-    }
-
     public static Species GenRandomSpecies(int individualStatSize) {
         Element e = Element.getRandomElement();
         return Species.GenRandomSpecies(individualStatSize, e);
@@ -68,12 +58,12 @@ public class Species {
     public static Species GenRandomSpecies(int individualStatSize, Element primaryElement) {
         // This is the randomized constructor
         int statpoolSize = individualStatSize * 6;
-        int AtkPercent = random.nextInt(100); // 0 to 99
-        int DefPercent = random.nextInt(100);
-        int SAPercent = random.nextInt(100);
-        int SpdPercent = random.nextInt(100);
-        int SDPercent = random.nextInt(100);
-        int HPPercent = random.nextInt(100);
+        int AtkPercent = Random.nextInt(100); // 0 to 99
+        int DefPercent = Random.nextInt(100);
+        int SAPercent = Random.nextInt(100);
+        int SpdPercent = Random.nextInt(100);
+        int SDPercent = Random.nextInt(100);
+        int HPPercent = Random.nextInt(100);
         int total = AtkPercent + DefPercent + SAPercent + SpdPercent + SDPercent + HPPercent;
         int baseAttack = statpoolSize * AtkPercent / total + 1;
         int baseDefense = statpoolSize * DefPercent / total + 1;
@@ -81,11 +71,11 @@ public class Species {
         int baseSpeed = statpoolSize * SpdPercent / total + 1;
         int baseSDefence = statpoolSize * SDPercent / total + 1;
         int baseHPStat = statpoolSize * HPPercent / total + 1;
-        String name = NameGenerator.generateRandomName(random.nextLong(Long.MAX_VALUE));
+        String name = NameGenerator.generateRandomName(Random.nextLong(Long.MAX_VALUE));
         String description = "STUBBED DESCRIPTION!! IMPLEMENT LATER";
 
         Element secondaryElement = Element.getRandomElement();
-        if ((random.nextInt(100) < 50) || (secondaryElement == primaryElement)) {
+        if ((Random.nextInt(100) < 50) || (secondaryElement == primaryElement)) {
             secondaryElement = null;
         }
 

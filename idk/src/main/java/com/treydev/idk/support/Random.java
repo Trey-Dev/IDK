@@ -30,4 +30,8 @@ public class Random {
     public static long nextLong() {
         return random.nextLong();
     }
+
+    public static long nextLong(long max) {
+        return random.nextLong(max);
+    }
 }
