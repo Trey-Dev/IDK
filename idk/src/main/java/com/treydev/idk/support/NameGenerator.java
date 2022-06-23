@@ -1,6 +1,6 @@
 package com.treydev.idk.support;
 
-import java.util.Random;
+import com.treydev.idk.support.Random;
 
 public class NameGenerator {
     public static String[] StartConsonantGroups = { "T", "D", "TH", "ST", "H", "G", "GR", "TR", "C", "K",
@@ -11,7 +11,7 @@ public class NameGenerator {
             "OU", "OY", "OO", "EE", "OE", "IA" };
 
     public static String generateRandomName(long seed) {
-        Random random = new Random(seed);
+        Random.Initialize(seed);
         /*
          * Current implementation: 30% chance to end the word on any syllable
          */
@@ -19,43 +19,43 @@ public class NameGenerator {
         // Randomly choose first is const or vowel
         // If const, select first from start list
 
-        String value = begin(random, 0);
+        String value = begin(0);
 
         return value.charAt(0) + value.substring(1).toLowerCase();
     }
 
-    private static String begin(Random random, int syllables) {
-        if (random.nextDouble() > 0.5)
-            return GenStartConsonant(random, syllables + 1);
+    private static String begin(int syllables) {
+        if (Random.nextDouble() > 0.5)
+            return GenStartConsonant(syllables + 1);
         else
-            return GenVowel(random, syllables + 1);
+            return GenVowel(syllables + 1);
     }
 
-    private static String GenStartConsonant(Random random, int syllables) {
-        String value = StartConsonantGroups[random.nextInt(0, StartConsonantGroups.length)];
-        return value + GenVowel(random, syllables + 1);
+    private static String GenStartConsonant(int syllables) {
+        String value = StartConsonantGroups[Random.nextInt(0, StartConsonantGroups.length)];
+        return value + GenVowel(syllables + 1);
     }
 
-    private static String GenVowel(Random random, int syllables) {
-        String value = VowelGroups[random.nextInt(0, VowelGroups.length)];
-        double RNG = random.nextDouble();
+    private static String GenVowel(int syllables) {
+        String value = VowelGroups[Random.nextInt(0, VowelGroups.length)];
+        double RNG = Random.nextDouble();
         if (RNG < 0.2 || syllables > 6)
             return value;
         else if (RNG < 0.6)
-            return value + GenEndConsonant(random, syllables + 1);
+            return value + GenEndConsonant(syllables + 1);
         else
-            return value + GenStartConsonant(random, syllables + 1);
+            return value + GenStartConsonant(syllables + 1);
     }
 
-    private static String GenEndConsonant(Random random, int syllables) {
-        String value = EndConsonantGroups[random.nextInt(0, EndConsonantGroups.length)];
-        double RNG = random.nextDouble();
+    private static String GenEndConsonant(int syllables) {
+        String value = EndConsonantGroups[Random.nextInt(0, EndConsonantGroups.length)];
+        double RNG = Random.nextDouble();
         if (RNG < 0.2 || syllables > 6)
             return value;
         else if (RNG < 0.6)
-            return value + GenStartConsonant(random, syllables + 1);
+            return value + GenStartConsonant(syllables + 1);
         else
-            return value + GenVowel(random, syllables + 1);
+            return value + GenVowel(syllables + 1);
     }
 
 }

@@ -28,6 +28,6 @@ public class ElementAffinityTests {
         ElementAffinity ea[] = ElementAffinity.GetRandomAffinity(1000,4);
         Element e = ElementAffinity.GetRandomElementByAffinity(ea, 12345);
         // The following assert is based on the seed and may change as the source data changes
-        Assert.isTrue(e.getId() == 1, "Element is not 1");
+        Assert.isTrue(e.getId() == 6, "Element is " + e.getId() + " instead of 6");
     }
 }

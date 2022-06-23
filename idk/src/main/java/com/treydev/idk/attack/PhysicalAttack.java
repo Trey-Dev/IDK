@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.treydev.idk.critter.Critter;
 import com.treydev.idk.support.Element;
+import com.treydev.idk.support.Random;
 
 public class PhysicalAttack extends Move {
     /*
@@ -52,7 +53,7 @@ public class PhysicalAttack extends Move {
     }
 
     private boolean checkHit() {
-        return (Math.random() * 100 < Accuracy); // TODO: Replace with Util.random
+        return (Random.nextInt(100) < Accuracy);
         // TODO: check and test this and the damage function. Tweak until it feels nice.
     }
     // TODO: create another class that implements additional effects

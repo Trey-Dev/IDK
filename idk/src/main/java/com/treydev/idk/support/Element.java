@@ -1,6 +1,6 @@
 package com.treydev.idk.support;
 
-import java.util.Random;
+import com.treydev.idk.support.Random;
 
 public class Element
 {    
@@ -28,8 +28,8 @@ public class Element
 
     public static Element getRandomElement(long seed)
     {
-        Random generator = new Random(seed);
-        return elements[generator.nextInt(elementNames.length)];
+        Random.Initialize(seed);
+        return elements[Random.nextInt(elementNames.length)];
     }
 
     public static Element getByName(String name)

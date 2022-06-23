@@ -1,9 +1,9 @@
 package com.treydev.idk.location;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import com.treydev.idk.support.Item;
+import com.treydev.idk.support.Random;
 
 public class Shop extends LocationBase {
     public String getOwner() {
@@ -32,8 +32,8 @@ public class Shop extends LocationBase {
     }
 
     private String generateShopName(long seed, City city) {
-        Random generator = new Random(seed);
-        int i = generator.nextInt(4);
+        Random.Initialize(seed);
+        int i = Random.nextInt(4);
         switch (i) {
             case 0:
                 return city.getName() + " Shop";

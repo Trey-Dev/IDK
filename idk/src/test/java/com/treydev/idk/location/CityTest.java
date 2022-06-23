@@ -50,6 +50,7 @@ public class CityTest {
     public void testGenerateExtendedCityName() {
         String cityName;
 
+        // All of the below will change if the seed changes or the procssing around that seed changes
         // Seed of 3 will generate a non-extended name
         cityName = City.generateExtendedCityName("Core", 3);
         Assert.isTrue(cityName.equals("Core"), "Received city name " + cityName + " instead of 'Core'");

@@ -3,7 +3,8 @@ package com.treydev.idk.support;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Random;
+
+import com.treydev.idk.support.Random;
 
 public class ElementAffinity {
     private Element element;
@@ -30,13 +31,13 @@ public class ElementAffinity {
     }
 
     public static ElementAffinity[] GetRandomAffinity(long seed, int count) {
-        Random generator = new Random(seed);
-
+        Random.Initialize(seed);
+        
         ArrayList<ElementAffinity> elementAffinities = new ArrayList<ElementAffinity>(count);
         for (int i = 0; i < count; i++) {
             ElementAffinity elementAffinity = new ElementAffinity();
-            elementAffinity.element = Element.getRandomElement(generator.nextLong());
-            elementAffinity.affinity = generator.nextDouble();
+            elementAffinity.element = Element.getRandomElement(Random.nextLong());
+            elementAffinity.affinity = Random.nextDouble();
             elementAffinities.add(elementAffinity);
         }
 
@@ -49,8 +50,8 @@ public class ElementAffinity {
     }
 
     public static Element GetRandomElementByAffinity(ElementAffinity[] elementAffinities, long seed) {
-        Random generator = new Random(seed);
-        int index = generator.nextInt(elementAffinities.length);
+        Random.Initialize(seed);
+        int index = Random.nextInt(elementAffinities.length);
         return elementAffinities[index].element;
     }
 }

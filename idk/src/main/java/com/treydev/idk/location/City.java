@@ -1,10 +1,10 @@
 package com.treydev.idk.location;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import com.treydev.idk.support.Element;
 import com.treydev.idk.support.NameGenerator;
+import com.treydev.idk.support.Random;
 
 public class City extends LocationBase {
     public final static double LEVEL_TOLERANCE = 0.25;
@@ -101,12 +101,12 @@ public class City extends LocationBase {
 
         // First determine if a new or existing - as the list gets longer, new will be
         // less often
-        Random generator = new Random(seed);
-        int index = generator.nextInt(possibleCities.size() + 2);
+        Random.Initialize(seed);
+        int index = Random.nextInt(possibleCities.size() + 2);
         if (index >= possibleCities.size()) {
             // If this is a new city. make it target level to + LEVEL_TOLERANCE%
-            int newTarget = targetLevel + (int) (generator.nextDouble() * targetLevel * City.LEVEL_TOLERANCE);
-            City city = new City(generator.nextLong(), newTarget);
+            int newTarget = targetLevel + (int) (Random.nextDouble() * targetLevel * City.LEVEL_TOLERANCE);
+            City city = new City(Random.nextLong(), newTarget);
             cities.add(city);
             return city;
         } else
@@ -123,18 +123,18 @@ public class City extends LocationBase {
     }
 
     public static String generateExtendedCityName(String coreName, long seed) {
+        Random.Initialize(seed);
         // 33% of the time we'll have a prefix, 33% a suffix, and the remaining neither
-        Random generator = new Random(seed);
-        int randomNumber = generator.nextInt(3);
+        int randomNumber = Random.nextInt(3);
 
         switch (randomNumber) {
             case 0:
                 String[] prefix = new String[] { "The City of ", "New ", "The Village of " };
-                int prefixIndex = generator.nextInt(prefix.length);
+                int prefixIndex = Random.nextInt(prefix.length);
                 return prefix[prefixIndex] + coreName;
             case 1:
                 String[] suffix = new String[] { "ton", " City", "town", "shire", " Township", "ville" };
-                int suffixIndex = generator.nextInt(suffix.length);
+                int suffixIndex = Random.nextInt(suffix.length);
                 return coreName + suffix[suffixIndex];
             default:
                 return coreName;

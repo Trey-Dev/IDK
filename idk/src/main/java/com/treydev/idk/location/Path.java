@@ -1,7 +1,8 @@
 package com.treydev.idk.location;
 
 import java.util.ArrayList;
-import java.util.Random;
+
+import com.treydev.idk.support.Random;
 
 public class Path {
     // For now, we are only supporting city-to-city paths - no forks
@@ -55,9 +56,9 @@ public class Path {
 
         // We always need paths to other cities, so if there are no paths, we need to
         // add one
-        Random generator = new Random(seed);
+        Random.Initialize(seed);
         if (possiblePaths.size() == 0) {
-            Path newPath = generateNewPath(location, generator);
+            Path newPath = generateNewPath(location);
             Path.paths.add(newPath);
             possiblePaths.add(newPath);
         }
@@ -71,8 +72,8 @@ public class Path {
             double likelyhood = 1.5 - (location.getLevel() / 100);
             // And the more existing paths, the less ikely to find more
             likelyhood /= possiblePaths.size();
-            if (generator.nextDouble() < likelyhood) {
-                Path newPath = generateNewPath(location, generator);
+            if (Random.nextDouble() < likelyhood) {
+                Path newPath = generateNewPath(location);
                 if (!pathAlreadyExists(newPath.location1, newPath.location2)) {
                     Path.paths.add(newPath);
                     possiblePaths.add(newPath);
@@ -103,17 +104,17 @@ public class Path {
         return false;
     }
 
-    private static Path generateNewPath(City location, Random generator) {
+    private static Path generateNewPath(City location) {
         // Find or create a new city
         City newCity = null;
         while (newCity == null) {
-            newCity = City.getCity(generator.nextLong(), location.getLevel() + 1);
+            newCity = City.getCity(Random.nextLong(), location.getLevel() + 1);
             if (newCity.equals(location)) {
                 newCity = null;
             }
         }
         // Create a new path
-        int distance = 2 + (int) (generator.nextDouble()
+        int distance = 2 + (int) (Random.nextDouble()
                 * (location.getLevel() * Path.MAX_PATH_DISTANCE - location.getLevel() * Path.MIN_PATH_DISTANCE)
                 + location.getLevel() * Path.MIN_PATH_DISTANCE);
         Path newPath = new Path(location, newCity, distance);

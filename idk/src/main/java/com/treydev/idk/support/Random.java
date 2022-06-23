@@ -2,6 +2,9 @@ package com.treydev.idk.support;
 
 public class Random {
     private static java.util.Random random = new java.util.Random();
+    public static java.util.Random getRandomGenerator() {
+        return random;
+    }
 
     public static void Initialize(long seed) {
         random = new java.util.Random(seed);
