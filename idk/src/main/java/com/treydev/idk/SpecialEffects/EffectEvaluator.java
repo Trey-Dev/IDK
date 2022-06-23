@@ -25,6 +25,7 @@ static{
     //TODO: add for stat buffs
     //TODO: add for stat debuffs
     //TODO: add for STAB and effectiveness
+    //TODO: implement "And" and "Or" evaluators
 
 }
     //Actual methods to add evaluators to list

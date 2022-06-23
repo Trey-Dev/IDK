@@ -10,4 +10,11 @@ public class SpecialEffectTest {
         //Effect should activate when the effect evaluator returns true
         //Effect should execute the effect execution when the effect evaluator returns true.
     }
+
+    @Test
+    void testGenRandomEffect()
+    {
+        //Test genRandomEffect with a stubbed special effect
+        //Effect should not be null
+    }
 }
