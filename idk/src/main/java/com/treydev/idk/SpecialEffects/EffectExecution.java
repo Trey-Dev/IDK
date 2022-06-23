@@ -13,13 +13,17 @@ public abstract class EffectExecution {
         Long seed = (long) 0; //TODO: externalize
         random = new Random(seed);
         executions = new ArrayList<EffectExecution>();
-        
+        statBuffExecutions();
     }
+    
+    //constructor
     private EffectExecution(int cost, String description)
     {
         this.cost = cost;
         this.description = description;
     }
+
+    //Static initialization functions
     private static void statBuffExecutions()
     {
         executions.add(
@@ -34,7 +38,7 @@ public abstract class EffectExecution {
             new EffectExecution(3, " increase user's defense") {
                 @Override
                 public void execute(Critter target, Critter user, ArrayList<String> outputs) {
-                    user.increaseDef();
+                    user.increaseDefense();
                 }
             }
         );
@@ -42,7 +46,7 @@ public abstract class EffectExecution {
             new EffectExecution(3, " increase user's speed") {
                 @Override
                 public void execute(Critter target, Critter user, ArrayList<String> outputs) {
-                    user.increaseSpd();
+                    user.increaseSpeed();
                 }
             }
         );
@@ -66,6 +70,7 @@ public abstract class EffectExecution {
         );
     }
 
+    //public static function to get random execution.
     public static EffectExecution getEffectExecution() {
         int index = random.nextInt(executions.size());
         return executions.get(index);
