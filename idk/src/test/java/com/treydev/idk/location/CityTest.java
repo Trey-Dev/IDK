@@ -94,7 +94,8 @@ public class CityTest {
     @Test
     void testGetCityElements() {
         City c = City.getCity(1);
-        ElementAffinity[] elements = ElementAffinity.GetRandomAffinity(1000L, 1);
+        Random.Initialize(1000);
+        ElementAffinity[] elements = ElementAffinity.GetRandomAffinity(1);
         // For this version, we wil have exactly one element with 90% affinity
         Assert.isTrue(elements.length == 1, "City should have exactly one element");
         Assert.isTrue(elements[0].getAffinity() >= 0.0, "Element affinity should be positive");

@@ -19,14 +19,8 @@ public class Element
         return elements.length;
     }
 
-    public static Element getRandomElement() {
-        long seed = (long)(Math.random() * Long.MAX_VALUE);
-        return getRandomElement(seed);
-    }
-
-    public static Element getRandomElement(long seed)
+    public static Element getRandomElement()
     {
-        Random.Initialize(seed);
         return elements[Random.nextInt(elementNames.length)];
     }
 

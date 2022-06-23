@@ -11,7 +11,9 @@ public class ShopTest {
     void testShopConstructor() {
         Random.Initialize(1000);
         City city = City.getCity(10);
-        Shop shop = new Shop(city, 2000);
+        
+        Random.Initialize(2000);
+        Shop shop = new Shop(city);
         Assert.isTrue(shop.getName().length() > 0, "Shop name is empty");
         Assert.isTrue(shop.getLevel() == city.getLevel(), "Shop level is not equal to city level");
         Assert.isTrue(shop.getOwner().length() > 0, "Shop owner is empty");

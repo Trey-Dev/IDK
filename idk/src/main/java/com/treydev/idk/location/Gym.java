@@ -31,9 +31,9 @@ public class Gym extends LocationBase {
         return city;
     }
 
-    public Gym(City city, long seed) {
+    public Gym(City city) {
         // Capture basic attributes
-        super(seed, city.getLevel());
+        super(city.getLevel());
         this.name = Gym.generateGymName(city);
         this.city = city;
 
@@ -50,10 +50,6 @@ public class Gym extends LocationBase {
             this.critters.add(c);
         }
         Gym.allGyms.add(this);
-    }
-
-    public Gym(City city) {
-        this(city, (long) (Math.random() * Long.MAX_VALUE));
     }
 
     private static String generateGymName(City city) {

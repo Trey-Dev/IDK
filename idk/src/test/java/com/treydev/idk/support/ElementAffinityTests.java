@@ -12,22 +12,17 @@ public class ElementAffinityTests {
 
     @Test
     void testGetRandomAffinityWithCount() {
-        ElementAffinity e[] = ElementAffinity.getRandoAffinity(5);
+        ElementAffinity e[] = ElementAffinity.GetRandomAffinity(5);
         Assert.isTrue(e.length == 5, "Length is not 5");
     }
 
     @Test
-    void testGetRandomAffinityWithSeed() {
-        ElementAffinity e[] = ElementAffinity.GetRandomAffinity(12345);
-        Assert.isTrue(e.length == 2, "Didn't return default affinity count");
-        Assert.isTrue(e[0].getElement() != e[1].getElement(), "Elements are the same");
-    }
-
-    @Test
     void testGetRandomElementByAffinity() {
-        ElementAffinity ea[] = ElementAffinity.GetRandomAffinity(1000,4);
-        Element e = ElementAffinity.GetRandomElementByAffinity(ea, 12345);
+        Random.Initialize(1000);
+        ElementAffinity ea[] = ElementAffinity.GetRandomAffinity(4);
+        Random.Initialize(12345);
+        Element e = ElementAffinity.GetRandomElementByAffinity(ea);
         // The following assert is based on the seed and may change as the source data changes
-        Assert.isTrue(e.getId() == 6, "Element is " + e.getId() + " instead of 6");
+        Assert.isTrue(e.getId() == 5, "Element is " + e.getId() + " instead of 5");
     }
 }
