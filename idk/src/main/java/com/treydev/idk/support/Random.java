@@ -26,4 +26,8 @@ public class Random {
     public static double nextDouble() {
         return random.nextDouble();
     }
+
+    public static long nextLong() {
+        return random.nextLong();
+    }
 }

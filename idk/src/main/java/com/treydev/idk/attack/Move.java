@@ -2,11 +2,11 @@ package com.treydev.idk.attack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 import com.treydev.idk.critter.Critter;
 import com.treydev.idk.support.Element;
 import com.treydev.idk.support.NameGenerator;
+import com.treydev.idk.support.Random;
 
 public abstract class Move {
 
@@ -15,7 +15,6 @@ public abstract class Move {
 
     protected Element moveType;
     public String name;
-    private static Random random;
 
     private static ArrayList<Move> allMoves;
 
@@ -26,7 +25,7 @@ public abstract class Move {
     public static Move genRandomMove()
     {
         //First, check how many "points" are going to be spent on "Numbers" or "Abilities"
-        int randomInt = random.nextInt(100);
+        int randomInt = Random.nextInt(100);
         if(randomInt < 50) //TODO: unstub, add a chance to find attacks with abilities.
             return genRandomPhysicalAttack();
         if(randomInt >= 50)
@@ -39,21 +38,20 @@ public abstract class Move {
     private static Move genRandomPhysicalAttack()
     {
         Element movetype = Element.getRandomElement();
-        int powerRaising = random.nextInt(4); //TODO: definitely need to refactor to change this. Actual max accuracy is "--"...
-        return new PhysicalAttack(NameGenerator.generateRandomName(random.nextLong()), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
+        int powerRaising = Random.nextInt(4); //TODO: definitely need to refactor to change this. Actual max accuracy is "--"...
+        return new PhysicalAttack(NameGenerator.generateRandomName(Random.nextLong()), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
     }
 
     private static Move genRandomSpecialAttack()
     {
         Element movetype = Element.getRandomElement();
-        int powerRaising = random.nextInt(4); 
-        return new SpecialAttack(NameGenerator.generateRandomName(random.nextLong()), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
+        int powerRaising = Random.nextInt(4); 
+        return new SpecialAttack(NameGenerator.generateRandomName(Random.nextLong()), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
     }
 
     private static void implementStubbedAllMoves()
     {
         long seed = 0; // TODO: remove hardcoded stub!
-        random = new Random(seed);
         allMoves = new ArrayList<>();
         allMoves.add(new PhysicalAttack("Just hit it.", Element.getByName("Red"), 60, 80));
         allMoves.add(new PhysicalAttack("Hit it harder!", Element.getByName("Red"), 120, 40));
@@ -104,13 +102,13 @@ public abstract class Move {
 
     public static Move getRandomMove() {
         // TODO: Implement method that either gets or generates a random move.
-        return allMoves.get(random.nextInt(allMoves.size()));
+        return allMoves.get(Random.nextInt(allMoves.size()));
     }
 
     public static int getMoveInList(HashMap<Integer, Move> movelist) {
         int value = 0;
         while (movelist.get(value) == null)
-            value = random.nextInt(100);
+            value = Random.nextInt(100);
         return value;
     }
 
@@ -119,7 +117,7 @@ public abstract class Move {
         HashMap<Integer, Move> value = new HashMap<Integer, Move>();
         for (int i = 0; i < 25; i++) // TODO: Undo hardcoding of 25
         {
-            value.put(random.nextInt(100), Move.getRandomMove()); // TODO: Make sure no moves can be obtained for
+            value.put(Random.nextInt(100), Move.getRandomMove()); // TODO: Make sure no moves can be obtained for
                                                                   // lower/higher level than evolutions!
             System.out.println(value.keySet().toString());
             // TODO: check for collisions!
