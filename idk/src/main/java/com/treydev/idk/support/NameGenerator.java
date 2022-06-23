@@ -10,8 +10,7 @@ public class NameGenerator {
     public static String[] VowelGroups = { "A", "E", "I", "O", "U", "AE", "AI", "AU", "AY", "EI", "EU",
             "OU", "OY", "OO", "EE", "OE", "IA" };
 
-    public static String generateRandomName(long seed) {
-        Random.Initialize(seed);
+    public static String generateRandomName() {
         /*
          * Current implementation: 30% chance to end the word on any syllable
          */
@@ -57,5 +56,4 @@ public class NameGenerator {
         else
             return value + GenVowel(syllables + 1);
     }
-
 }

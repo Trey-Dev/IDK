@@ -15,7 +15,7 @@ public class LocationController {
     @GetMapping("City")
     public String city(Model model, HttpSession session) {
         if (session.getAttribute("city") == null) {
-            City c = City.getCityByLevel(1);
+            City c = City.getCity(1);
             session.setAttribute("city", c);
         }
 

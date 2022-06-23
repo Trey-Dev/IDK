@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
 import com.treydev.idk.attack.Move;
-import com.treydev.idk.critter.Critter;
 
 //import jakarta.security.auth.message.MessagePolicy.Target;
 

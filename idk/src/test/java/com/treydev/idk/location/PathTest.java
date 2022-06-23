@@ -5,12 +5,16 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
+import com.treydev.idk.support.Random;
+
 public class PathTest {
     @Test
     void testGetPathText() {
         // Starting from scratch, try to get a path to a city (should create a second)
-        City city1 = City.getCity(10, 25);
-        ArrayList<Path> paths = Path.getPaths(city1, 1000);
+        Random.Initialize(10);
+        City city1 = City.getCity( 25);
+        Random.Initialize(1000);
+        ArrayList<Path> paths = Path.getPaths(city1);
         Path foundPath = paths.get(0);
         City city2 = foundPath.getOtherCity(city1);
 
@@ -32,9 +36,10 @@ public class PathTest {
     @Test
     void testGetSinglePath() {
         // Starting from scratch, try to get a path to a city (should create a second)
-        City city1 = City.getCityByLevel(50);
+        City city1 = City.getCity(50);
 
-        ArrayList<Path> paths = Path.getPaths(city1, 1000);
+        Random.Initialize(1000);
+        ArrayList<Path> paths = Path.getPaths(city1);
 
         // Verify we have a new city with 1 to MAX paths
         Assert.isTrue(paths.size() >= 1, "We should have at least one path");
@@ -44,17 +49,19 @@ public class PathTest {
     @Test
     void testGetId() {
         City.clearMap();
-        City city1 = City.getCityByLevel(5);
+        City city1 = City.getCity(5);
         // For the first city, all paths should be the same as the
-        ArrayList<Path> paths1 = Path.getPaths(city1, 1000);
+        Random.Initialize(1000);
+        ArrayList<Path> paths1 = Path.getPaths(city1);
         for (int i = 0; i < paths1.size(); i++) {
             Path path = paths1.get(i);
             Assert.isTrue(path.getId() == i, "Path ID should be " + i);
         }
 
         // For the second city, paths IDs should continue from the previous city
-        City city2 = City.getCityByLevel(70);
-        ArrayList<Path> paths2 = Path.getPaths(city2, 1000);
+        City city2 = City.getCity(70);
+        Random.Initialize(1000);
+        ArrayList<Path> paths2 = Path.getPaths(city2);
         for (int i = 0; i < paths2.size(); i++) {
             Path path = paths2.get(i);
             Assert.isTrue(path.getId() == i + paths1.size(), "Path ID should be " + i);

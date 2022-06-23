@@ -1,7 +1,5 @@
 package com.treydev.idk.support;
 
-import com.treydev.idk.support.Random;
-
 public class Element
 {    
     private static final String[] elementNames={"Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"};

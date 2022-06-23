@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import com.treydev.idk.support.Random;
-
 public class ElementAffinity {
     private Element element;
     private double affinity;

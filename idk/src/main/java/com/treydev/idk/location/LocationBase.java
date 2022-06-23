@@ -22,7 +22,7 @@ public abstract class LocationBase {
 
     protected LocationBase(long seed, int level) {
         Random.Initialize(seed);
-        this.locationLeader = NameGenerator.generateRandomName(Random.nextLong());
+        this.locationLeader = NameGenerator.generateRandomName();
         // For now, we set them as equal, not +/- 10% requested level
         this.level = level;
         // We allow locations to be +/- 10% of the requested level

@@ -5,8 +5,9 @@ import org.junit.jupiter.api.Test;
 public class NameGeneratorTests {
     @Test
     void testGenerateRandomName() {
-        for (int i = 0; i < 100; i++) {
-            String s = NameGenerator.generateRandomName((long) i);
+        for (long i = 0; i < 100; i++) {
+            Random.Initialize(i);
+            String s = NameGenerator.generateRandomName();
             System.out.println(i + " - " + s);
         }
     }

@@ -61,16 +61,10 @@ public class City extends LocationBase {
         return shops;
     }
 
-    private City(long seed, int targetLevel) {
-        super(seed, targetLevel);
-        this.name = City.generateCityName(seed);
+    private City(int targetLevel) {
+        super(targetLevel);
+        this.name = City.generateCityName();
         // TO DO: Generate the rest of the city attributes
-    }
-
-    public static City getCityByLevel(int targetLevel) {
-        // Generate a random seed to use for the predictable random number generator
-        long seed = (long) (Math.random() * Long.MAX_VALUE);
-        return getCity(seed, targetLevel);
     }
 
     public static City getCityById(int id) {
@@ -89,7 +83,7 @@ public class City extends LocationBase {
         Path.clearPaths();
     }
 
-    public static City getCity(long seed, int targetLevel) {
+    public static City getCity(int targetLevel) {
         // Find all existing cities within +/- LEVEL_TOLERANCE of the target level
         ArrayList<City> possibleCities = new ArrayList<City>();
         cities.forEach(city -> {
@@ -101,12 +95,11 @@ public class City extends LocationBase {
 
         // First determine if a new or existing - as the list gets longer, new will be
         // less often
-        Random.Initialize(seed);
         int index = Random.nextInt(possibleCities.size() + 2);
         if (index >= possibleCities.size()) {
             // If this is a new city. make it target level to + LEVEL_TOLERANCE%
             int newTarget = targetLevel + (int) (Random.nextDouble() * targetLevel * City.LEVEL_TOLERANCE);
-            City city = new City(Random.nextLong(), newTarget);
+            City city = new City(newTarget);
             cities.add(city);
             return city;
         } else
@@ -117,13 +110,12 @@ public class City extends LocationBase {
         return cities.size();
     }
 
-    public static String generateCityName(long seed) {
-        String coreName = NameGenerator.generateRandomName(seed);
-        return generateExtendedCityName(coreName, seed);
+    public static String generateCityName() {
+        String coreName = NameGenerator.generateRandomName();
+        return generateExtendedCityName(coreName);
     }
 
-    public static String generateExtendedCityName(String coreName, long seed) {
-        Random.Initialize(seed);
+    public static String generateExtendedCityName(String coreName) {
         // 33% of the time we'll have a prefix, 33% a suffix, and the remaining neither
         int randomNumber = Random.nextInt(3);
 

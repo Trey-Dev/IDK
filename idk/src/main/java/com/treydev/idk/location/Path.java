@@ -108,7 +108,7 @@ public class Path {
         // Find or create a new city
         City newCity = null;
         while (newCity == null) {
-            newCity = City.getCity(Random.nextLong(), location.getLevel() + 1);
+            newCity = City.getCity(location.getLevel() + 1);
             if (newCity.equals(location)) {
                 newCity = null;
             }
