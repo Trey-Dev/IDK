@@ -1,9 +1,9 @@
-name: Build and deploy IDK WAR to Azure
+name: Build and deploy Critte Quest
 
 env:
-  AZURE_WEBAPP_NAME: 'idk-critter'    # set this to the name of your Azure Web App
+#   AZURE_WEBAPP_NAME: 'idk-critter'    # set this to the name of your Azure Web App
   JAVA_VERSION: '17'                  # set this to the Java version to use
-  DISTRIBUTION: 'microsoft'           # set this to the Java distribution
+#   DISTRIBUTION: 'microsoft'           # set this to the Java distribution
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/idk/target/*.war'
+          path: '${{ github.workspace }}/idk/target/*.jar'
 
   deploy:
     permissions:
@@ -45,7 +45,7 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+#       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
       - name: Download artifact from build job
@@ -53,10 +53,10 @@ jobs:
         with:
           name: java-app
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: '*.war'
+#       - name: Deploy to Azure Web App
+#         id: deploy-to-webapp
+#         uses: azure/webapps-deploy@v2
+#         with:
+#           app-name: ${{ env.AZURE_WEBAPP_NAME }}
+#           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+#           package: '*.war'
