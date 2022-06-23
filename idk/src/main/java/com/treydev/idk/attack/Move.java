@@ -39,19 +39,18 @@ public abstract class Move {
     {
         Element movetype = Element.getRandomElement();
         int powerRaising = Random.nextInt(4); //TODO: definitely need to refactor to change this. Actual max accuracy is "--"...
-        return new PhysicalAttack(NameGenerator.generateRandomName(Random.nextLong()), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
+        return new PhysicalAttack(NameGenerator.generateRandomName(), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
     }
 
     private static Move genRandomSpecialAttack()
     {
         Element movetype = Element.getRandomElement();
         int powerRaising = Random.nextInt(4); 
-        return new SpecialAttack(NameGenerator.generateRandomName(Random.nextLong()), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
+        return new SpecialAttack(NameGenerator.generateRandomName(), movetype, 80 + 5 * powerRaising, 100 - 5 * powerRaising);
     }
 
     private static void implementStubbedAllMoves()
     {
-        long seed = 0; // TODO: remove hardcoded stub!
         allMoves = new ArrayList<>();
         allMoves.add(new PhysicalAttack("Just hit it.", Element.getByName("Red"), 60, 80));
         allMoves.add(new PhysicalAttack("Hit it harder!", Element.getByName("Red"), 120, 40));

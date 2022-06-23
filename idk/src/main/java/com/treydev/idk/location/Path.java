@@ -42,11 +42,6 @@ public class Path {
     }
 
     public static ArrayList<Path> getPaths(City location) {
-        long seed = (long) (Math.random() * Long.MAX_VALUE);
-        return getPaths(location, seed);
-    }
-
-    public static ArrayList<Path> getPaths(City location, long seed) {
         ArrayList<Path> possiblePaths = new ArrayList<Path>();
         for (Path path : Path.paths) {
             if (path.location1.equals(location) || path.location2.equals(location)) {
@@ -56,7 +51,6 @@ public class Path {
 
         // We always need paths to other cities, so if there are no paths, we need to
         // add one
-        Random.Initialize(seed);
         if (possiblePaths.size() == 0) {
             Path newPath = generateNewPath(location);
             Path.paths.add(newPath);
@@ -108,7 +102,7 @@ public class Path {
         // Find or create a new city
         City newCity = null;
         while (newCity == null) {
-            newCity = City.getCity(Random.nextLong(), location.getLevel() + 1);
+            newCity = City.getCity(location.getLevel() + 1);
             if (newCity.equals(location)) {
                 newCity = null;
             }

@@ -24,15 +24,17 @@ class ElementTests {
         Assert.isTrue(element.getId() >= 0 && element.getId() < Element.getElementCount(),
                 "Element.getRandomElement() should return an element with an id between 0 and Element.getElementCount()");
 
-        element = Element.getRandomElement(100);
+        Random.Initialize(100);
+        element = Element.getRandomElement();
         Assert.isTrue(element.getId() >= 0 && element.getId() < Element.getElementCount(),
-                "Element.getRandomElement(seed) should return an element with an id between 0 and Element.getElementCount()");
+                "Element.getRandomElement() should return an element with an id between 0 and Element.getElementCount()");
     }
 
     @Test
     void testGetName() {
         // For this seed, we'll get id=5
-        Element element = Element.getRandomElement(1000);
+        Random.Initialize(1000);
+        Element element = Element.getRandomElement();
         Assert.isTrue(element.getName().equals("Indigo"),
                 "Element.getName() should return the name of the element with id 5");
     }

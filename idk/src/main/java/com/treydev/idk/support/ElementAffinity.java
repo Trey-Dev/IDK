@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import com.treydev.idk.support.Random;
-
 public class ElementAffinity {
     private Element element;
     private double affinity;
@@ -22,21 +20,11 @@ public class ElementAffinity {
         return GetRandomAffinity(2);
     }
 
-    public static ElementAffinity[] getRandoAffinity(int count) {
-        return GetRandomAffinity((long)(Math.random() * Long.MAX_VALUE), count);
-    }
-
-    public static ElementAffinity[] GetRandomAffinity(long seed) {
-        return GetRandomAffinity(seed, 2);
-    }
-
-    public static ElementAffinity[] GetRandomAffinity(long seed, int count) {
-        Random.Initialize(seed);
-        
+    public static ElementAffinity[] GetRandomAffinity(int count) {
         ArrayList<ElementAffinity> elementAffinities = new ArrayList<ElementAffinity>(count);
         for (int i = 0; i < count; i++) {
             ElementAffinity elementAffinity = new ElementAffinity();
-            elementAffinity.element = Element.getRandomElement(Random.nextLong());
+            elementAffinity.element = Element.getRandomElement();
             elementAffinity.affinity = Random.nextDouble();
             elementAffinities.add(elementAffinity);
         }
@@ -49,8 +37,7 @@ public class ElementAffinity {
         return elementAffinities.toArray(new ElementAffinity[elementAffinities.size()]);
     }
 
-    public static Element GetRandomElementByAffinity(ElementAffinity[] elementAffinities, long seed) {
-        Random.Initialize(seed);
+    public static Element GetRandomElementByAffinity(ElementAffinity[] elementAffinities) {
         int index = Random.nextInt(elementAffinities.length);
         return elementAffinities[index].element;
     }

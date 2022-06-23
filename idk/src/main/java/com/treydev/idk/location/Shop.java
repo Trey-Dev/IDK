@@ -19,20 +19,15 @@ public class Shop extends LocationBase {
         return items;
     }
 
-    public Shop(City city, long seed) {
-        super(seed, city.getLevel());
-        this.name = this.generateShopName(seed, city);
+    public Shop(City city) {
+        super(city.getLevel());
+        this.name = this.generateShopName(city);
         this.items = new ArrayList<Item>();
         // TODO: Populate Shop items
         Shop.allShops.add(this);
     }
 
-    public Shop(City city) {
-        this(city, (long) (Math.random() * Long.MAX_VALUE));
-    }
-
-    private String generateShopName(long seed, City city) {
-        Random.Initialize(seed);
+    private String generateShopName(City city) {
         int i = Random.nextInt(4);
         switch (i) {
             case 0:

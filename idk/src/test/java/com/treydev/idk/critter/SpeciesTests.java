@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
 import com.treydev.idk.support.ElementAffinity;
+import com.treydev.idk.support.Random;
 import com.treydev.idk.support.Element;
 
 public class SpeciesTests {
@@ -41,8 +42,11 @@ public class SpeciesTests {
     void testGetSpecies() {
         // When possible, GetSpecies will look for an existing species that matches the given criteria
         // Filter criteria...  ElementAffinity array, Target level, ????
-        Element e1 = Element.getRandomElement(1000);
-        Element e2 = Element.getRandomElement(2000);
+        Random.Initialize(1000);
+        Element e1 = Element.getRandomElement();
+
+        Random.Initialize(2000);
+        Element e2 = Element.getRandomElement();
         ElementAffinity[] ea = { };   
     }
 }

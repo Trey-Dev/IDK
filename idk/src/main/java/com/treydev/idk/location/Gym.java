@@ -31,9 +31,9 @@ public class Gym extends LocationBase {
         return city;
     }
 
-    public Gym(City city, long seed) {
+    public Gym(City city) {
         // Capture basic attributes
-        super(seed, city.getLevel());
+        super(city.getLevel());
         this.name = Gym.generateGymName(city);
         this.city = city;
 
@@ -45,15 +45,11 @@ public class Gym extends LocationBase {
         for (int i = 0; i < numCritters; i++) {
             // TODO: This should call a method to allow existing species and not only new ones
             Species s = Species.GenRandomSpecies(critterPower, ElementAffinity.GetRandomAffinity()[0].getElement());
-            String name = NameGenerator.generateRandomName(seed);
+            String name = NameGenerator.generateRandomName();
             Critter c = new  Critter(name, s, new Move[4],this.city.getLevel());
             this.critters.add(c);
         }
         Gym.allGyms.add(this);
-    }
-
-    public Gym(City city) {
-        this(city, (long) (Math.random() * Long.MAX_VALUE));
     }
 
     private static String generateGymName(City city) {

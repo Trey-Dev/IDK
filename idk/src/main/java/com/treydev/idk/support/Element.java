@@ -1,7 +1,5 @@
 package com.treydev.idk.support;
 
-import com.treydev.idk.support.Random;
-
 public class Element
 {    
     private static final String[] elementNames={"Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"};
@@ -21,14 +19,8 @@ public class Element
         return elements.length;
     }
 
-    public static Element getRandomElement() {
-        long seed = (long)(Math.random() * Long.MAX_VALUE);
-        return getRandomElement(seed);
-    }
-
-    public static Element getRandomElement(long seed)
+    public static Element getRandomElement()
     {
-        Random.Initialize(seed);
         return elements[Random.nextInt(elementNames.length)];
     }
 
