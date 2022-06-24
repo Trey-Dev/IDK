@@ -1,4 +1,4 @@
-name: Build and deploy Critte Quest
+name: Build and deploy Critter Quest
 
 env:
 #   AZURE_WEBAPP_NAME: 'idk-critter'    # set this to the name of your Azure Web App
@@ -37,6 +37,30 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/idk/target/*.jar'
+
+#       - name: version
+#         run: echo "::set-output name=version::$(./bin/azblogfilter --version)"
+#         id: version
+      - name: release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+#           release_name: ${{ steps.version.outputs.version }}
+          release_name: 1.0.0
+          tag_name: ${{ github.ref }}
+          body_path: CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+
+
+
+
+
+
+
 
   deploy:
     permissions:
