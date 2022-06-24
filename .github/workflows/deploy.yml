@@ -38,21 +38,32 @@ jobs:
           name: java-app
           path: '${{ github.workspace }}/idk/target/*.jar'
 
-#       - name: version
-#         run: echo "::set-output name=version::$(./bin/azblogfilter --version)"
-#         id: version
-      - name: release
-        uses: actions/create-release@v1
+      - name: Create Release
         id: create_release
-        with:
-          draft: false
-          prerelease: false
-#           release_name: ${{ steps.version.outputs.version }}
-          release_name: 1.0.0
-          tag_name: ${{ github.ref }}
-          body_path: CHANGELOG.md
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
+        with:
+          tag_name: 1.0.0
+          release_name: 1.0.0
+          draft: false
+          prerelease: false
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/idk/target/*.jar'
+          asset_name: java-app
+          asset_content_type: application/zip
+
+      - uses: eregon/publish-release@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          release_id: ${{ steps.create_release.outputs.id }}
+
 
 
 
