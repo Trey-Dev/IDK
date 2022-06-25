@@ -136,6 +136,17 @@ static{
     {
         return evaluators.get(random.nextInt(evaluators.size()));
     }
+    public static EffectEvaluator getStubbed()
+    {
+        return new EffectEvaluator(0, " always") {
+
+            @Override
+            public boolean isEffected(Critter target, Critter user) {
+                return true;
+            }
+            
+        };
+    }
     //TODO: separate evaluators for specific events.
 
 

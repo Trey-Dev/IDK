@@ -31,6 +31,7 @@ public abstract class EffectExecution {
                 @Override
                 public void execute(Critter target, Critter user, ArrayList<String> outputs) {
                     user.increaseAtk();
+                    outputs.add(user.name + " boosted their attack");
                 }
             }
         );
@@ -39,6 +40,7 @@ public abstract class EffectExecution {
                 @Override
                 public void execute(Critter target, Critter user, ArrayList<String> outputs) {
                     user.increaseDefense();
+                    outputs.add(user.name + " boosted their defense");
                 }
             }
         );
@@ -47,6 +49,7 @@ public abstract class EffectExecution {
                 @Override
                 public void execute(Critter target, Critter user, ArrayList<String> outputs) {
                     user.increaseSpeed();
+                    outputs.add(user.name + " boosted their speed");
                 }
             }
         );
@@ -56,6 +59,7 @@ public abstract class EffectExecution {
                 @Override
                 public void execute(Critter target, Critter user, ArrayList<String> outputs) {
                     user.increaseSpAtk();
+                    outputs.add(user.name + " boosted their special attack");
                 }
             }
         );
@@ -65,6 +69,7 @@ public abstract class EffectExecution {
                 @Override
                 public void execute(Critter target, Critter user, ArrayList<String> outputs) {
                     user.increaseSpDefense();
+                    outputs.add(user.name + " boosted their special defense");
                 }
             }
         );
@@ -74,6 +79,15 @@ public abstract class EffectExecution {
     public static EffectExecution getEffectExecution() {
         int index = random.nextInt(executions.size());
         return executions.get(index);
+    }
+    public static EffectExecution getStubbed()
+    {
+        return new EffectExecution(0, " does nothing") {
+            public void execute(Critter target, Critter user, ArrayList<String> outputs) {
+                //do nothing
+                outputs.add("It did nothing!");
+            }
+        };
     }
 
     public abstract void execute(Critter target, Critter user, ArrayList<String> outputs);
