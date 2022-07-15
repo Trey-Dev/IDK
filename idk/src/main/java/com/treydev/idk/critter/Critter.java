@@ -81,7 +81,7 @@ public class Critter {
         return (int) ((float) (species.getBaseSDefence() * 1) * getPercent(SpecDefStage));
     }
 
-    private int getMaxHP() {
+    public int getMaxHP() {
         return species.getBaseHitPoints(); // TODO: actually CALCULATE base HP!!!
     }
 
