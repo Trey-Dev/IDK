@@ -10,6 +10,8 @@ import com.treydev.idk.support.Random;
 
 public abstract class Move {
 
+    //TODO: add separate output for the opponent's move
+
     // P & Sp: "Execute" function runs private "Damage" function, then call "Effect"
     // Status can just be implemented as a base move.
 
