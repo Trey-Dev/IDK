@@ -45,7 +45,7 @@ public class CombatHandler {
                 break;
             }
         }
-
+        //TODO: replace with opponent taking a move.
         updateCombatOptions();
     }
 

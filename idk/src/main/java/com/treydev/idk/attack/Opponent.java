@@ -12,8 +12,30 @@ public class Opponent {
      */
 
      //TODO: static factory method to generate random encounter.
+    public static Opponent genWildEncounter(ArrayList<String> outputs)
+    {
+        
+        //TODO: replace stubbed code
+        Critter[] party = {Critter.initializeStubbedParty().get(0)};
+        outputs.add("A wild " + party[0].name + " appeared!");
+        return new Opponent( party , "The wild " + party[0].name);
+    }
+
      //Main part of this class:
      private Critter[] party;
+     private String name;
+
+     private Opponent(Critter[] party, String name) {
+         this.party = party;
+         this.name = name;
+     }
+
+
+     //accessors and mutators
+     public String getName() {
+         return name;
+     }
+       
      public void takeTurn(ArrayList<String> outputs)
      {
             //This will change the outputs and combatoptions fields.
@@ -30,7 +52,7 @@ public class Opponent {
 
      private Move chooseMove()
      {
-      //TODO: replace with random move
+      //TODO: replace with basic AI function.
         return party[0].moveset[0];
      }
 }
