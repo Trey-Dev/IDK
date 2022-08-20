@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import com.treydev.idk.IdkController;
 import com.treydev.idk.critter.Critter;
 
-public class Opponent {
+public abstract class Opponent {
     /*
      * This class is used to represent the opponent in combat.
      * It will be used by the combat handler 
      */
+    
+
+    protected abstract Move selectMove();
+
 
      //TODO: static factory method to generate random encounter.
     public static Opponent genWildEncounter(ArrayList<String> outputs)
@@ -18,7 +22,14 @@ public class Opponent {
         //TODO: replace stubbed code
         Critter[] party = {Critter.initializeStubbedParty().get(0)};
         outputs.add("A wild " + party[0].name + " appeared!");
-        return new Opponent( party , "The wild " + party[0].name);
+        return new Opponent( party , "The wild " + party[0].name)
+        {
+            @Override
+            public Move selectMove()
+            {
+                return party[0].moveset[0]; //TODO: replace stubbed code
+            }
+        };
     }
 
      //Main part of this class:
@@ -46,13 +57,13 @@ public class Opponent {
             Move[] currentMoveset = currentCritter.moveset;
             Move moveUsed = currentMoveset[0];
             
-            outputs.add("The opponent used " + moveUsed.name);
+            outputs.add( name + " used " + moveUsed.name);
             moveUsed.Execute(outputs, IdkController.PlayerParty.get(0), currentCritter);
      }
 
-     private Move chooseMove()
-     {
-      //TODO: replace with basic AI function.
-        return party[0].moveset[0];
-     }
+    //  private Move chooseMove()
+    //  {
+    //   //TODO: replace with basic AI function.
+    //     return party[0].moveset[0];
+    //  }
 }
