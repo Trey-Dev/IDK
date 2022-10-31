@@ -3,12 +3,14 @@ package com.treydev.idk.location;
 import java.util.ArrayList;
 
 import com.treydev.idk.support.Random;
+import com.treydev.idk.critter.*;
 
 public class Path {
     // For now, we are only supporting city-to-city paths - no forks
     private City location1;
     private City location2;
     private int distance;
+    private Species[] species;
 
     public int getDistance() {
         return distance;
@@ -31,6 +33,8 @@ public class Path {
         this.location1 = location1;
         this.location2 = location2;
         this.distance = distance;
+        this.species = new Species[distance]; //Note: we used distance because the number of species likely scales with it. 
+                        //It was a somewhat arbitrary choice to make them the exact same.
     }
 
     public String getPathText(City location) {
@@ -76,6 +80,12 @@ public class Path {
         }
 
         return possiblePaths;
+    }
+
+    public Species findSpecies()
+    {
+        //TODO: Check and fill out species if species is empty
+        return species[Random.nextInt(species.length)];
     }
 
     public int getId() {

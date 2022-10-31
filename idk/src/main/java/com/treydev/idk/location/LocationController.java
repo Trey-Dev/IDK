@@ -1,8 +1,6 @@
 package com.treydev.idk.location;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,6 +73,13 @@ public class LocationController {
         sb.append("... ");
         for (int i = 0; i < p.getDistance(); i++) {
             sb.append("and walk... ");
+            //TODO: replace with function to check for random encounters
+            /*
+             * This code should check for random encounters, and if one is found, it should
+             * break out of the loop and return the random encounter page, passing the distance
+             * travelled into the session variables so that the player can return to the path
+             * page and continue walking.
+             */
         }
         sb.append("and arrive at ");
         sb.append(p.getOtherCity(city).getName());
