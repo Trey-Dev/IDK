@@ -83,6 +83,18 @@ public class Species {
                 null, null, primaryElement, secondaryElement);
     }
 
+    public static Species findSpecies()
+    {
+        Element e = Element.getRandomElement();
+        return findSpecies(e);
+    }
+
+    public static Species findSpecies(Element e)
+    {
+        //TODO: get something random from list of species, or generate species
+        return null;
+    }
+
     // base stat accessors, NO MUTATORS! these variables are IMMUTABLE!
     public int getBaseAttack() {
         return baseAttack;
