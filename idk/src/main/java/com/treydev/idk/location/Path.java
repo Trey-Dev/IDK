@@ -87,6 +87,15 @@ public class Path {
         return possiblePaths;
     }
 
+    public Critter findCritter()
+    {
+        Species species = findSpecies();
+        String name = "Unnnamed";
+        int level = ((this.location1.getLevel() + this.location2.getLevel()) / 2) + Random.nextInt(10) - 5; //replace hardcoded randomness
+        Move [] moves = new Move[4]; //TODO: make function to get random moves in species
+        return new Critter(name, level, species, moves);
+    }
+
     public Species findSpecies()
     {
         int index = Random.nextInt(species.length);
