@@ -1,5 +1,6 @@
 package com.treydev.idk.critter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.treydev.idk.attack.Move;
@@ -8,6 +9,8 @@ import com.treydev.idk.support.NameGenerator;
 import com.treydev.idk.support.Random;
 
 public class Species {
+
+    private static ArrayList<Species> species = new ArrayList<Species>();
     /*
      * This is a basic species class, handed to the Critter class. It contatins base
      * stats,
@@ -81,6 +84,26 @@ public class Species {
 
         return new Species(baseAttack, baseDefense, baseHPStat, baseSpecial, baseSpeed, baseSDefence, name, description,
                 null, null, primaryElement, secondaryElement);
+    }
+
+    public static Species findSpecies()
+    {
+        return species.get(Random.nextInt(species.size()));
+    }
+
+    public static Species findSpecies(Element e)
+    {
+        //TODO: refactor to more efficient code
+        ArrayList<Species> validSpecies = new ArrayList<Species>();
+        for (Species s : species)
+        {
+            if (s.type1 == e || s.type2 == e)
+            {
+                validSpecies.add(s);
+            }
+        } //copilot typed this.
+        //TODO: get something random from list of species, or generate species
+        return validSpecies.get(Random.nextInt(validSpecies.size()));
     }
 
     // base stat accessors, NO MUTATORS! these variables are IMMUTABLE!

@@ -2,13 +2,18 @@ package com.treydev.idk.location;
 
 import java.util.ArrayList;
 
+import com.treydev.idk.support.Element;
 import com.treydev.idk.support.Random;
+import com.treydev.idk.attack.Move;
+import com.treydev.idk.critter.*;
 
 public class Path {
     // For now, we are only supporting city-to-city paths - no forks
     private City location1;
     private City location2;
     private int distance;
+    private Species[] species;
+    private Element[] elements;
 
     public int getDistance() {
         return distance;
@@ -31,6 +36,11 @@ public class Path {
         this.location1 = location1;
         this.location2 = location2;
         this.distance = distance;
+        this.species = new Species[distance]; //Note: we used distance because the number of species likely scales with it. 
+                        //It was a somewhat arbitrary choice to make them the exact same.
+        this.elements = new Element[2];
+        this.elements[0] = Element.getRandomElement();
+        this.elements[1] = Element.getRandomElement();
     }
 
     public String getPathText(City location) {
@@ -76,6 +86,31 @@ public class Path {
         }
 
         return possiblePaths;
+    }
+
+    public Critter findCritter()
+    {
+        Species species = findSpecies();
+        String name = "Unnnamed";
+        int level = ((this.location1.getLevel() + this.location2.getLevel()) / 2) + Random.nextInt(10) - 5; //replace hardcoded randomness
+        Move [] moves = new Move[4]; //TODO: make function to get random moves in species
+        return new Critter(name, species, moves, level);
+    }
+
+    public Species findSpecies()
+    {
+        int index = Random.nextInt(species.length);
+        Species value = species[index];
+        if(value == null)
+        {
+            int elementSelection = Random.nextInt(10) / 4;
+            if(elementSelection < 2)
+                value = Species.findSpecies(elements[elementSelection]);
+            else
+                value = Species.findSpecies();
+            species[index] = value;
+        }
+        return value;
     }
 
     public int getId() {

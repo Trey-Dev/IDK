@@ -18,6 +18,7 @@ public class CombatHandler {
     }
 
     public CombatHandler(ArrayList<String> outputs, ArrayList<String> CombatOptions, Critter opponent) {
+        //TODO replace Critter class with Opponent class
         this.CombatOptions = CombatOptions;
         this.outputs = outputs;
         this.opponent = opponent;
