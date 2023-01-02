@@ -38,7 +38,7 @@ jobs:
         
     - name: Perform Maven package
       working-directory: ./idk
-      run: mvn package
+      run: mvn compile
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
