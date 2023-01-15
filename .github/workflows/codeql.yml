@@ -19,9 +19,8 @@ jobs:
 
     strategy:
       fail-fast: false
-#       matrix:
-# #         language: [ 'java', 'javascript' ]
-#         language: [ 'java' ]
+#      matrix:
+#        language: [ 'java', 'javascript' ]
 
     steps:
     - uses: actions/checkout@v3
@@ -36,9 +35,9 @@ jobs:
       with:
         languages: 'java'
         
-    - name: Perform Maven package
+    - name: Compiling Java
       working-directory: ./idk
-      run: mvn package
+      run: mvn compile
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
