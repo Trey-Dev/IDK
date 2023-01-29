@@ -80,6 +80,7 @@ public class LocationController {
              * travelled into the session variables so that the player can return to the path
              * page and continue walking.
              */
+            //TODO: how do I call CombatController function from here?
         }
         sb.append("and arrive at ");
         sb.append(p.getOtherCity(city).getName());
